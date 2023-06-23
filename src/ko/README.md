@@ -2,7 +2,7 @@
 home: true
 layout: BlogHome
 icon: home
-title: Delicious Jelly
+title: 블로그
 heroImage: /logo.png
 heroText: O-h-y-o 개발 블로그
 tagline: 하고싶은거 다하기^^

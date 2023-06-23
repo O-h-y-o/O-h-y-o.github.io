@@ -37,13 +37,23 @@ export const koNavbar = navbar([
         children: [
           {
             text: "세팅",
-            icon: "setting",
+            icon: "gear-code",
             link: "upbit-setting",
           },
           {
             text: "차트",
             icon: "chart-line",
             link: "upbit-chart",
+          },
+          {
+            text: "오더북",
+            icon: "book",
+            link: "upbit-orderbook",
+          },
+          {
+            text: "거래현황",
+            icon: "arrow-right-arrow-left",
+            link: "upbit-trade",
           },
         ],
       },
