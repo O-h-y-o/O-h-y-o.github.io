@@ -56,3 +56,9 @@ $ git add .
 $ git commit -m "message"
 $ git push
 ```
+
+git push에서 브랜치 에러가 난다면 다음 명령어를 입력해주세요.
+
+```sh
+$ git push --set-upstream origin main
+```
