@@ -46,7 +46,13 @@ initialize repo
 
 프로젝트가 만들어졌으면, 깃허브 홈페이지로 들어가서 `username.github.io` 라는 이름으로 github public repo 를 만들어줍니다.
 
-vuepress로 만든 프로젝트에서 터미널을 열어주고 깃 저장소에 연결하겠습니다..
+::: info
+
+repo 를 만들고 Settings 탭 => Actions => General 로 들어가서 Workflow permissions의 옵션 중 Read and write permissions 로 바꿔주고 Save를 해줍니다.
+
+:::
+
+vuepress로 만든 프로젝트에서 터미널을 열어주고 깃 저장소에 연결하겠습니다.
 
 ```sh
 $ git init
