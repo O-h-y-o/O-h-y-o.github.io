@@ -73,9 +73,3 @@ export default routes;
 ```
 
 - pages 폴더에 `ExchangePage.vue` 를 만들어주고 routes.ts 에서 추가해줍니다.
-
-<Comment />
-
-<script setup>
-  import Comment from '../components/Comment.vue'
-</script>
