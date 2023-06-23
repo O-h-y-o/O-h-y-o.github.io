@@ -62,3 +62,22 @@ git push에서 브랜치 에러가 난다면 다음 명령어를 입력해주세
 ```sh
 $ git push --set-upstream origin main
 ```
+
+vuepress hope 에서는 기본적으로 github actions 템플릿을 제공해줍니다.
+
+```
+- name: Install pnpm
+  uses: pnpm/action-setup@v2
+  with:
+    run_install: true
+```
+
+중간쯤에 `Install pnpm` 이란것이 있는데 다음과 같이 version을 넣어주어야 합니다.
+
+```
+- name: Install pnpm
+  uses: pnpm/action-setup@v2
+  with:
+    version: 8
+    run_install: true
+```

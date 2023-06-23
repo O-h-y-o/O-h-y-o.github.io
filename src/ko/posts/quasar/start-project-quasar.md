@@ -55,9 +55,3 @@ $ yarn quasar inspect
 $ pnpm run dev
 # ..etc
 ```
-
-<!-- <Comment /> -->
-
-<script setup lang="ts">
-// import Comment from "../components/Comment.vue";
-</script>

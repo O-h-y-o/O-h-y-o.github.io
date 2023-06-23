@@ -718,7 +718,9 @@ onBeforeMount(() => {
 실시간 trade 내역을 받아와야하니 소켓서버에 KRW-BTC 가 거래되고 있는 데이터를 달라고 요청합니다. <br />
 그럼 `onmessage` 를 통하여 응답을 받아올 수 있습니다. 아래 박스의 데이터는 실시간으로 받아오고 있는 데이터이며 차트는 받아온 데이터로 실시간으로 변경해주고 있는 차트입니다. <br /> 다음과 같이 나오면 성공입니다.
 
-<SocketChart />
+<ClientOnly>
+  <SocketChart />
+</ClientOnly>
 
 <br/>
 <br/>

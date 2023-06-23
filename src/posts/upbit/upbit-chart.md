@@ -725,7 +725,7 @@ Upbit socket server address is `wss://api.upbit.com/websocket/v1`.
 Since we need to receive real-time trade details, we request the socket server to receive the transaction data of KRW-BTC. <br />
 Then you can get the response through `onmessage`. The data in the box below is the data being received in real time, and the chart is being changed in real time with the received data. <br /> If it looks like this, it's a success.
 
-<SocketChart />
+<!-- <SocketChart /> -->
 
 <br/>
 <br/>
