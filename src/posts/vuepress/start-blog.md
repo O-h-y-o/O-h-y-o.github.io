@@ -87,3 +87,9 @@ There is something called `Install pnpm` in the middle, and you need to put the 
     version: 8
     run_install: true
 ```
+
+If you have uploaded everything up to this point in the git repo, a new branch called gh-pages should have been created if you did not modify the .yml file separately during the build.
+
+This time, I will go to Settings tab => Pages and change Branch to gh-pages in Build and deployment and Save.
+
+After waiting for a while, go to username.github.io and you will see a pretty home page.

@@ -87,3 +87,9 @@ vuepress hope 에서는 기본적으로 github actions 템플릿을 제공해줍
     version: 8
     run_install: true
 ```
+
+여기까지 모두 git repo에 올렸으면, 이제 빌드가 되면서 따로 .yml 파일을 수정하지 않았다면 gh-pages 라는 브랜치가 새로 생겼을겁니다.
+
+이번에는 Settings tab => Pages 로 들어가 Build and deployment 에서 Branch를 gh-pages로 바꾸고 Save 해주겠습니다.
+
+잠시 기다린 뒤, username.github.io 로 들어가면 예쁜 홈페이지가 보일겁니다.
