@@ -7,6 +7,8 @@ order: 2
 차트에서는 처음 로드시에 차트를 그려줄 분봉 데이터를 가져와야합니다. <br/>
 처음에는 50개만 가져 오겠습니다.
 
+::: info Codes
+
 ```ts
 // upbit-store.ts
 export const useUpbitSocketStore = defineStore("upbitSocket", {
@@ -30,6 +32,10 @@ declare global {
   }
 }
 ```
+
+:::
+
+::: info Codes
 
 components 로 `UpbitChart.vue` 를 만들어주고, 차트를 그릴 데이터를 먼저 가져옵니다.
 
@@ -67,9 +73,15 @@ onBeforeMount(() => {
 </script>
 ```
 
+:::
+
+::: tip
+
 다음과 같은 결과물을 얻을 수 있습니다.
 
 <div style="font-size: 12px">[{{ candleOneData[0] }} ... ]</div>
+
+:::
 
 차트를 그리기 위해 필요한 데이터는 `opening_price, high_price, low_price, trade_price, candle_acc_trade_volume, (candle_date_time_kst | candle_date_time_utc)` 입니다.
 

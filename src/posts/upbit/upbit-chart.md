@@ -7,6 +7,8 @@ order: 2
 The chart needs to get the sequencing data to draw the chart on first load. <br/>
 I'll only bring 50 at first.
 
+::: info Codes
+
 ```ts
 // upbit-store.ts
 export const useUpbitSocketStore = defineStore("upbitSocket", {
@@ -30,6 +32,10 @@ declare global {
   }
 }
 ```
+
+:::
+
+::: info Codes
 
 Create `UpbitChart.vue` as components, and first import the data to draw the chart.
 
@@ -67,11 +73,17 @@ onBeforeMount(() => {
 </script>
 ```
 
+:::
+
 You'll get something like this:
 
-<div style="font-size: 12px">[{{ candleOneData[0] }} ... ]</div>
+::: tip
 
-The data needed to draw the chart is `opening_price, high_price, low_price, trade_price, candle_acc_trade_volume, (candle_date_time_kst | candle_date_time_utc)`.
+<div style="font-size: 12px; padding-bottom: 20px">[{{ candleOneData[0] }} ... ]</div>
+
+:::
+
+- The data needed to draw the chart is `opening_price, high_price, low_price, trade_price, candle_acc_trade_volume, (candle_date_time_kst | candle_date_time_utc)`.
 
 <br />
 
