@@ -1,0 +1,1 @@
+const j={up:"#D24F45",down:"#1261C4",same:"#000"},p=(e,n,r)=>{const c={};return r==="desc"?new Map(Object.entries(e).sort((o,s)=>o[1][n]<s[1][n]?1:o[1][n]>s[1][n]?-1:0)).forEach((o,s)=>{c[s]=o}):new Map(Object.entries(e).sort((o,s)=>o[1][n]>s[1][n]?1:o[1][n]<s[1][n]?-1:0)).forEach((o,s)=>{c[s]=o}),c};export{j as c,p as o};
