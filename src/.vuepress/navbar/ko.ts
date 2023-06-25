@@ -46,6 +46,11 @@ export const koNavbar = navbar([
             link: "upbit-chart",
           },
           {
+            text: "마켓리스트",
+            icon: "table-list",
+            link: "upbit-market-list",
+          },
+          {
             text: "오더북",
             icon: "book",
             link: "upbit-orderbook",

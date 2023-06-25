@@ -46,6 +46,11 @@ export const enNavbar = navbar([
             link: "upbit-chart",
           },
           {
+            text: "Market list",
+            icon: "table-list",
+            link: "upbit-market-list",
+          },
+          {
             text: "Orderbook",
             icon: "book",
             link: "upbit-orderbook",
