@@ -620,8 +620,8 @@ interface IMarkets {
 <script setup lang="ts">
 import axios from "axios";
 import { ref, onMounted } from "vue";
-import { useUpbitSocketStore } from "../stores/socket-upbit";
-import { objSort } from "../utils/rule";
+import { useUpbitSocketStore } from "src/stores/socket-upbit";
+import { objSort } from "src/utils/rule";
 
 const upbit = useUpbitSocketStore();
 
@@ -730,6 +730,7 @@ const changeMarket = (market: string) => {
 const changeCoin = (market: string, name: string) => {
   upbit.selectCoin = market;
   upbit.coinFullName.ko = name;
+  upbit.reloadCandle();
 };
 
 let tickerSocket: WebSocket;

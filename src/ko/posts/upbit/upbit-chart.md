@@ -14,8 +14,8 @@ order: 2
 export const useUpbitSocketStore = defineStore("upbitSocket", {
   state: (): ISocketState => ({
     chartTime: "1", // 차트 분봉
-    coinCode: "KRW-BTC", // 업비트 API에서 가져올 코인 이름
-    coinName: { ko: "비트코인", en: "Bitcoin" },
+    selectCoin: "KRW-BTC", // 업비트 API에서 가져올 코인 이름
+    coinFullName: { ko: "비트코인", en: "Bitcoin" },
   }),
 });
 ```
@@ -27,8 +27,8 @@ export {};
 declare global {
   interface ISocketState {
     chartTime: string;
-    coinFullName: { ko: string; en: string };
     selectCoin: string;
+    coinFullName: { ko: string; en: string };
   }
 }
 ```
@@ -172,13 +172,16 @@ import axios from "axios";
 import dayjs from "dayjs";
 import EchartsDefault from "src/components/EchartsDefault.vue";
 import { colors } from "src/utils/rule";
+import { useUpbitSocketStore } from 'src/stores/socket-upbit';
+
+const upbit = useUpbitSocketStore();
 
 const bindingOptions = ref({
   animationDuration: 100,
   animationDurationUpdate: 100,
   title: {
-    text: "비트코인",
-    subtext: "KRW-BTC",
+    text: ${upbit.coinFullName.ko},
+    subtext: ${upbit.selectCoin},
     left: "center",
     top: 40,
     textStyle: {
@@ -342,7 +345,7 @@ const updateMarkLine = <T>(
 
 const getCandleAPI = async (count = 50) => {
   const response = await axios.get<ICandleStickResponse[]>(
-    `https://api.upbit.com/v1/candles/minutes/1?market=KRW-BTC&count=${count}`
+    `https://api.upbit.com/v1/candles/minutes/${upbit.chartTime}?market=${upbit.selectCoin}&count=${count}`
   );
 
   for (const i in response.data.reverse()) {
@@ -396,6 +399,7 @@ declare global {
   interface ISocketState {
     …
     tradeData: ISocketTradeResponse;
+    reloadCandle: Function;
   }
 
   interface ISocketTradeResponse {
@@ -429,6 +433,7 @@ export const useUpbitSocketStore = defineStore("upbitSocket", {
     coinFullName: { ko: "비트코인", en: "Bitcoin" },
     selectCoin: "KRW-BTC",
     tradeData: {} as ISocketTradeResponse,
+    reloadCandle: async () => {},
   }),
   actions: {
     connectTradeSocket() {
@@ -477,12 +482,14 @@ import EchartsDefault from "src/components/EchartsDefault.vue";
 import { colors } from "src/utils/rule";
 import { useUpbitSocketStore } from "src/stores/socket-upbit";
 
+const upbit = useUpbitSocketStore();
+
 const bindingOptions = ref({
   animationDuration: 100,
   animationDurationUpdate: 100,
   title: {
-    text: "비트코인",
-    subtext: "KRW-BTC",
+    text: ${upbit.coinFullName.ko},
+    subtext: ${upbit.selectCoin},
     left: "center",
     top: 40,
     textStyle: {
@@ -633,7 +640,7 @@ const bindingOptions = ref({
 
 const candleData = ref<{ [key: string]: number[] }>({});
 const candleVolume = ref<{ [key: string]: number[] }>({});
-const tradeData = computed(() => useUpbitSocketStore().tradeData);
+const tradeData = computed(() => upbit.tradeData);
 const stop = ref(false);
 
 const updateMarkLine = <T>(
@@ -648,7 +655,7 @@ const updateMarkLine = <T>(
 
 const getCandleAPI = async (count = 50) => {
   const response = await axios.get<ICandleStickResponse[]>(
-    `https://api.upbit.com/v1/candles/minutes/1?market=KRW-BTC&count=${count}`
+    `https://api.upbit.com/v1/candles/minutes/${upbit.chartTime}?market=${upbit.selectCoin}&count=${count}`
   );
 
   for (const i in response.data.reverse()) {
@@ -720,7 +727,8 @@ watch(
 
 onBeforeMount(() => {
   getCandleAPI();
-  useUpbitSocketStore().connectTradeSocket();
+  upbit.connectTradeSocket();
+  upbit.reloadCandle = getCandleAPI;
 });
 </script>
 ```
