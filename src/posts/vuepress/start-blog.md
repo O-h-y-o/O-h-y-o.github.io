@@ -1,4 +1,4 @@
-# Vuepress Theme 로 블로그 만들기
+# Blogging with Vuepress Theme
 
 Let's create a development blog with the Vuepress Hope theme.
 

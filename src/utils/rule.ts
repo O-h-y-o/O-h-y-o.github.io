@@ -1,3 +1,5 @@
+import { ITradeResponse } from "src/utils/types";
+
 export const comma = (change: number | string, digit = 2): string => {
   return Number(change).toLocaleString(undefined, {
     maximumFractionDigits: digit,
@@ -38,4 +40,43 @@ export const objSort = (data: any, target: any, sort?: string) => {
     });
   }
   return changeObj;
+};
+
+export const convertTradeKeys = (
+  obj: ITradeResponse | ITradeResponse[]
+): any => {
+  if (Array.isArray(obj)) {
+    return obj.map((item) => convertTradeKeys(item));
+  }
+
+  const convertedObj: any = {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      convertedObj[convertTradeType[key]] = obj[key];
+    }
+  }
+  return convertedObj;
+};
+
+export const convertTradeType = {
+  change_price: "cp",
+  sequential_id: "sid",
+  prev_closing_price: "pcp",
+  timestamp: "tms",
+  trade_price: "tp",
+  trade_volume: "tv",
+  ask_bid: "ab",
+  market: "market",
+  trade_date_utc: "td",
+  trade_time_utc: "ttm",
+};
+
+export const debounce = (callback: Function, limit = 100) => {
+  let timeout: NodeJS.Timeout;
+  return function (...args: any) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      callback.apply(this, args);
+    }, limit);
+  };
 };

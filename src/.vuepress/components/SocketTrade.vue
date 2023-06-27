@@ -14,7 +14,7 @@
       </li>
     </ul>
 
-    <div class="trade-area">
+    <div class="trade-area" @scroll="scrolling">
       <ul class="trade-info-wrap">
         <li v-for="(data, i) in tradeList" :key="i" class="trade-info">
           <div class="time-zone">
@@ -38,8 +38,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import axios from "axios";
+import { convertTradeKeys, debounce } from "../../utils/rule";
 import dayjs from "dayjs";
-import { convertTradeKeys } from "../../utils/rule";
 import { ISocketTradeResponse, ITradeResponse } from "../../utils/types";
 
 const tradeList = ref<ISocketTradeResponse[]>([]);
@@ -51,12 +51,46 @@ const getTradeAPI = async () => {
   );
 
   const data = res.data as ITradeResponse[];
+
   const convertedData = convertTradeKeys(data);
+
   tradeList.value.push(...convertedData);
 };
 
+const scrolling = debounce((a: any) => {
+  const percent = Math.floor(
+    (a.target.scrollTop / (a.target.scrollHeight - a.target.clientHeight)) * 100
+  );
+
+  if (percent > 90) {
+    getTradeAPI();
+  }
+}, 100);
+
 onMounted(() => {
   getTradeAPI();
+  let tradeSocket: WebSocket;
+  tradeSocket = new WebSocket("wss://api.upbit.com/websocket/v1");
+
+  tradeSocket.onopen = (e: any) => {
+    tradeSocket.send(
+      `${JSON.stringify([
+        { ticket: "trade" },
+        { type: "trade", codes: ["KRW-BTC"] },
+        { format: "SIMPLE" },
+      ])}`
+    );
+  };
+
+  tradeSocket.onmessage = async (payload: any) => {
+    const r = (await new Response(payload.data).json()) as ISocketTradeResponse;
+
+    tradeList.value.unshift(r);
+
+    if (tradeList.value.length > 50) {
+      tradeList.value.pop();
+    }
+  };
 });
 </script>
 
