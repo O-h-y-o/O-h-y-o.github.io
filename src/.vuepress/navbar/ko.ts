@@ -51,14 +51,14 @@ export const koNavbar = navbar([
             link: "upbit-market-list",
           },
           {
-            text: "오더북",
-            icon: "book",
-            link: "upbit-orderbook",
-          },
-          {
             text: "거래현황",
             icon: "arrow-right-arrow-left",
             link: "upbit-trade",
+          },
+          {
+            text: "오더북",
+            icon: "book",
+            link: "upbit-orderbook",
           },
         ],
       },

@@ -1,62 +1,3 @@
----
-order: 5
----
-
-# Creating an exchange page with Upbit Open API - Order Book
-
-::: tip
-
-```ts
-// global.d.ts
-interface ISocketOrderbookResponse {
-  cd: string;
-  tms: number;
-  tas: number;
-  tbs: number;
-  obu: [
-    {
-      ap: number;
-      bp: number;
-      as: number;
-      bs: number;
-    }
-  ];
-  st: string;
-  ty: string;
-}
-```
-
-```ts
-const connectOrderbookSocket = () => {
-  orderbookSocket = new WebSocket("wss://api.upbit.com/websocket/v1");
-
-  orderbookSocket.onopen = (e: any) => {
-    orderbookSocket.send(
-      `${JSON.stringify([
-        { ticket: "orderbook" },
-        { type: "orderbook", codes: [upbit.selectCoin] },
-        { format: "SIMPLE" },
-      ])}`
-    );
-  };
-
-  orderbookSocket.onmessage = async (payload: any) => {
-    const r = (await new Response(
-      payload.data
-    ).json()) as ISocketOrderbookResponse;
-
-    orderbookList.value = r;
-  };
-};
-```
-
-:::
-
-<UpbitOrderbook />
-
-::: details Code
-
-```vue
 <template>
   <div class="orderbook-wrap">
     <div ref="scrollRef" class="orderbook-area">
@@ -71,7 +12,7 @@ const connectOrderbookSocket = () => {
             :key="i"
             :class="[
               data.per > 0 ? 'color-rise' : 'color-fall',
-              { box: data.ap === upbit.tradeData.tp },
+              { box: data.ap === tradeData.tp },
             ]"
           >
             <span>
@@ -88,7 +29,7 @@ const connectOrderbookSocket = () => {
             :key="i"
             :class="[
               data.per > 0 ? 'color-rise' : 'color-fall',
-              { box: data.bp === upbit.tradeData.tp },
+              { box: data.bp === tradeData.tp },
             ]"
           >
             <span>
@@ -106,7 +47,7 @@ const connectOrderbookSocket = () => {
           <span>체결량</span>
         </div>
         <ul class="trade">
-          <li v-for="data in upbit.tradeList.slice(0, 20)" :key="data.sid">
+          <li v-for="data in tradeList" :key="data.sid">
             <span class="trade-price">{{ data.tp.toLocaleString() }}</span>
             <span class="trade-volume" :class="data.ab">
               {{ data.tv.toFixed(3) }}
@@ -122,7 +63,7 @@ const connectOrderbookSocket = () => {
             <span>
               {{ Math.round(tickerData.atv24h)?.toLocaleString() }}
               <span style="font-size: 10px; color: #888">
-                {{ upbit.selectCoin.split("-")[1] }}
+                {{ selectCoin.split("-")[1] }}
               </span>
             </span>
           </li>
@@ -204,18 +145,87 @@ const connectOrderbookSocket = () => {
     </div>
     <nav class="nav-bottom">
       <span>{{ orderbookList.tas?.toFixed(3) }}</span>
-      <button type="button">수량({{ upbit.selectCoin }})</button>
+      <button type="button">수량({{ selectCoin }})</button>
       <span>{{ orderbookList.tbs?.toFixed(3) }}</span>
     </nav>
   </div>
 </template>
 
 <script setup lang="ts">
+import EchartsDefault from "./EchartsDefault.vue";
 import { ref, computed, onMounted } from "vue";
-import EchartsDefault from "src/components/EchartsDefault.vue";
-import { useUpbitSocketStore } from "src/stores/socket-upbit";
 
-const upbit = useUpbitSocketStore();
+interface ISocketOrderbookResponse {
+  cd: string;
+  tms: number;
+  tas: number;
+  tbs: number;
+  obu: [
+    {
+      ap: number;
+      bp: number;
+      as: number;
+      bs: number;
+    }
+  ];
+  st: string;
+  ty: string;
+}
+
+interface ITickerResponse {
+  dd: null;
+  its: false;
+  aav: number;
+  abv: number;
+  atp: number;
+  atp24h: number;
+  atv: number;
+  atv24h: number;
+  cp: number;
+  cr: number;
+  h52wp: number;
+  hp: number;
+  l52wp: number;
+  lp: number;
+  op: number;
+  pcp: number;
+  scp: number;
+  scr: number;
+  tms: number;
+  tp: number;
+  ttms: number;
+  tv: number;
+  ab: string;
+  c: string;
+  cd: string;
+  h52wdt: string;
+  l52wdt: string;
+  ms: string;
+  mw: string;
+  st: string;
+  tdt: string;
+  ttm: string;
+  ty: string;
+}
+
+interface ISocketTradeResponse {
+  ab: string;
+  c: string;
+  cd: string;
+  cp: number;
+  pcp: number;
+  sid: number;
+  st: string;
+  td: string;
+  tms: number;
+  tp: number;
+  ttm: string;
+  ttms: number;
+  tv: number;
+  ty: string;
+}
+
+const selectCoin = "KRW-BTC";
 const scrollRef = ref();
 const orderbookList = ref<ISocketOrderbookResponse>(
   {} as ISocketOrderbookResponse
@@ -234,7 +244,9 @@ const orderbookBid = computed(() => {
     per: (e.bp - tickerData.value.pcp) / (tickerData.value.pcp / 100),
   }));
 });
-const tickerData = computed(() => upbit.tickerData);
+const tickerData = ref<ITickerResponse>({} as ITickerResponse);
+const tradeData = ref<ISocketTradeResponse>({} as ISocketTradeResponse);
+const tradeList = ref<ISocketTradeResponse[]>([] as ISocketTradeResponse[]);
 
 const bindingOptions = ref({
   xAxis: [
@@ -334,7 +346,7 @@ const connectOrderbookSocket = () => {
     orderbookSocket.send(
       `${JSON.stringify([
         { ticket: "orderbook" },
-        { type: "orderbook", codes: [upbit.selectCoin] },
+        { type: "orderbook", codes: [selectCoin] },
         { format: "SIMPLE" },
       ])}`
     );
@@ -351,14 +363,60 @@ const connectOrderbookSocket = () => {
   setScroll();
 };
 
-const reloadOrderbook = () => {
-  orderbookSocket.close();
-  connectOrderbookSocket();
+const connectTickerSocket = () => {
+  let tickerSocket: WebSocket;
+
+  tickerSocket = new WebSocket("wss://api.upbit.com/websocket/v1");
+
+  tickerSocket.onopen = (e: any) => {
+    tickerSocket.send(
+      `${JSON.stringify([
+        { ticket: "ticker" },
+        { type: "ticker", codes: [selectCoin] },
+        { format: "SIMPLE" },
+      ])}`
+    );
+  };
+
+  tickerSocket.onmessage = async (payload: any) => {
+    const res = (await new Response(payload.data).json()) as ITickerResponse;
+
+    tickerData.value = res;
+  };
+};
+
+const connectTradeSocket = () => {
+  let tradeSocket: WebSocket;
+  tradeSocket = new WebSocket("wss://api.upbit.com/websocket/v1");
+
+  tradeSocket.onopen = (e: any) => {
+    tradeSocket.send(
+      `${JSON.stringify([
+        { ticket: "trade" },
+        { type: "trade", codes: ["KRW-BTC"] },
+        { format: "SIMPLE" },
+      ])}`
+    );
+  };
+
+  tradeSocket.onmessage = async (payload: any) => {
+    const r = (await new Response(payload.data).json()) as ISocketTradeResponse;
+
+    tradeData.value = r;
+
+    tradeList.value.unshift(r);
+
+    if (tradeList.value.length > 50) {
+      tradeList.value.pop();
+    }
+  };
 };
 
 onMounted(() => {
+  setScroll();
   connectOrderbookSocket();
-  upbit.reloadOrderbook = reloadOrderbook;
+  connectTickerSocket();
+  connectTradeSocket();
 });
 </script>
 
@@ -515,7 +573,6 @@ onMounted(() => {
   right: 0;
   bottom: 300px;
   font-size: 11px;
-  padding: 7px;
 
   > ul {
     padding-bottom: 16px;
@@ -594,54 +651,3 @@ onMounted(() => {
   color: #1261c4;
 }
 </style>
-```
-
-:::
-
-I imported the data that was loaded with the functions I had created so far and finally connected it to the order book.
-
-The charts used in the order book were created with one bar chart above and one below.
-
-In the current example chart, the data loaded by getTradeAPI from `UpbitTrade.vue` is not connected, but it is well connected in the actual running process and will show the initial data well.
-
-Up to this point, we have implemented the chart, market list, transaction history, and order book of the Upbit exchange page.
-Overall, detailed functions were not implemented, only core functions were implemented.
-
-Lastly, we will finish by adding code that executes the functions that need to be reloaded when the `changeMarket` function of `MarketList.vue` is executed.
-
-::: info
-
-```ts
-// UpbitTrade.vue
-...
-const reloadTrade = async () => {
-  await getTradeAPI();
-  upbit.disconnectTradeSocket();
-  upbit.connectTradeSocket();
-}
-
-onMounted(async () => {
-  ...
-  upbit.reloadTrade = reloadTrade;
-});
-...
-
-```
-
-```ts
-// MarketList.vue
-const changeMarket = (market: string) => {
-  closeTickerSocket();
-  selectMarket.value = market;
-  controlLoadAll();
-  connectTickerSocket(Object.keys(markets.value[market]));
-  upbit.reloadCandle();
-  upbit.reloadTrade();
-  upbit.reloadOrderbook();
-  selectSort.value.sortTarget = "";
-  selectSort.value.sort = "desc";
-  dataSort("trp");
-};
-```
-
-:::
