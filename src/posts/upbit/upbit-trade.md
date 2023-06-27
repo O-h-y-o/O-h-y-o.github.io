@@ -13,7 +13,20 @@ Let's import 20 pieces of data.
 ::: info Codes
 
 ```ts
-//global.d.ts
+// socket-upbit.ts
+state: () ISocketState => ({
+  ...
+  reloadTrade: async () => {},
+})
+```
+
+```ts
+// global.d.ts
+interface ISocketState {
+  ...
+  reloadTrade: Function;
+}
+
 interface ITradeResponse {
   change_price: number;
   sequential_id: number;
@@ -48,6 +61,7 @@ const getTradeAPI = async () => {
 
 onMounted(() => {
   getTradeAPI();
+  upbit.reloadTrade = getTradeAPI;
 });
 </script>
 ```
@@ -69,10 +83,9 @@ This time, we will change the key value of the received data to a simple one.
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import { useUpbitSocketStore } from "src/stores/socket-upbit";
+import { convertTradeKeys } from "src/utils/rule";
 
 const upbit = useUpbitSocketStore();
-
-const tradeList = ref<ISocketTradeResponse[]>();
 
 const getTradeAPI = async () => {
   const res = await axios.get(
@@ -80,12 +93,13 @@ const getTradeAPI = async () => {
   );
 
   const data = res.data as ITradeResponse[];
-
-  tradeList.value = convertTradeKeys(data);
+  const convertedData = convertTradeKeys(data);
+  upbit.tradeList.push(...convertedData);
 };
 
 onMounted(() => {
   getTradeAPI();
+  upbit.reloadTrade = getTradeAPI;
 });
 </script>
 ```
@@ -173,7 +187,7 @@ Now that we have organized the data, let's create a UI and apply it right away.
 
     <div class="trade-area">
       <ul class="trade-info-wrap">
-        <li v-for="(data, i) in tradeList" :key="i" class="trade-info">
+        <li v-for="(data, i) in upbit.tradeList" :key="i" class="trade-info">
           <div class="time-zone">
             <span>{{ dayjs(data.tms).format("MM.DD") }}</span>
             <span>{{ dayjs(data.tms).format("HH:mm") }}</span>
@@ -200,7 +214,6 @@ import { useUpbitSocketStore } from "src/stores/socket-upbit";
 import { convertTradeKeys } from "src/utils/rule";
 
 const upbit = useUpbitSocketStore();
-const tradeList = ref<ISocketTradeResponse[]>([]);
 
 const getTradeAPI = async () => {
   const res = await axios.get(
@@ -209,11 +222,12 @@ const getTradeAPI = async () => {
 
   const data = res.data as ITradeResponse[];
   const convertedData = convertTradeKeys(data);
-  tradeList.value.push(...convertedData);
+  upbit.tradeList.push(...convertedData);
 };
 
 onMounted(() => {
   getTradeAPI();
+  upbit.reloadTrade = getTradeAPI;
 });
 </script>
 
@@ -320,6 +334,45 @@ Now, let's get the Trade Socket data that was connected when creating the chart 
 ::: details Code
 
 ```ts
+// socket-upbit.ts
+state: () ISocketState => ({
+  ...
+  tradeList: ISocketTradeResponse[];
+})
+
+actions:{
+  connectTradeSocket() {
+    tradeSocket = new WebSocket("wss://api.upbit.com/websocket/v1");
+
+    tradeSocket.onopen = (e: any) => {
+      tradeSocket.send(
+        `${JSON.stringify([
+          { ticket: "trade" },
+          { type: "trade", codes: ["KRW-BTC"] },
+          { format: "SIMPLE" },
+        ])}`
+      );
+    };
+
+    tradeSocket.onmessage = async (payload: any) => {
+      const r = (await new Response(
+        payload.data
+      ).json()) as ISocketTradeResponse;
+
+      this.tradeData = r;
+
+      this.tradeList.unshift(r);
+
+      if (this.tradeList.length > 50) {
+        this.tradeList.pop();
+      }
+    };
+  },
+}
+
+```
+
+```ts
 // utils/rule.ts
 export const debounce = (callback: Function, limit = 100) => {
   let timeout: NodeJS.Timeout;
@@ -352,7 +405,7 @@ export const debounce = (callback: Function, limit = 100) => {
 
     <div class="trade-area" @scroll="scrolling">
       <ul class="trade-info-wrap">
-        <li v-for="(data, i) in tradeList" :key="i" class="trade-info">
+        <li v-for="(data, i) in upbit.tradeList" :key="i" class="trade-info">
           <div class="time-zone">
             <span>{{ dayjs(data.tms).format("MM.DD") }}</span>
             <span>{{ dayjs(data.tms).format("HH:mm") }}</span>
@@ -372,7 +425,7 @@ export const debounce = (callback: Function, limit = 100) => {
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch, computed } from "vue";
+import { ref, onMounted } from "vue";
 import axios from "axios";
 import dayjs from "dayjs";
 import { useUpbitSocketStore } from "src/stores/socket-upbit";
@@ -380,21 +433,19 @@ import { convertTradeKeys, debounce } from "src/utils/rule";
 
 const upbit = useUpbitSocketStore();
 const btnSelect = ref(0);
-const tradeList = ref<ISocketTradeResponse[]>([]);
-const tradeData = computed(() => upbit.tradeData);
 
 const getTradeAPI = async () => {
   const res = await axios.get(
     `https://api.upbit.com/v1/trades/ticks?market=${
       upbit.selectCoin
     }&count=20&${
-      tradeList.value.at(-1) ? `${"cursor=" + tradeList.value.at(-1).sid}` : ""
+      upbit.tradeList.at(-1) ? `${"cursor=" + upbit.tradeList.at(-1).sid}` : ""
     }`
   );
 
   const data = res.data as ITradeResponse[];
   const convertedData = convertTradeKeys(data);
-  tradeList.value.push(...convertedData);
+  upbit.tradeList.push(...convertedData);
 };
 
 const scrolling = debounce((a: any) => {
@@ -407,20 +458,9 @@ const scrolling = debounce((a: any) => {
   }
 });
 
-watch(
-  tradeData,
-  () => {
-    tradeList.value.unshift(tradeData.value);
-
-    if (tradeList.value.length > 50) {
-      tradeList.value.pop();
-    }
-  },
-  { deep: true }
-);
-
 onMounted(() => {
   getTradeAPI();
+  upbit.reloadTrade = getTradeAPI;
 });
 </script>
 
