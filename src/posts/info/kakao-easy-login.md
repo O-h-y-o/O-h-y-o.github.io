@@ -52,7 +52,8 @@ const link = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.KA
 :::
 
 If you press Kakao Login, the following will appear, and if you agree and continue, you will be moved to the redirect uri you have set up.
-<img src="https://developers.kakao.com/docs/latest/ko/assets/style/images/kakaologin/kakaologin_code.png" />
+
+<!-- <img src="https://developers.kakao.com/docs/latest/ko/assets/style/images/kakaologin/kakaologin_code.png" /> -->
 
 ::: info
 
