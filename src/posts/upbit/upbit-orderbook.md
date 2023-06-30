@@ -52,7 +52,9 @@ const connectOrderbookSocket = () => {
 
 :::
 
-<UpbitOrderbook />
+<ClientOnly>
+  <UpbitOrderbook />
+</ClientOnly>
 
 ::: details Code
 
