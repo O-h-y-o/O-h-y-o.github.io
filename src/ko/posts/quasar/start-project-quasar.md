@@ -3,9 +3,6 @@ icon: pen-to-square
 date: 2023-06-23
 category:
 tag:
-  - red
-  - big
-  - round
 ---
 
 # Quasar로 프로젝트 시작하기

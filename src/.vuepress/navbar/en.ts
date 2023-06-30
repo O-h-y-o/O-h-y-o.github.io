@@ -62,6 +62,22 @@ export const enNavbar = navbar([
           },
         ],
       },
+      {
+        text: "Info",
+        prefix: "info/",
+        children: [
+          {
+            text: "Kakao login",
+            icon: "kakao",
+            link: "kakao-easy-login",
+          },
+          {
+            text: "Naver login",
+            icon: "kakao",
+            link: "naver-easy-login",
+          },
+        ],
+      },
     ],
   },
 ]);

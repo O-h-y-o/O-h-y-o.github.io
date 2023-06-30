@@ -62,6 +62,20 @@ export const koNavbar = navbar([
           },
         ],
       },
+      {
+        text: "정보",
+        prefix: "info/",
+        children: [
+          {
+            text: "카카오 로그인",
+            link: "kakao-easy-login",
+          },
+          {
+            text: "네이버 로그인",
+            link: "naver-easy-login",
+          },
+        ],
+      },
     ],
   },
 ]);
