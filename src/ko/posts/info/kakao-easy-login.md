@@ -53,7 +53,7 @@ const link = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.KA
 
 카카오 로그인 을 누르면 다음과 같이 나오게 되고, 동의하고 계속하기를 하면 설정해둔 redirect uri로 이동하게 됩니다.
 
-<!-- <img src="https://developers.kakao.com/docs/latest/ko/assets/style/images/kakaologin/kakaologin_code.png" /> -->
+<img src="https://developers.kakao.com/docs/latest/ko/assets/style/images/kakaologin/kakaologin_code.png" />
 
 ::: info
 

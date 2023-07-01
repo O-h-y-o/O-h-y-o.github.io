@@ -12,7 +12,7 @@ order: 2
 
 그 다음 서비스 URL 과 Callback URL 도 작성해줍시다.
 
-<img src="../../../images/naver-login-01.png" />
+<!-- <img src="../../../images/naver-login-01.png" /> -->
 
 <br/> <br/>
 

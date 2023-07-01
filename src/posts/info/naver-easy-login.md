@@ -12,7 +12,7 @@ Save the Client ID of the registered application to env or other places.
 
 Next, let's write the service URL and callback URL.
 
-<img src="../../../images/naver-login-01.png" />
+<!-- <img src="../../../images/naver-login-01.png" /> -->
 
 <br/> <br/>
 
