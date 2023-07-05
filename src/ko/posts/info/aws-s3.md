@@ -44,3 +44,83 @@ github actions를 이용할 것이니 github repository에 프로젝트를 올�
 ```
 
 프로젝트 빌드 폴더를 수동적으로 올릴 수 있지만 github actions을 이용해 자동 배포를 해보겠습니다.
+
+먼저 `AWS_ACCESS_KEY_ID` 와 `AWS_SECRET_ACCESS_KEY` 를 <a href="http://us-east-1.console.aws.amazon.com/iamv2/home" target="_blank">IAM</a>에서 발급 받겠습니다.
+
+1. IAM 에서 액세스 관리 => 사용자 => 사용자 추가 버튼을 눌러줍니다.
+
+2. 사용자 이름을 입력하고 다음을 눌러줍니다.
+
+3. 권한 옵션을 직접 정책 연결로 바꾸고 `AmazonS3FullAccess` 를 검색한 뒤 체크해주고 다음을 눌러주고 사용자 생성 버튼을 눌러줍니다.
+
+4. 만들어진 사용자를 클릭하여 들어가 `보안 자격 증명` 탭에서 `액세스 키 만들기` 를 눌러줍니다.
+
+5. 사용 사례는 `로컬 코드` 로 선택하고 다음을 눌러 `액세스 키 만들기` 를 눌러줍니다.
+
+6. `.csv 파일 다운로드`를 하고 액세스 키, `비밀 액세스 키(시크릿 키)`를 잘 저장해둡니다.
+
+7. Github repository 에서 `Settings` 탭을 눌러줍니다.
+
+8. Security => Secrets and variables => Actions 를 눌러 New repository secret 을 눌러줍니다.
+
+9. Name: `AWS_ACCESS_KEY_ID` , Secret: 발급한 `액세스 키` 를 입력하고 생성해줍니다.
+
+10. Name: `AWS_SECRET_ACCESS_KEY` , Secret: 발급한 `비밀 액세스 키(시크릿 키)`를 입력하고 생성해줍니다.
+
+11. github repository 에서 `Actions` 탭을 눌러줍니다.
+
+12. `New workflow` 버튼을 눌러줍니다.
+
+13. `set up a workflow yourself` 를 눌러줍니다.
+
+14. yml 파일명을 자유롭게 지어줍니다.
+
+15. 밑의 코드를 넣어줍니다.
+
+```yml
+name: Vue Build and Deploy to S3
+
+on:
+  push:
+    branches: main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm add @quasar/cli -g && pnpm install
+
+      - name: Build
+        run: pnpm run build:pwa
+
+      - uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: <Bucket_Name>
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ap-northeast-2
+          SOURCE_DIR: "dist/pwa"
+```
+
+`<Bucket_Name>` 에는 S3버킷의 이름을 넣어줍니다.
+
+해당 포스팅의 과정을 잘 따라왔다면 AWS S3 에 자동적으로 잘 배포가 될 것입니다.

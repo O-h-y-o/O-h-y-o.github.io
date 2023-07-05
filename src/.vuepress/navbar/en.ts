@@ -16,6 +16,10 @@ export const enNavbar = navbar([
             text: "Getting Started",
             link: "start-blog",
           },
+          {
+            text: "Google search exposure",
+            link: "search-engine",
+          },
         ],
       },
       {
@@ -67,6 +71,10 @@ export const enNavbar = navbar([
         prefix: "info/",
         children: [
           {
+            text: "AWS S3",
+            link: "aws-s3",
+          },
+          {
             text: "Kakao login",
             icon: "kakao",
             link: "kakao-easy-login",
@@ -75,6 +83,11 @@ export const enNavbar = navbar([
             text: "Naver login",
             icon: "kakao",
             link: "naver-easy-login",
+          },
+          {
+            text: "Google login",
+            icon: "kakao",
+            link: "google-easy-login",
           },
         ],
       },
