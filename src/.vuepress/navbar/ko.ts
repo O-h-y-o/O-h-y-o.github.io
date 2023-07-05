@@ -20,6 +20,10 @@ export const koNavbar = navbar([
             text: "구글 검색 노출",
             link: "search-engine",
           },
+          {
+            text: "Giscus 댓글 기능",
+            link: "giscus-comment",
+          },
         ],
       },
       {
