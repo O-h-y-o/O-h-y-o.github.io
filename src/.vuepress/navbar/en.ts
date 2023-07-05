@@ -20,6 +20,10 @@ export const enNavbar = navbar([
             text: "Google search exposure",
             link: "search-engine",
           },
+          {
+            text: "Giscus comment",
+            link: "giscus-comment",
+          },
         ],
       },
       {
