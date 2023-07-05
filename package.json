@@ -20,6 +20,7 @@
     "typescript": "^5.1.3",
     "vue": "^3.3.4",
     "vuepress": "2.0.0-beta.63",
+    "vuepress-plugin-sitemap2": "2.0.0-beta.230",
     "vuepress-theme-hope": "2.0.0-beta.227"
   },
   "dependencies": {

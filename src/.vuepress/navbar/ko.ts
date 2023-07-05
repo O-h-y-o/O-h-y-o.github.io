@@ -16,6 +16,10 @@ export const koNavbar = navbar([
             text: "시작하기",
             link: "start-blog",
           },
+          {
+            text: "구글 검색 노출",
+            link: "search-engine",
+          },
         ],
       },
       {
@@ -67,12 +71,20 @@ export const koNavbar = navbar([
         prefix: "info/",
         children: [
           {
+            text: "AWS S3",
+            link: "aws-s3",
+          },
+          {
             text: "카카오 로그인",
             link: "kakao-easy-login",
           },
           {
             text: "네이버 로그인",
             link: "naver-easy-login",
+          },
+          {
+            text: "구글 로그인",
+            link: "google-easy-login",
           },
         ],
       },
