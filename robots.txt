@@ -2,4 +2,4 @@
 User-agent:*
 Disallow:
 
-Sitemap: https://O-h-y-o.github.io/sitemap.xml
+Sitemap: https://o-h-y-o.github.io/sitemap.xml
