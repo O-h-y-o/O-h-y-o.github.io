@@ -32,6 +32,9 @@ export default hopeTheme({
       repoId: "data-repo-id",
       category: "data-category",
       categoryId: "data-category-id",
+      comment: true,
+      mapping: "pathname",
+      strict: false,
     },
   },
 });

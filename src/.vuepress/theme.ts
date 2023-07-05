@@ -75,6 +75,10 @@ export default hopeTheme({
       repoId: "R_kgDOJ33eeA",
       category: "Comment",
       categoryId: "DIC_kwDOJ33eeM4CXsKt",
+      comment: true,
+      mapping: "pathname",
+      lazyLoading: true,
+      strict: false,
     },
 
     // all features are enabled for demo, only preserve features you need here
