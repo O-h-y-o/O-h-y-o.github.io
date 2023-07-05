@@ -28,6 +28,7 @@ export default defineUserConfig({
     }),
     sitemapPlugin({
       hostname: "https://o-h-y-o.github.io",
+      changefreq: "always",
     }),
   ],
 
