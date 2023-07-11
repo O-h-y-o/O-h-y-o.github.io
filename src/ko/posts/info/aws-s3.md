@@ -15,6 +15,13 @@ github actions를 이용할 것이니 github repository에 프로젝트를 올�
 
 3. 버킷 이름을 작성해주시교 `AWS 리전` 은 `아시아 태평양(서울) ap-northeast-2` 로 해주세요.
 
+::: tip
+
+추후 S3와 route53을 이용한 https 도메인 사용을 위해서 버킷 이름은 도메인으로 만들어야합니다.
+ex) domain.com
+
+:::
+
 4. 객체소유권은 `ACL 활성화`를 눌러주세요.
 
 5. 모든 퍼블릭 액세스 차단을 풀어준 뒤 버킷만들기 버튼을 눌러주세요.
@@ -37,7 +44,7 @@ github actions를 이용할 것이니 github repository에 프로젝트를 올�
       "Effect": "Allow",
       "Principal": "*",
       "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::nextbit/*"
+      "Resource": "arn:aws:s3:::{{domain}}/*"
     }
   ]
 }

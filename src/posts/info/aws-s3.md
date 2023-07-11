@@ -15,6 +15,13 @@ We will be using github actions, so please upload your project to the github rep
 
 3. Enter the bucket name and `AWS Region` as `Asia Pacific (Seoul) ap-northeast-2`.
 
+::: tip
+
+In order to use the https domain using S3 and route53 in the future, the bucket name must be made into a domain.
+ex) domain.com
+
+:::
+
 4. For object ownership, click `Enable ACL`.
 
 5. Release all public access blocks and click the Create Bucket button.
@@ -37,7 +44,7 @@ We will be using github actions, so please upload your project to the github rep
       "Effect": "Allow",
       "Principal": "*",
       "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::nextbit/*"
+      "Resource": "arn:aws:s3:::{{domain}}/*"
     }
   ]
 }
