@@ -16,7 +16,8 @@
 6. In Settings, select the price category you want. In my case, I selected 'Used in North America, Europe, Asia, Middle East and Africa'.
 7. Click Add Alternate Domain Name (CNAME) entry and enter the {domain.com} domain.
 8. For 'Custom SSL Certificate', select the certificate issued by ACM.
-   CloudFront 설정은 끝났습니다.
+
+CloudFront setup is finished.
 
 Now let's go back to Route53 and add another routing record for CloudFront.
 
