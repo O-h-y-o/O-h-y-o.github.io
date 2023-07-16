@@ -2,13 +2,13 @@
 
 ## First, we will issue an SSL certificate from AWS Certificate Manager (ACM).
 
-1. <a href="https://ap-northeast-2.console.aws.amazon.com/acm/home?region=ap-northeast-2#/welcome" target="_blank" > AWS Certificate Manager ( ACM)</a>.
+1. Go into <a href="https://ap-northeast-2.console.aws.amazon.com/acm/home?region=ap-northeast-2#/welcome" target="_blank" > AWS Certificate Manager (ACM)</a>.
 2. Click Request Certificate and select Request Public Certificate.
 3. Enter the domain name (purchased domain) and click the Request button at the bottom.
 
 ## Now let's set up CloudFront.
 
-1. <a href="https://us-east-1.console.aws.amazon.com/cloudfront/v3/home?region=ap-northeast-2#/welcome" target="_blank">CloudFront< /a> Click the Create CloutFront distribution button.
+1. <a href="https://us-east-1.console.aws.amazon.com/cloudfront/v3/home?region=ap-northeast-2#/welcome" target="_blank">CloudFront </a> Click the Create CloutFront distribution button.
 2. Select the source domain and click Use website endpoint.
 3. Select HTTP only for Protocol and enter `{{domain}}.s3-website.ap-northeast-2.amazonaws.com` for Name. No EC2 server or S3 work required for HTTPS.
 4. Select Viewer Protocol Policy => `Redirect HTTP to HTTPS` in Default Cache Behavior.

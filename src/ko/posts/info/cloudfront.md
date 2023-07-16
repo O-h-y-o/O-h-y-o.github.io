@@ -8,7 +8,7 @@
 
 ## 이제 CloudFront 설정을 해주겠습니다.
 
-1. <a href="https://us-east-1.console.aws.amazon.com/cloudfront/v3/home?region=ap-northeast-2#/welcome" target="_blank">CloudFront</a> 에서 CloutFront 배포 생성 버튼을 눌러줍니다.
+1. <a href="https://us-east-1.console.aws.amazon.com/cloudfront/v3/home?region=ap-northeast-2#/welcome" target="_blank"> CloudFront </a> 에서 CloutFront 배포 생성 버튼을 눌러줍니다.
 2. 원본 도메인 선택을 해주고 웹 사이트 엔드포인트 사용을 눌러줍니다.
 3. 프로토콜은 HTTP만 해당 을 선택하고, 이름 에는 `{{domain}}.s3-website.ap-northeast-2.amazonaws.com` 을 입력해줍니다. EC2서버나 S3는 HTTPS를 위한 작업이 필요하지 않습니다.
 4. 기본 캐시 동작에서 뷰어 프로토콜 정책 => `Redirect HTTP to HTTPS` 를 선택해줍니다.
