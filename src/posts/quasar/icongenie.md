@@ -1,3 +1,7 @@
+---
+order: 2
+---
+
 # Creating a favicon with Icongenie
 
 Icongenie converts logos and splashes used in browsers, desktop apps, Android apps, and ios apps easily and quickly for each device and situation.

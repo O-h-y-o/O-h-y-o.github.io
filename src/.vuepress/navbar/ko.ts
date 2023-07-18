@@ -33,8 +33,15 @@ export const koNavbar = navbar([
         children: [
           {
             text: "Quasar 세팅",
-            icon: "pen-to-square",
             link: "start-project-quasar",
+          },
+          {
+            text: "Icongenie",
+            link: "icongenie",
+          },
+          {
+            text: "Capacitor",
+            link: "capacitor",
           },
         ],
       },
@@ -77,6 +84,14 @@ export const koNavbar = navbar([
           {
             text: "AWS S3",
             link: "aws-s3",
+          },
+          {
+            text: "AWS Cloudfront",
+            link: "cloudfront",
+          },
+          {
+            text: "AWS route53",
+            link: "route53",
           },
           {
             text: "카카오 로그인",

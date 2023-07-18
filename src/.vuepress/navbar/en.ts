@@ -36,6 +36,14 @@ export const enNavbar = navbar([
             icon: "pen-to-square",
             link: "start-project-quasar",
           },
+          {
+            text: "Icongenie",
+            link: "icongenie",
+          },
+          {
+            text: "Capacitor",
+            link: "capacitor",
+          },
         ],
       },
       {
@@ -77,6 +85,14 @@ export const enNavbar = navbar([
           {
             text: "AWS S3",
             link: "aws-s3",
+          },
+          {
+            text: "AWS Cloudfront",
+            link: "cloudfront",
+          },
+          {
+            text: "AWS route53",
+            link: "route53",
           },
           {
             text: "Kakao login",
