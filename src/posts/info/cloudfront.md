@@ -31,6 +31,11 @@ Now let's go back to Route53 and add another routing record for CloudFront.
 S3 => Route53 is using http,
 S3 => Cloudfront => Route53 is https use.
 
+This is the code to invalidate the cache in github actions. Just run it after the S3 upload.
+`aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"`
+
+AWS_DISTRIBUTION_ID is your Cloudfront ID.
+
 :::
 
 Now you can check that https://domain.com is entering well.

@@ -310,7 +310,7 @@ $ icongenie generate -m capacitor -i /path/to/source/logo.png
 
 모두에게 허용할 수 있는 `*` 를 해주세요. 접근 권한을 두고싶다면 `*` 부분을 수정해주세요.
 
-4. Github Repository Secret Key-Value를 다음과 같이 만들어주세요. 총 4개의 키를 만드는겁니다.
+4. Github Repository Secret Key-Value를 다음과 같이 만들어주세요. 총 4개의 키를 만들어야 합니다.
 
 ```
 ANDROID_STORE_PASSWORD: 'storePassword'
@@ -325,6 +325,7 @@ ANDROID_STORE_FILE: '../../name.keystore'
 5. `src-capacitor\android\app\build.gradle` 에서 다음과 같이 추가 및 수정해주세요.
 
 ```groovy
+// build.gradle
 ext {
     kotlinVersion = "1.9.0"
 }
@@ -339,4 +340,32 @@ if (file('keystore.properties').exists()) {
     keystoreProperties.setProperty("keyAlias", "${System.getenv('ANDROID_KEY_ALIAS')}")
     keystoreProperties.setProperty("storeFile", "${System.getenv('ANDROID_STORE_FILE')}")
 }
+```
+
+그리고 다음은 Capacitor로 빌드한 앱을 S3 저장소에 올리는 github actions 문구입니다.
+적절한 위치에 넣어주세요.
+
+```yml
+- name: Install capacitor
+  run: quasar add mode capacitor
+
+- name: Setup java
+  uses: actions/setup-java@v3
+  with:
+    distribution: "zulu"
+    java-version: "17"
+
+- name: Capacitor Build and Deploy
+  run: chmod +x src-capacitor/android/gradlew
+    quasar build -m capacitor -T android
+    aws s3 sync dist/capacitor/android/apk/release s3://${{ secrets.AWS_DEV_RESOURCE }} --acl public-read --exclude "*" --include "app-release.apk"
+
+  env:
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+    ANDROID_STORE_PASSWORD: ${{ secrets.ANDROID_STORE_PASSWORD }}
+    ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+    ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+    ANDROID_STORE_FILE: ${{ secrets.ANDROID_STORE_FILE }}
 ```

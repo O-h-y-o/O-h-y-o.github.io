@@ -31,6 +31,10 @@ CloudFront 설정은 끝났습니다.
 S3 => Route53 은 http 사용이고,
 S3 => Cloudfront => Route53 은 https 사용입니다.
 
+github actions에서 캐시 무효화를 시키는 코드입니다. S3 업로드 다음에 실행시키면 됩니다.
+`aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"`
+
+AWS_DISTRIBUTION_ID는 Cloudfront ID 입니다.
 :::
 
 이제 https://domain.com 이 잘 들어가지는것을 확인해보면 됩니다.
