@@ -44,7 +44,7 @@ $ icongenie generate -i /path/to/icon.png
 
 ```
 
-::: codes 전체 명령어
+::: tip
 
 터미널에 icongenie generate -h 를 입력하면 다음과 같은 명령어를 확인할 수 있습니다.
 

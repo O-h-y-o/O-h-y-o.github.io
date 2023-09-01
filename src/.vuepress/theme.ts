@@ -30,12 +30,12 @@ export default hopeTheme({
 
   locales: {
     "/": {
-      navbar: enNavbar,
-      sidebar: enSidebar,
+      // navbar: koNavbar,
+      sidebar: koSidebar,
       footer: "Delicious Jelly",
       displayFooter: true,
       blog: {
-        description: "A FrontEnd programmer",
+        description: "프론트엔드 개발자",
         intro: "/intro.html",
       },
       metaLocales: {
@@ -43,19 +43,19 @@ export default hopeTheme({
       },
     },
 
-    "/ko/": {
-      navbar: koNavbar,
-      sidebar: koSidebar,
-      footer: "Delicious Jelly",
-      displayFooter: true,
-      blog: {
-        description: "프론트엔드 개발자",
-        intro: "/ko/intro.html",
-      },
-      metaLocales: {
-        editLink: "Edit this page on GitHub",
-      },
-    },
+    // "/ko/": {
+    //   navbar: koNavbar,
+    //   sidebar: koSidebar,
+    //   footer: "Delicious Jelly",
+    //   displayFooter: true,
+    //   blog: {
+    //     description: "프론트엔드 개발자",
+    //     intro: "/ko/intro.html",
+    //   },
+    //   metaLocales: {
+    //     editLink: "Edit this page on GitHub",
+    //   },
+    // },
   },
 
   // encrypt: {

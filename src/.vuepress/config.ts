@@ -11,15 +11,15 @@ export default defineUserConfig({
 
   locales: {
     "/": {
-      lang: "en-US",
-      title: "Delicious Jelly",
-      description: "Give me a jelly",
-    },
-    "/ko/": {
       lang: "ko-KR",
       title: "Delicious Jelly",
       description: "Give me a jelly",
     },
+    // "/ko/": {
+    //   lang: "ko-KR",
+    //   title: "Delicious Jelly",
+    //   description: "Give me a jelly",
+    // },
   },
 
   plugins: [
