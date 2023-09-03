@@ -1,0 +1,20 @@
+import{_ as a}from"./plugin-vue_export-helper-c27b6911.js";import{o as n,c as s,f as e}from"./app-81a443c9.js";const i={},r=e(`<h1 id="quasar로-프로젝트-시작하기" tabindex="-1"><a class="header-anchor" href="#quasar로-프로젝트-시작하기" aria-hidden="true">#</a> Quasar로 프로젝트 시작하기</h1><p><code>Quasar에서는 패키지매니저로 yarn을 사용하는것을 강력 추천 하고 있습니다.</code></p><p><code>pnpm은 정식 지원이 아닙니다.</code></p><h2 id="quasar-전역-설치하기" tabindex="-1"><a class="header-anchor" href="#quasar-전역-설치하기" aria-hidden="true">#</a> Quasar 전역 설치하기</h2><div class="language-bash line-numbers-mode" data-ext="sh"><pre class="language-bash"><code>$ <span class="token function">yarn</span> global <span class="token function">add</span> @quasar/cli
+<span class="token comment"># or:</span>
+$ <span class="token function">npm</span> i <span class="token parameter variable">-g</span> @quasar/cli
+<span class="token comment"># or:</span>
+$ <span class="token function">pnpm</span> <span class="token function">add</span> <span class="token parameter variable">-g</span> @quasar/cli <span class="token comment"># experimental support</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="quasar-로-프로젝트-만들기" tabindex="-1"><a class="header-anchor" href="#quasar-로-프로젝트-만들기" aria-hidden="true">#</a> Quasar 로 프로젝트 만들기</h2><div class="language-bash line-numbers-mode" data-ext="sh"><pre class="language-bash"><code>$ <span class="token function">yarn</span> create quasar
+<span class="token comment"># or:</span>
+$ <span class="token function">npm</span> init quasar
+<span class="token comment"># or:</span>
+$ <span class="token function">pnpm</span> create quasar <span class="token comment"># experimental support</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>가이드 라인에 따라서 잘 선택해줍니다. <br><br><code>vite로 만들어줍니다. webpack보다 빠른 개발자 경험을 할 수 있습니다.</code></p><h2 id="package-json-파일에-다음-문구-추가" tabindex="-1"><a class="header-anchor" href="#package-json-파일에-다음-문구-추가" aria-hidden="true">#</a> package.json 파일에 다음 문구 추가</h2><div class="language-json line-numbers-mode" data-ext="json"><pre class="language-json"><code><span class="token comment">// package.json</span>
+<span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">&quot;dev&quot;</span><span class="token operator">:</span> <span class="token string">&quot;quasar dev&quot;</span><span class="token punctuation">,</span> # 개발 서버 열기
+  <span class="token property">&quot;build&quot;</span><span class="token operator">:</span> <span class="token string">&quot;quasar build&quot;</span><span class="token punctuation">,</span> # 빌드
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="서버가-잘-실행되는지-확인" tabindex="-1"><a class="header-anchor" href="#서버가-잘-실행되는지-확인" aria-hidden="true">#</a> 서버가 잘 실행되는지 확인</h2><div class="language-bash line-numbers-mode" data-ext="sh"><pre class="language-bash"><code>$ <span class="token function">yarn</span> quasar dev
+$ <span class="token function">yarn</span> quasar inspect
+$ <span class="token function">pnpm</span> run dev
+<span class="token comment"># ..etc</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,12),c=[r];function t(o,d){return n(),s("div",null,c)}const u=a(i,[["render",t],["__file","start-project-quasar.html.vue"]]);export{u as default};
