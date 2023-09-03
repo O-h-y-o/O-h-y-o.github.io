@@ -80,13 +80,31 @@ layout: Slide
 
 ## Skills
 
-- HTML5, CSS3 & SCSS, Javascript
-- Vue.js, Quasar, jQuery
-- Typescript
-- Vuex, Pinia
-- Vite
-- ESLint, Prettier
-- CI/CD: AWS(S3, Route53, Cloudfront)
+![html](https://img.shields.io/badge/Html-E34F26?style=for-the-badge&logo=Html5&logoColor=white)
+![css](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=CSS3&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![JS](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black)
+![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Static Badge](https://img.shields.io/badge/WebSocket-white?style=for-the-badge)
+
+![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![Quasar](https://img.shields.io/badge/Quasar-16B7FB?style=for-the-badge&logo=quasar&logoColor=black)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
+![Static Badge](https://img.shields.io/badge/Vuex-green?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Pinia-purple?style=for-the-badge)
+![Ant-Design](https://img.shields.io/badge/-AntDesign-%230170FE?style=for-the-badge&logo=ant-design&logoColor=white)
+
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Echarts-red?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Amcharts-blue?style=for-the-badge)
+
+![S3](https://img.shields.io/badge/S3%20-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=black)
+![CloudFront](https://img.shields.io/badge/CloudFront%20-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=black)
+![Route53](https://img.shields.io/badge/Route53%20-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=black)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Koyeb-black?style=for-the-badge)
 
 --
 
@@ -173,9 +191,14 @@ vue2로 진행되었던 예전 프로젝트를 맡아 vue3로 버전 업그레�
 - PWA 도입
 - 구글 스프레드시트를 통한 번역본 관리와 i18n을 이용한 다국어 경험
 - 반응형 디자인 경험
-- 주요 기술: Vue2 → Vue3, Vuex, Webpack, SCSS, i18n
 
 <!-- .element: class="r-fit-text" -->
+
+![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![Static Badge](https://img.shields.io/badge/Vuex-green?style=for-the-badge)
+![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
+![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
 
 --
 
@@ -211,9 +234,16 @@ CPASS 결제모듈을 이용한 DIGILAB 내부 쇼핑몰 시연 페이지 퍼블
 - 다른 프로젝트에서도 사용될 공통 라이브러리 개발 및 배포 (vue3-intl-input, vue3-image-view)
 - 제대로된 문서가 없어 vuepress를 이용한 코드 리뷰, 페이지 문서화, API 문서 제작 및 공유
 - Webpack과 .NET 기반 Vue.js 사용으로 개발 서버 실행만으로 1~2분이 걸리는 것이 너무 오래 걸린다는 생각에 .NET과 Vue.js 를 분리, Webpack → Vite 변경하고싶다는 의견 적극적으로 제시함. 변경 이후, 20초 이내로 개발 서버가 켜지는 더 나은 개발자 경험을 가질수 있었음
-- 주요 기술: Vue3, Vuex, Webpack → Vite, Ant Design, SCSS, i18n, Echarts
 
 <!-- .element: class="r-fit-text" -->
+
+![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![Static Badge](https://img.shields.io/badge/Vuex-green?style=for-the-badge)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Ant-Design](https://img.shields.io/badge/-AntDesign-%230170FE?style=for-the-badge&logo=ant-design&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Echarts-red?style=for-the-badge)
 
 --
 
@@ -235,9 +265,14 @@ CPASS 결제모듈을 이용한 DIGILAB 내부 쇼핑몰 시연 페이지 퍼블
 
 - window.popup 을 이용한 결제, 구매 시스템 개발
 - 각종 테스트 중 프록시 조작으로 인한 치명적인 보안 취약점을 발견하여 Signature Code 를 추가하여 이를 해결
-- 주요 기술: HTML, CSS, Javascript, JQuery, i18n
 
 <!-- .element: class="r-fit-text" -->
+
+![html](https://img.shields.io/badge/Html-E34F26?style=for-the-badge&logo=Html5&logoColor=white)
+![css](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=CSS3&logoColor=white)
+![JS](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black)
+![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
 
 --
 
@@ -262,9 +297,15 @@ CPASS 결제모듈을 이용한 DIGILAB 내부 쇼핑몰 시연 페이지 퍼블
 - 첫 Typescript, Pinia 도입
 - CPASS 결제모듈을 이용한 결제 서비스 개발
 - 카지노 게임을 위해 window.popup을 쓰던것에서 페이지 내부적으로 다수의 dialog를 띄우고 확대, 축소 기능을 이용해 사용자가 페이지를 벗어나지 않고 다양한 게임을 진행할 수 있게함. 이에 좋은 사용자 경험을 얻을 수 있었음
-- 주요 기술: Quasar Framework, Vue3, Vite, Pinia, Typescript, SCSS, i18n
 
 <!-- .element: class="r-fit-text" -->
+
+![Quasar](https://img.shields.io/badge/Quasar-16B7FB?style=for-the-badge&logo=quasar&logoColor=black)
+![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Pinia-purple?style=for-the-badge) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
 
 --
 
@@ -292,9 +333,18 @@ CPASS 결제모듈을 이용한 DIGILAB 내부 쇼핑몰 시연 페이지 퍼블
 - Canvas를 이용한 1분 타이머 기능 개발로 Canvas 개발 경험
 - 사용자 시간대 설정을 통한 타임존 개발 경험
 - 다양한 lottie.json을 이용한 lottiefiles 경험
-- 주요 기술: Quasar Framework, Vue3, Vite, Pinia, Typescript, SCSS, Canvas, SignalR(WebSocket), i18n, Echarts
 
 <!-- .element: class="r-fit-text" -->
+
+![Quasar](https://img.shields.io/badge/Quasar-16B7FB?style=for-the-badge&logo=quasar&logoColor=black)
+![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Pinia-purple?style=for-the-badge) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Canvas-red?style=for-the-badge)
+![SignalR](https://img.shields.io/badge/SignalR-%23039BE5.svg?style=for-the-badge&logo=Signal&logoColor=white)
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Echarts-red?style=for-the-badge)
 
 --
 
@@ -319,9 +369,18 @@ CPASS 결제모듈을 이용한 DIGILAB 내부 쇼핑몰 시연 페이지 퍼블
 #### Tradicaster 백오피스 개발
 
 - 디자인 팀의 디자인 없이 Quasar UI, Ant Design을 이용한 모던 UI/UX 사용
-- 주요 기술: Quasar Framework, Ant Design, Vue3, Vite, Pinia, Typescript, SCSS, i18n, Echarts
+- 기존의 백오피스들이 Ant Design UI를 사용하고있어 통일성을 위해 Quasar UI에서 Ant Design으로 UI 변경
 
 <!-- .element: class="r-fit-text" -->
+
+![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![Quasar](https://img.shields.io/badge/Quasar-16B7FB?style=for-the-badge&logo=quasar&logoColor=black)
+![Ant-Design](https://img.shields.io/badge/-AntDesign-%230170FE?style=for-the-badge&logo=ant-design&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Pinia-purple?style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/Echarts-red?style=for-the-badge)
 
 ---
 
@@ -375,11 +434,22 @@ CPASS 결제모듈을 이용한 DIGILAB 내부 쇼핑몰 시연 페이지 퍼블
 
 #### Frontend
 
-Quasar Framework, Vue3, Vite, Pinia, Typescript, SCSS, AmCharts, i18n, WebSocket
+![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![Quasar](https://img.shields.io/badge/Quasar-16B7FB?style=for-the-badge&logo=quasar&logoColor=black)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Pinia-purple?style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Amcharts-blue?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/WebSocket-white?style=for-the-badge)
 
 #### Frontend Deploy
 
-S3, Route53, Cloudfront, Github actions
+![S3](https://img.shields.io/badge/S3%20-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=black)
+![CloudFront](https://img.shields.io/badge/CloudFront%20-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=black)
+![Route53](https://img.shields.io/badge/Route53%20-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=black)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 
 --
 
@@ -389,11 +459,18 @@ S3, Route53, Cloudfront, Github actions
 
 #### Backend
 
-Nodejs, Typescript, JWT, Swagger, i18n, mongoDB Atlas, WebSocket
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![Static Badge](https://img.shields.io/badge/WebSocket-white?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
 
 #### Backend Deploy
 
-Koyeb, Github
+![Static Badge](https://img.shields.io/badge/Koyeb-black?style=for-the-badge)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
 ---
 
