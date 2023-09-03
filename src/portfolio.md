@@ -233,7 +233,7 @@ CPASS 결제모듈을 이용한 DIGILAB 내부 쇼핑몰 시연 페이지 퍼블
 - 디자인팀의 디자인 없이 Ant Design을 이용한 모던 UI/UX 사용
 - 다른 프로젝트에서도 사용될 공통 라이브러리 개발 및 배포 (vue3-intl-input, vue3-image-view)
 - 제대로된 문서가 없어 vuepress를 이용한 코드 리뷰, 페이지 문서화, API 문서 제작 및 공유
-- Webpack과 .NET 기반 Vue.js 사용으로 개발 서버 실행만으로 1~2분이 걸리는 것이 너무 오래 걸린다는 생각에 .NET과 Vue.js 를 분리, Webpack → Vite 변경하고싶다는 의견 적극적으로 제시함. 변경 이후, 20초 이내로 개발 서버가 켜지는 더 나은 개발자 경험을 가질수 있었음
+- Webpack과 .NET 기반 Vue.js 사용으로 개발 서버 실행만으로 1~2분이 걸리는 것이 너무 오래 걸린다는 생각에 .NET과 Vue.js 를 분리, Webpack → Vite 변경하고싶다는 의견 제시함. 변경 이후, 20초 이내로 개발 서버가 켜지는 더 나은 개발자 경험을 가질수 있었음
 
 <!-- .element: class="r-fit-text" -->
 
