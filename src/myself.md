@@ -52,21 +52,31 @@ layout: Slide
 
 <!-- .element: class="r-fit-text" -->
 
+2년 차 개발자로 Vuejs, Quasar를 이용하여 프로젝트를 설계부터 배포까지 한 경험이 있습니다.
+
+<!-- .element: class="fragment r-fit-text" -->
+
+초기 스타트업의 프론트엔드 개발자로 합류하여 팀 구성원들과 함께 좋은 문화를 만들어 갔습니다.
+
+<!-- .element: class="fragment r-fit-text" -->
+
+--
+
+## About Me
+
+협업을 하는 모든 팀 구성원들과 즐겁게 일하려고 노력합니다.
+사소한 갈등이 일어나지 않도록 항상 조심하고 배려합니다.
+의견 차이가 있다면 최대한 조율하여 모두가 수용할 수 있도록 노력합니다.
+
+<!-- .element: class="fragment r-fit-text" -->
+
 항상 클라이언트의 입장에서 생각하고자 합니다. 작은 버튼 하나라도 클라이언트에게 즐거움을 선사하고 싶습니다.
 
 <!-- .element: class="fragment r-fit-text" -->
 
-누구나 이해하기 쉬운 코드를 작성하고 중복없는 코드를 사용하는 것을 선호합니다.
+의견을 제시하고 나누는 것을 좋아합니다.
 
 <!-- .element: class="fragment r-fit-text" -->
-
-문제가 있다면 그 문제를 해결하기 위해 신중한 분석과 많은 테스트를 통하여 문제를 해결합니다.
-
-<!-- .element: class="fragment fade-in r-fit-text" -->
-
-협업을 하는 모든 팀 구성원들과 즐겁게 일하려고 노력합니다. 사소한 갈등이 일어나지 않도록 항상 조심하고 배려합니다. 의견 차이가 있다면 최대한 조율하여 모두가 수용할 수 있도록 노력합니다.
-
-<!-- .element: class="fragment fade-in r-fit-text" -->
 
 ---
 
@@ -137,11 +147,11 @@ layout: Slide
 
 ### **Quagga inc**
 
-블록체인 기술을 기반으로한 글로벌 금융, 페이먼츠 서비스를 제공하는 회사에서 다양한 프론트엔드 글로벌 웹사이트 개발을 하였습니다.
+블록체인 기술을 기반으로한 글로벌 금융, 페이먼츠 서비스를 제공하는 스타트업에서 다양한 프론트엔드 글로벌 웹사이트 개발을 하였습니다.
 
 <!-- .element: class="r-fit-text" -->
 
-각 프로젝트별로 얻은 경험을 간략히 설명하겠습니다.
+회사를 다니면서 각 프로젝트별로 얻은 경험을 간략히 적어봤습니다.
 
 <!-- .element: class="r-fit-text" -->
 
@@ -173,12 +183,21 @@ vue2로 진행되었던 예전 프로젝트를 맡아 vue3로 버전 업그레�
 
 ## DIGILAB
 
-#### 기능 개발 및 유지보수
+#### 기능 개발
 
 - 기존의 vue2 에서 vue3로 마이그레이션 진행
 - 입출금 및 스왑 기능 개발
 - Vuex를 이용한 Props drilling 문제 해결
+  - 대부분 상태관리 없이 Props로만 프로젝트를 진행했기에 Props가 여러군데로 퍼지는 것이 많아 Vuex를 이용하여 Props drilliing 문제 해결하고 간결한 코드와 가독성을 높일 수 있었음
 - 앱에서 사용할 다양한 웹뷰 페이지 제작
+
+<!-- .element: class="r-fit-text" -->
+
+![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![Static Badge](https://img.shields.io/badge/Vuex-green?style=for-the-badge)
+![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
+![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
 
 --
 
@@ -186,11 +205,15 @@ vue2로 진행되었던 예전 프로젝트를 맡아 vue3로 버전 업그레�
 
 ## DIGILAB
 
-#### 기능 개발 및 유지보수
+#### 기능 개발
 
-- PWA 도입
-- 구글 스프레드시트를 통한 번역본 관리와 i18n을 이용한 다국어 경험
-- 반응형 디자인 경험
+- 사용자 편리성을 위해 PWA를 도입하자는 의견 제시
+  - 모바일 사용자도 PWA설치로 DIGILAB에 편하게 접근할 수 있게됨
+  - PWA를 이용한 알람 기능까지 구현할 수 있었음
+- 구글 Translate 에서 i18n으로의 변경 의견 제시
+  - 영어로 작성된 문구를 구글 Translate로 번역하여 보여주었는데 이는 의도와는 다르게 사용자에게 정확한 메시지를 전달하지 못할뿐더러 번역이 되면서 UI가 틀어질 수 있으므로 개발자가 대응하기 힘들기 때문에 i18n으로의 변경하자는 의견 제시
+  - 이후 프로젝트들도 i18n을 이용한 다국어 서비스를 진행
+  - 구글 스프레드 시트와 앱스크립트를 이용한 번역본 관리를 진행
 
 <!-- .element: class="r-fit-text" -->
 
@@ -210,6 +233,12 @@ vue2로 진행되었던 예전 프로젝트를 맡아 vue3로 버전 업그레�
 
 CPASS 결제모듈을 이용한 DIGILAB 내부 쇼핑몰 시연 페이지 퍼블리싱 및 기능 개발을 하였습니다.
 
+![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![Static Badge](https://img.shields.io/badge/Vuex-green?style=for-the-badge)
+![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
+![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
+
 --
 
 <!-- .slide: data-transition="slide" data-auto-animate -->
@@ -228,12 +257,39 @@ CPASS 결제모듈을 이용한 DIGILAB 내부 쇼핑몰 시연 페이지 퍼블
 
 ## CPASS BACKOFFICE
 
-#### 기능 개발 및 유지보수
+#### 기능 개발
 
-- 디자인팀의 디자인 없이 Ant Design을 이용한 모던 UI/UX 사용
-- 다른 프로젝트에서도 사용될 공통 라이브러리 개발 및 배포 (vue3-intl-input, vue3-image-view)
-- 제대로된 문서가 없어 vuepress를 이용한 코드 리뷰, 페이지 문서화, API 문서 제작 및 공유
-- Webpack과 .NET 기반 Vue.js 사용으로 개발 서버 실행만으로 1~2분이 걸리는 것이 너무 오래 걸린다는 생각에 .NET과 Vue.js 를 분리, Webpack → Vite 변경하고싶다는 의견 제시함. 변경 이후, 20초 이내로 개발 서버가 켜지는 더 나은 개발자 경험을 가질수 있었음
+- Ant Design을 이용한 모던 UI/UX 사용
+- 여러 프로젝트에서 사용될 공용 라이브러리 개발 및 배포, 문서 작성
+
+  - 프로젝트마다 조금씩 UI는 다르지만 모두 같은 기능을 가져야 하는게 있었기에 기획 추가 및 변경에 프로젝트마다 일일히 수정하는것이 번거로워 npmjs에 라이브러리를 배포해서 사용하면 어떨까 하는 생각에 만들게 되었음 (vue3-intl-input, vue3-image-view)
+
+    [예시 사이트](https://vue3-intl-input-docs.netlify.app/)
+
+<!-- .element: class="r-fit-text" -->
+
+![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![Static Badge](https://img.shields.io/badge/Vuex-green?style=for-the-badge)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Ant-Design](https://img.shields.io/badge/-AntDesign-%230170FE?style=for-the-badge&logo=ant-design&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Echarts-red?style=for-the-badge)
+
+--
+
+<!-- .slide: data-auto-animate -->
+
+## CPASS BACKOFFICE
+
+#### 기능 개발
+
+- 제대로된 문서가 없어 vuepress를 이용한 페이지 문서화, API 문서 제작 및 공유
+  - 프로젝트 인수인계자에게 도움이 되었다고 하고 이후 백엔드 문서화 작업에도 큰 도움이 되었다고함 <br/>
+    [예시 사이트](https://fe-docs.netlify.app/)
+- .NET과 Vue.js 분리 및 Webpack → Vite 번들러 마이그레이션
+  - Webpack과 .NET 기반 Vue.js 사용으로 개발 서버 실행만으로 1~2분이 걸리는 것이 너무 오래 걸린다는 생각에 .NET과 Vue.js 를 분리, Webpack → Vite 변경하고싶다는 의견 제시함. 변경 이후, 15초 이내로 개발 서버가 켜지는 더 나은 개발자 경험을 가질수 있었음
+  - 이후의 프로젝트들도 모두 분리되었고 번들러로 Vite를 사용하게됨
 
 <!-- .element: class="r-fit-text" -->
 
@@ -255,16 +311,20 @@ CPASS 결제모듈을 이용한 DIGILAB 내부 쇼핑몰 시연 페이지 퍼블
 
 모든 기능 개발과 퍼블리싱을 담당하였습니다.
 
+<!-- .element: class="r-fit-text" -->
+
 --
 
 <!-- .slide: data-auto-animate data-background-color="rgb(18, 18, 18)" -->
 
 ## CPASS 결제모듈
 
-#### 코인 결제모듈 개발 및 유지보수
+#### 코인 결제모듈 개발
 
-- window.popup 을 이용한 결제, 구매 시스템 개발
-- 각종 테스트 중 프록시 조작으로 인한 치명적인 보안 취약점을 발견하여 Signature Code 를 추가하여 이를 해결
+- window.popup 을 이용한 결제 시스템 개발
+  - React나 Vue와 같은 라이브러리, 프레임워크를 이용하지않고, 기본 css, js와 jQuery만을 이용하여 개발 진행
+- 보안 취약점 발견
+  - 각종 테스트 중 프록시 조작으로 인한 치명적인 보안 취약점을 발견하였으며, 회의 후 Signature Code 를 추가하여 이를 해결
 
 <!-- .element: class="r-fit-text" -->
 
@@ -290,13 +350,33 @@ CPASS 결제모듈을 이용한 DIGILAB 내부 쇼핑몰 시연 페이지 퍼블
 
 ## MAVEL GAMES
 
-#### 카지노 사이트 개발 및 유지보수
+- Quasar Framework 도입 의견 제시
+  - Vue.js를 기반으로하며 단일 코드로 앱 빌드를 할 수 있는 Quasar로 추후 앱을 빌드 및 배포하기에 유리하다고 생각하였고, 다양한 모던 UI 컴포넌트를 사용할 수 있어 시각적인 사용자 경험을 증진시킬 수 있다 생각하기에 의견을 제시함. 이후 Quasar UI를 기반으로한 디자인 팀과의 협업을 진행하였음
+- Typescript 도입 의견 제시
+  - 이전까지의 프로젝트에서는 typescript를 사용하지 않았기에 종종 타입과 관련된 에러가 발생했었음. typescript에는 여러 장점들이 있지만, 에러를 사전에 방지하고 싶은 마음이 가장 커서 도입하는데에 의견을 제시함.
+  - typescript를 사용하면서 대부분의 에러를 사전에 방지할 수 있게 되었고 가장 마음에 들었던 것은 자동완성과 추천.. 덕분에 생산성이 좋아짐
 
-- 프로젝트 시작 전 회의에서 Quasar Framework와 Typescript, Pinia 도입 의견 제시
-- 첫 Quasar Framework 도입, Quasar UI를 기반으로한 디자인 팀과의 협업
-- 첫 Typescript, Pinia 도입
+<!-- .element: class="r-fit-text" -->
+
+![Quasar](https://img.shields.io/badge/Quasar-16B7FB?style=for-the-badge&logo=quasar&logoColor=black)
+![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Pinia-purple?style=for-the-badge) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
+
+--
+
+<!-- .slide: data-auto-animate data-background-color="rgb(18, 18, 18)" -->
+
+## MAVEL GAMES
+
+- Pinia 도입 의견 제시
+  - 이전까지의 프로젝트에서는 vuex는 Vue 팀에서 더이상 Vuex는 유지보수하지 않으며 Pinia를 사용하라고 얘기하며 Evan You 역시도 Pinia를 사용하라고 하기에 상태관리를 Pinia로 하자 라는 의견을 제시함
+  - Pinia와 Vuex는 사용법에서 크게 차이가 없지만 템플릿 보간법에서 `{{ useStore().variable }}` 로 바로 접근한다던지, `useStore().varibale = ‘abcde’`로 바꾸는것 처럼 코드의 가독성과 간결한 코드를 작성하는데에 이점을 볼 수 있었음
 - CPASS 결제모듈을 이용한 결제 서비스 개발
-- 카지노 게임을 위해 window.popup을 쓰던것에서 페이지 내부적으로 다수의 dialog를 띄우고 확대, 축소 기능을 이용해 사용자가 페이지를 벗어나지 않고 다양한 게임을 진행할 수 있게함. 이에 좋은 사용자 경험을 얻을 수 있었음
+- 사용자 경험 증진
+  - window.popup을 쓰던것에서 페이지 내부적으로 다수의 dialog를 띄우고 확대, 축소 기능을 이용, 사용자가 페이지를 벗어나지 않고 다양한 게임을 진행할 수 있게함
 
 <!-- .element: class="r-fit-text" -->
 
@@ -330,9 +410,10 @@ CPASS 결제모듈을 이용한 DIGILAB 내부 쇼핑몰 시연 페이지 퍼블
 #### 차트 1분봉 게임 개발
 
 - 차트, 게임과 채팅 채널, 1분마다 예측을 하고 이에 실시간으로 결과를 보여주어야하는 것을 통해 Socket에 대한 개발 경험
-- Canvas를 이용한 1분 타이머 기능 개발로 Canvas 개발 경험
-- 사용자 시간대 설정을 통한 타임존 개발 경험
-- 다양한 lottie.json을 이용한 lottiefiles 경험
+  - throttle을 적용하여 0.1초 ~ 0.2초마다 한번씩만 함수를 실행시켜 부하를 방지함
+- Canvas를 이용한 1분 타이머 기능 개발로 남은 예측 시간을 보여줌으로 사용자 경험 증가
+- 사용자 지역, 시간대 설정을 통한 타임존으로 해외 사용자 편의성을 높임
+- 다양한 lottie.json을 이용한 lottiefiles 사용으로 시작적인 사용자 경험 증가
 
 <!-- .element: class="r-fit-text" -->
 
@@ -368,8 +449,7 @@ CPASS 결제모듈을 이용한 DIGILAB 내부 쇼핑몰 시연 페이지 퍼블
 
 #### Tradicaster 백오피스 개발
 
-- 디자인 팀의 디자인 없이 Quasar UI, Ant Design을 이용한 모던 UI/UX 사용
-- 기존의 백오피스들이 Ant Design UI를 사용하고있어 통일성을 위해 Quasar UI에서 Ant Design으로 UI 변경
+- Quasar UI, Ant Design을 이용한 모던 UI/UX 사용
 
 <!-- .element: class="r-fit-text" -->
 
