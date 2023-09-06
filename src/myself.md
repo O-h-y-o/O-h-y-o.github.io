@@ -24,15 +24,13 @@ layout: Slide
 
 <!-- .slide: data-auto-animate data-background-color="rgb(18, 18, 18)" -->
 
-목차
-
 [1. About Me](#/2/0)
 
 [2. Skills](#/3/0)
 
-[3. Work Experience](#/4/0)
+[3. Personal Project](#/4/0)
 
-[4. Personal Project](#/5/0)
+[4. Work Experience](#/5/0)
 
 [5. Contact Me](#/6/0)
 
@@ -132,6 +130,194 @@ layout: Slide
 - VS, VSCode
 - Slack, Asana
 - Figma, Zenkins
+
+---
+
+## Personal Project
+
+--
+
+<!-- .slide: data-transition="slide" data-auto-animate -->
+
+## Nextbit
+
+<a href="https://nextbit.site" target="_blank">Nextbit 바로가기</a>
+
+--
+
+<!-- .slide: data-transition="slide" data-auto-animate data-background-color="rgb(18, 18, 18)" -->
+
+## Nextbit
+
+#### 서비스를 만든 이유
+
+--
+
+<!-- .slide: data-transition="slide" data-auto-animate data-background-color="rgb(18, 18, 18)" -->
+
+## Nextbit
+
+#### 서비스를 만든 이유
+
+- 블록체인 기술을 다루는 회사를 다니면서 코인 이라는 것에 대해서 알게 되었고, 모의투자 서비스를 만들어보고 싶은 목표가 생겼습니다.
+
+- 풀스택으로 서비스를 만드는 것을 경험해보고 싶었습니다.
+
+<!-- .element: class="fragment fade-up r-fit-text" -->
+
+- 단순히 몇가지 만들어보고 끝이아닌 다국어 지원, 다양한 기능을 추가하는 지속적인 업데이트, Quasar를 이용한 앱 빌드로 구글스토어, 앱스토어와 마이크로소프트 스토어에 배포까지 해보는 것이 목표입니다.
+
+- 많은 시간이 걸리겠지만 아비트라지 기법을 응용한 자동투자 서비스를 만들어보는 것이 마지막 목표입니다.
+
+<!-- .element: class="fragment fade-up r-fit-text" -->
+
+--
+
+<!-- .slide: data-transition="slide" data-auto-animate  -->
+
+## Nextbit
+
+#### 서비스 소개
+
+--
+
+<!-- .slide: data-transition="slide" data-auto-animate  data-background-color="rgb(18, 18, 18)"-->
+
+## Nextbit
+
+#### 서비스 소개
+
+<img src="assets/images/portfolio-main.png" />
+
+--
+
+<!-- .slide: data-transition="slide" data-auto-animate  data-background-color="rgb(18, 18, 18)"-->
+
+## Nextbit
+
+- 업비트 데이터를 기준으로 실제로 투자하는 것 처럼 투자를 해볼 수 있습니다.
+
+<!-- .element: class="r-fit-text" -->
+
+<img src="assets/images/portfolio-exchange.png" />
+
+--
+
+<!-- .slide: data-transition="slide" data-auto-animate  data-background-color="rgb(18, 18, 18)"-->
+
+## Nextbit
+
+- 사용자가 원하는 수수료를 설정하고, 원하는 투자금을 설정하고 다양한 코인을 모의투자 해볼 수 있는 서비스를 제공합니다.
+
+  - 수수료는 최소 0.01%, 최대 10%까지 설정 가능합니다.
+  - 투자금은 최소 1000원부터 최대 100억까지 설정 가능합니다.
+
+<!-- .element: class="r-fit-text" -->
+
+<div style="display: flex; justify-content: center ">
+  <img src="assets/images/portfolio-set-fee.png" style="width:40%; margin-right: 10px" />
+  <img src="assets/images/portfolio-set-investment.png" style="width:40%" />
+</div>
+
+--
+
+<!-- .slide: data-transition="slide" data-auto-animate  data-background-color="rgb(18, 18, 18)"-->
+
+## Nextbit
+
+- 실제 업비트 마켓 데이터를 기준으로 시장가 매수, 매도를 지원합니다.
+
+<!-- .element: class="r-fit-text" -->
+
+<img src="assets/images/portfolio-ask-bid.png"  />
+
+--
+
+<!-- .slide: data-transition="slide" data-auto-animate  data-background-color="rgb(18, 18, 18)"-->
+
+## Nextbit
+
+- 지갑 페이지에서 수익 포트폴리오를 확인할 수 있습니다.
+
+<!-- .element: class="r-fit-text" -->
+
+<img src="assets/images/portfolio-user-portfolio.png" style="width: 80%" />
+
+--
+
+<!-- .slide: data-transition="slide" data-auto-animate  data-background-color="rgb(18, 18, 18)"-->
+
+## Nextbit
+
+- 다크모드, 다국어(한국어, 영어)를 지원합니다.
+
+<!-- .element: class="r-fit-text" -->
+
+<img src="assets/images/portfolio-light-en.png" style="width: 60%"  />
+
+--
+
+<!-- .slide: data-transition="slide" data-auto-animate  data-background-color="rgb(18, 18, 18)"-->
+
+## Nextbit
+
+- 간편 회원가입, 간편 로그인을 지원합니다.
+
+- PWA, 안드로이드 앱, 데스크탑 앱을 지원합니다.
+
+--
+
+<!-- .slide: data-auto-animate  -->
+
+## Nextbit
+
+#### 사용 기술 및 배포 환경
+
+--
+
+<!-- .slide: data-transition="slide" data-auto-animate data-background-color="rgb(18, 18, 18)"-->
+
+## Nextbit
+
+#### Frontend
+
+![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![Quasar](https://img.shields.io/badge/Quasar-16B7FB?style=for-the-badge&logo=quasar&logoColor=black)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Pinia-purple?style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Amcharts-blue?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/WebSocket-white?style=for-the-badge)
+
+#### Frontend Deploy
+
+![S3](https://img.shields.io/badge/S3%20-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=black)
+![CloudFront](https://img.shields.io/badge/CloudFront%20-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=black)
+![Route53](https://img.shields.io/badge/Route53%20-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=black)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+
+--
+
+<!-- .slide: data-transition="slide" data-auto-animate  data-background-color="rgb(18, 18, 18)" -->
+
+## Nextbit
+
+#### Backend
+
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![Static Badge](https://img.shields.io/badge/WebSocket-white?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
+
+#### Backend Deploy
+
+![Static Badge](https://img.shields.io/badge/Koyeb-black?style=for-the-badge)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
 ---
 
@@ -461,96 +647,6 @@ CPASS 결제모듈을 이용한 DIGILAB 내부 쇼핑몰 시연 페이지 퍼블
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 ![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/Echarts-red?style=for-the-badge)
-
----
-
-## Personal Project
-
---
-
-<!-- .slide: data-auto-animate data-background-color="rgb(18, 18, 18)" -->
-
-## Nextbit
-
-<a href="https://nextbit.site" target="_blank">Nextbit 바로가기</a>
-
-코인 모의투자 서비스를 제공합니다.
-
-단순히 몇가지 만들어보고 끝이아닌 앞으로도 다국어 지원, 다양한 기능을 추가하는 지속적인 업데이트, Quasar를 이용한 앱 빌드로 구글스토어, 앱스토어와 마이크로소프트 스토어에 배포까지 해보는 것이 목표입니다.
-
-<!-- .element: class="fragment fade-up r-fit-text" -->
-
-많은 시간이 걸리겠지만 아비트라지 기법을 응용한 자동투자 서비스를 만들어보는 것이 마지막 목표입니다.
-
-<!-- .element: class="fragment fade-up r-fit-text" -->
-
---
-
-<!-- .slide: data-transition="slide" data-auto-animate -->
-
-## Nextbit
-
-- 수수료 설정, 투자금 설정 및 추가로 다양한 코인을 모의투자 해볼 수 있는 서비스를 제공합니다.
-- 백엔드 경험을 쌓기 위한 개인 프로젝트입니다.
-- 다크모드, 다국어(영어, 한국어)를 지원합니다.
-- PWA, 안드로이드 앱, 데스크탑 앱을 지원합니다.
-- 프론트, 백 모두 배포 환경을 테스트할 수 있는 dev-live 서버와 실 사용서버 live 서버를 나누어 운영합니다.
-
-<!-- .element: class="r-fit-text" -->
-
---
-
-<!-- .slide: data-auto-animate data-background-color="rgb(18, 18, 18)" -->
-
-## Nextbit
-
-#### 사용 기술 및 배포 환경
-
---
-
-<!-- .slide: data-transition="slide" data-auto-animate -->
-
-## Nextbit
-
-#### Frontend
-
-![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
-![Quasar](https://img.shields.io/badge/Quasar-16B7FB?style=for-the-badge&logo=quasar&logoColor=black)
-![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
-![Static Badge](https://img.shields.io/badge/Pinia-purple?style=for-the-badge)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
-![Static Badge](https://img.shields.io/badge/Amcharts-blue?style=for-the-badge)
-![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
-![Static Badge](https://img.shields.io/badge/WebSocket-white?style=for-the-badge)
-
-#### Frontend Deploy
-
-![S3](https://img.shields.io/badge/S3%20-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=black)
-![CloudFront](https://img.shields.io/badge/CloudFront%20-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=black)
-![Route53](https://img.shields.io/badge/Route53%20-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=black)
-![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
-
---
-
-<!-- .slide: data-auto-animate data-background-color="rgb(18, 18, 18)" -->
-
-## Nextbit
-
-#### Backend
-
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
-![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-![Static Badge](https://img.shields.io/badge/WebSocket-white?style=for-the-badge)
-![Static Badge](https://img.shields.io/badge/i18n-opal?style=for-the-badge)
-
-#### Backend Deploy
-
-![Static Badge](https://img.shields.io/badge/Koyeb-black?style=for-the-badge)
-![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
 ---
 
