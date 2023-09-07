@@ -46,7 +46,7 @@ layout: Slide
 
 ## About Me
 
-안녕하세요. 즐거움을 주고싶은 2년차 프론트엔드 개발자 김형래입니다.
+안녕하세요. 즐거움을 주고싶은 프론트엔드 개발자 김형래입니다.
 
 <!-- .element: class="r-fit-text" -->
 
@@ -128,7 +128,7 @@ layout: Slide
 
 - Git, Svn
 - VS, VSCode
-- Slack, Asana
+- Slack, Asana, Notion
 - Figma, Zenkins
 
 ---
@@ -160,13 +160,12 @@ layout: Slide
 #### 서비스를 만든 이유
 
 - 블록체인 기술을 다루는 회사를 다니면서 코인 이라는 것에 대해서 알게 되었고, 모의투자 서비스를 만들어보고 싶은 목표가 생겼습니다.
-
 - 풀스택으로 서비스를 만드는 것을 경험해보고 싶었습니다.
 
-<!-- .element: class="fragment fade-up r-fit-text" -->
+<!-- break -->
+<!-- .element: class="r-fit-text" -->
 
 - 단순히 몇가지 만들어보고 끝이아닌 다국어 지원, 다양한 기능을 추가하는 지속적인 업데이트, Quasar를 이용한 앱 빌드로 구글스토어, 앱스토어와 마이크로소프트 스토어에 배포까지 해보는 것이 목표입니다.
-
 - 많은 시간이 걸리겠지만 아비트라지 기법을 응용한 자동투자 서비스를 만들어보는 것이 마지막 목표입니다.
 
 <!-- .element: class="fragment fade-up r-fit-text" -->
@@ -249,21 +248,13 @@ layout: Slide
 
 ## Nextbit
 
+#### etc
+
+- 간편 회원가입, 간편 로그인을 지원합니다.
+- PWA, 안드로이드 앱, 데스크탑 앱을 지원합니다.
 - 다크모드, 다국어(한국어, 영어)를 지원합니다.
 
 <!-- .element: class="r-fit-text" -->
-
-<img src="assets/images/portfolio-light-en.png" style="width: 60%"  />
-
---
-
-<!-- .slide: data-transition="slide" data-auto-animate  data-background-color="rgb(18, 18, 18)"-->
-
-## Nextbit
-
-- 간편 회원가입, 간편 로그인을 지원합니다.
-
-- PWA, 안드로이드 앱, 데스크탑 앱을 지원합니다.
 
 --
 
@@ -316,6 +307,8 @@ layout: Slide
 
 #### Backend Deploy
 
+![Static Badge](https://img.shields.io/badge/EB%20-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=black)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 ![Static Badge](https://img.shields.io/badge/Koyeb-black?style=for-the-badge)
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
