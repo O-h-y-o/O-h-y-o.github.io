@@ -2,7 +2,7 @@
   <canvas ref="canvas" :width="width" :height="height"></canvas>
 
   <div class="chart-start-info absolute-center">
-    <div class="chart-start-text-area">Start {{ timeRemaining }}</div>
+    <div class="chart-start-text-area">Arrived in {{ timeRemaining }}</div>
   </div>
 </template>
 
@@ -21,6 +21,7 @@ const START_ANGLE = -35 * DEGREE;
 const END_ANGLE = 215 * DEGREE;
 const CIRCLE_START = -60 * DEGREE;
 const CIRCLE_END = 240 * DEGREE;
+const intervalTimeSet = 1000 / 10;
 
 const duration = 60 * 1000;
 
@@ -34,6 +35,12 @@ const earth = new Image();
 
 const setTimeRemaining = (tick: number) => {
   timeRemaining.value = ((duration - tick) / 1000).toFixed(2).replace(".", ":");
+};
+
+const startDraw = () => {
+  setInterval(() => {
+    draw();
+  }, intervalTimeSet);
 };
 
 const draw = () => {
@@ -70,10 +77,8 @@ const draw = () => {
   ctx.translate(CIRCLE_X, CIRCLE_Y);
   ctx.rotate(START_ANGLE + (END_ANGLE - START_ANGLE) * t);
   ctx.translate(CIRCLE_SIZE, 0);
-  ctx.drawImage(moveImg, -8, -12);
+  ctx.drawImage(moveImg, -13, -30, 50, 50);
   ctx.restore();
-
-  window.requestAnimationFrame(draw);
 };
 
 onMounted(() => {
@@ -87,17 +92,17 @@ onMounted(() => {
 
   ctx.globalCompositeOperation = "destination-over";
 
-  moveImg.src = "../../../public/images/move-rocket.png";
-  earth.src = "images/move-circle.png";
+  moveImg.src = "../../../assets/images/move-rocket.png";
+  earth.src = "../../../assets/images/move-circle.png";
 
-  const padding = 10;
+  const padding = 50;
   const CIRCLE_WIDTH = width.value / 2 - padding;
   const CIRCLE_HEIGHT = height.value / 2 - padding;
   CIRCLE_SIZE = Math.min(CIRCLE_WIDTH, CIRCLE_HEIGHT);
   CIRCLE_X = width.value / 2;
   CIRCLE_Y = height.value / 2;
 
-  draw();
+  startDraw();
 });
 </script>
 
@@ -110,14 +115,20 @@ canvas {
 .chart-start-info {
   background-color: #e6af1c;
   border-radius: 0.3rem;
-  top: 2.2rem;
   padding: 3px 4px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 30px;
+  width: 150px;
 
   .chart-start-text-area {
     line-height: 1.8;
     font-size: 1rem;
     padding: 0 0.5em;
-
     background-color: #de9c05;
     box-shadow: inset 0px -3px 1px -2px rgba(244, 223, 151, 0.8),
       inset 0px 2px 1px -1px #d57c0f;
