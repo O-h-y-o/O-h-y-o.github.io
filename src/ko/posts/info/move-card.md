@@ -1,0 +1,3 @@
+<ClientOnly>
+  <MoveCard />
+</ClientOnly>
