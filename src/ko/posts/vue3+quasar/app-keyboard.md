@@ -2,7 +2,7 @@
 
 모바일 웹에서는 input focus 상태일때 키보드가 나타나게 됩니다.
 
-android의 경우 키보드가 나타날때 자동으로 viewport가 조절이 되지만,
+android의 경우 키보드가 나타날때 자동으로 viewport가 조절이 되는 기능이 있지만,
 
 ios의 경우 키보드의 높이 만큼 viewport가 그대로 display 위로 올라가버리게 됩니다.
 
@@ -152,3 +152,19 @@ export const controlKeyboardMain = (
 이때 fixed나 sticky 영역을 조심히 케어해주어야합니다. 아예 fixed나 sticky가 있는 영역은 포함시키지 않는 것이 더 좋습니다.
 
 키보드가 올라오는 속도는 기기마다 모두 다릅니다. 적당한 transition을 부여해주세요.
+
+<br/> <br/>
+
+### Android 자동 화면 조절 방지
+
+Android에서 Keyboard가 올라올때 화면이 조절되는 것을 방지하려면 다음 문구를 추가해주세요.
+
+```xml
+<!-- AndroidManifest.xml -->
+
+<activity
+  android:windowSoftInputMode="adjustNothing"
+>
+
+</activity>
+```
