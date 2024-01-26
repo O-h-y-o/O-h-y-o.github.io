@@ -98,10 +98,11 @@ export const controlKeyboard = (
   e: Event
 ) => {
   if (
-    useCommonStore().isKeyboardUp &&
-    document.activeElement instanceof HTMLInputElement &&
-    useCommonStore().previousTargetInstance ===
-      useCommonStore().currentTargetInstance
+    $q.platform.is.android ||
+    (useCommonStore().isKeyboardUp &&
+      document.activeElement instanceof HTMLInputElement &&
+      useCommonStore().previousTargetInstance ===
+        useCommonStore().currentTargetInstance)
   ) {
     return;
   }
@@ -155,7 +156,7 @@ export const controlKeyboardMain = (
 
 <br/> <br/>
 
-### Android 자동 화면 조절 방지
+### Android 자동 화면 조절
 
 Android에서 Keyboard가 올라올때 화면이 조절되는 것을 방지하려면 다음 문구를 추가해주세요.
 
@@ -163,8 +164,7 @@ Android에서 Keyboard가 올라올때 화면이 조절되는 것을 방지하�
 <!-- AndroidManifest.xml -->
 
 <activity
-  android:windowSoftInputMode="adjustNothing"
+  android:windowSoftInputMode="adjustResize"
 >
-
 </activity>
 ```
