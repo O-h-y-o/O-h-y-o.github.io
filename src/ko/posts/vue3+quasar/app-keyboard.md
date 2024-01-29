@@ -158,13 +158,86 @@ export const controlKeyboardMain = (
 
 ### Android 자동 화면 조절
 
-Android에서 Keyboard가 올라올때 화면이 조절되는 것을 방지하려면 다음 문구를 추가해주세요.
+Android에서 Keyboard가 올라올때 화면이 조절되는 것을 제어하려면 다음 문구를 추가해주세요.
 
 ```xml
 <!-- AndroidManifest.xml -->
 
 <activity
-  android:windowSoftInputMode="adjustResize"
+  android:windowSoftInputMode="adjustPan"
 >
 </activity>
+```
+
+```java
+// MainActivity.java
+package org.capacitor.quasar.app;
+
+import android.graphics.Rect;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewTreeObserver;
+
+import com.getcapacitor.BridgeActivity;
+import com.getcapacitor.Plugin;
+
+public class MainActivity extends BridgeActivity {
+  private ViewTreeObserver.OnGlobalLayoutListener keyboardLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
+    @Override
+    public void onGlobalLayout() {
+      Rect r = new Rect();
+      View view = getWindow().getDecorView();
+      view.getWindowVisibleDisplayFrame(r);
+
+      onKeyboardVisibilityChanged();
+    }
+  };
+
+  private void onKeyboardVisibilityChanged() {
+    bridge.getWebView().evaluateJavascript("blurInput();", null);
+  }
+
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(keyboardLayoutListener);
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+
+    getWindow().getDecorView().getViewTreeObserver().removeOnGlobalLayoutListener(keyboardLayoutListener);
+  }
+}
+```
+
+<br/>
+<br/>
+
+`App.vue`에는 다음을 추가해주세요.
+
+```ts
+// App.vue
+App.addListener("backButton", () => {
+  router.back();
+});
+
+window.controlKeyboard = () => {
+  if (useCommonStore().isKeyboardUp) {
+    const elem: any = document.activeElement;
+
+    elem?.blur();
+  }
+};
+```
+
+```ts
+// global.d.ts
+declare global {
+  interface Window {
+    blurInput: () => void;
+  }
+}
 ```
