@@ -230,4 +230,8 @@ const inquirerTarget = async () => {
     "deploy": "node ./deploy"
 ```
 
+그리고 터미널에서 `npm run deploy` 혹은 `yarn deploy` 등등을 입력해주시면 됩니다!
+
+```
 노드버전 18이하는 에러가 발생합니다. 18버전 이상이나 최신버전의 node.js를 설치해주세요!
+```
