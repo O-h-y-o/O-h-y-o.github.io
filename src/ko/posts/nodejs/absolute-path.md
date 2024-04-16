@@ -55,7 +55,7 @@ javascript는 절대 경로를 이해하지 못하므로 `import "module-alias/r
 }
 ```
 
-Elastic Beanstalk에 배포를 할때는
+npm run start 가 디폴트 실행 명령으로 되어있다면 다음처럼 해주세요.
 
 ```json
 // package.json
@@ -65,5 +65,3 @@ Elastic Beanstalk에 배포를 할때는
   }
 }
 ```
-
-EB는 npm run start 가 디폴트 실행 명령으로 되어있기 때문에 이런식으로 해주어야합니다.
