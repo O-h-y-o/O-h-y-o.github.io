@@ -30,6 +30,6 @@ order: 1
 
 하지만 배포할때에는 `{person} person` 이렇게 출력되는 현상이 있다.
 
-다국어를 지원하고 변수까지 사용하는 사례가 별로 없어서 찾는데 애를 먹었지만, `vite.config` 혹은 `quasar.config` 에 `runtimeOnly: false` 이것을 추가해주면 된다는 것을 찾았다.
+다국어를 지원하고 변수까지 사용하는 사례가 별로 없는지 찾는데 애를 먹었지만, `vite.config` 혹은 `quasar.config` 에 `runtimeOnly: false` 이것을 추가해주면 된다는 것을 찾았다.
 
 왜 runtimeOnly의 default 값이 true 인지는 정말 영 이해할 수 없지만 이것을 false 를 해줘야 배포를 했을때 정상적으로 변수가 잘 들어간다.
