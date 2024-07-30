@@ -69,7 +69,7 @@ $ quasar build -m capacitor -T android
 
 하지만 구글에서는 .apk 가 아닌 .aab 확장자를 가진 파일만 허용합니다.
 
-아쉽게도 Quasar-capacitor 에서는 .aab 확장자로 빌드하는 것을 지원하지 않습니다.
+아쉽게도 Quasar-capacitor 에서는 .aab 확장자로 빌드하는 것을 지원하지 않습니다.ㅓㅁㅍㅁ
 
 gradle로 직접 빌드하여 .aab 확장자로 빌드해보겠습니다.
 
