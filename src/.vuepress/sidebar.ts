@@ -1,7 +1,7 @@
 import { sidebar } from "vuepress-theme-hope";
 
-export const koSidebar = sidebar({
-  "/ko/": [
+export default sidebar({
+  "/": [
     "",
     {
       text: "Articles",

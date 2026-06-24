@@ -2,29 +2,29 @@
 order: 3
 ---
 
-# Google easy login
+# 구글 간편 로그인
 
-This time, we will implement Google Simple Login.
+이번에는 구글 간편 로그인을 구현해보겠습니다.
 
-Create a new project in <a href="https://console.cloud.google.com/">Google Cloud Console</a>.
+<a href="https://console.cloud.google.com/">구글 클라우드 콘솔</a>에서 새 프로젝트를 만들어주세요.
 
-We will set one by one in `API and Services` => `OAuth Consent Screen`.
+`API 및 서비스` => `OAuth 동의 화면` 에서 하나씩 설정을 하겠습니다.
 
-In the first OAuth consent screen, change the User Type to external and touch the rest of the settings well.
+첫번째 OAuth 동의 화면 에서의 User Type 을 외부로 바꾸어주고 나머지는 세팅을 잘 만져줍니다.
 
-Then click the Publish App button.
+이후 앱 게시 버튼을 눌러줍니다.
 
-Next, go to Credentials and at the top `+ Create Credentials` => `OAuth Client ID`
+다음으로 사용자 인증 정보 로 들어가서 상단의 `+ 사용자 인증 정보 만들기` => `OAuth 클라이언트 ID`
 
 ```
-Application Type => Web Application
-Authorized JavaScript Source => http://localhost, http://localhost:port, https://serviceURL
-Authorized Redirect URIs => http://localhost, http://localhost:port, https://serviceURL
+애플리케이션 유형 => 웹 애플리케이션
+승인된 자바스크립트 원본 => http://localhost, http://localhost:port, https://serviceURL
+승인된 리디렉션 URI => http://localhost, http://localhost:port, https://serviceURL
 ```
 
-You must also enter `http://localhost` here.
+여기서 `http://localhost` 도 같이 입력해주어야 합니다.
 
-Save the Client ID well, and now let's write the code.
+client ID를 잘 저장해주고, 이제 코드를 작성해봅시다.
 
 ::: info
 
@@ -80,7 +80,7 @@ onMounted(() => {
 </script>
 ```
 
-When using typescript
+타입스크립트 사용시
 
 ```ts
 // global.d.ts
@@ -95,8 +95,8 @@ declare global {
 
 ::: tip
 
-More information is available at <a href="https://developers.google.com/identity/gsi/web/guides/overview?hl=en">Google Developer Center</a>.
+자세한 정보는 <a href="https://developers.google.com/identity/gsi/web/guides/overview?hl=ko">구글 개발자 센터</a> 에서 확인할 수 있습니다.
 
-In particular, please note that <a href="https://developers.google.com/identity/gsi/web/tools/configurator?hl=en">generate integrated code</a> to design.
+특히 <a href="https://developers.google.com/identity/gsi/web/tools/configurator?hl=ko">통합 코드 생성</a> 에서 디자인 까지 가능하니 참고하시기 바랍니다.
 
 :::

@@ -1,11 +1,11 @@
 import { navbar } from "vuepress-theme-hope";
 
-export const koNavbar = navbar([
-  "/ko/",
+export default navbar([
+  "/",
   {
     text: "Posts",
     icon: "pen-to-square",
-    prefix: "/ko/posts/",
+    prefix: "/posts/",
     children: [
       {
         text: "Vuepress",

@@ -2,7 +2,7 @@
 order: 5
 ---
 
-# Creating an exchange page with Upbit Open API - Order Book
+# 업비트 오픈API로 거래소 페이지 만들어보기 - 오더북
 
 ::: tip
 
@@ -59,6 +59,7 @@ const connectOrderbookSocket = () => {
 ::: details Code
 
 ```vue
+// UpbitOrderbook.vue
 <template>
   <div class="orderbook-wrap">
     <div ref="scrollRef" class="orderbook-area">
@@ -600,16 +601,16 @@ onMounted(() => {
 
 :::
 
-I imported the data that was loaded with the functions I had created so far and finally connected it to the order book.
+지금까지 만들었던 기능들로 불러오는 데이터들을 가져와 오더북에 최종적으로 연결해주었습니다.
 
-The charts used in the order book were created with one bar chart above and one below.
+오더북에서 쓰인 차트는 Bar 차트를 위아래로 각 하나씩 만들었습니다.
 
-In the current example chart, the data loaded by getTradeAPI from `UpbitTrade.vue` is not connected, but it is well connected in the actual running process and will show the initial data well.
+현재 예시 차트에서는 `UpbitTrade.vue` 에서 getTradeAPI 로 불러온 데이터가 연결되어있지는 않지만 실제 돌아가는 프로세스에서는 잘 연결되어 초기 데이터부터 잘 보일것입니다.
 
-Up to this point, we have implemented the chart, market list, transaction history, and order book of the Upbit exchange page.
-Overall, detailed functions were not implemented, only core functions were implemented.
+여기까지 업비트 거래소 페이지의 차트, 마켓리스트, 거래체결내역, 오더북을 구현해보았습니다.
+전체적으로 세부적인 기능까지는 구현하지는 않고 핵심 기능들만 구현하였습니다.
 
-Lastly, we will finish by adding code that executes the functions that need to be reloaded when the `changeMarket` function of `MarketList.vue` is executed.
+마지막으로 `MarketList.vue` 의 `changeMarket` 함수를 실행할때 reload를 시켜야하는 함수들을 실행시키는 코드를 추가하며 마무리 하겠습니다.
 
 ::: info
 

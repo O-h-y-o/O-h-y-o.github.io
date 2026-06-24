@@ -1,6 +1,6 @@
-# Blogging with Vuepress Theme
+# Vuepress Theme 로 블로그 만들기
 
-Let's create a development blog with the Vuepress Hope theme.
+Vuepress hope theme 로 개발 블로그를 만들어보자.
 
 ::: code-tabs#shell
 
@@ -24,7 +24,7 @@ npm init vuepress-theme-hope [dir]
 
 :::
 
-- In [dir], you must put the name of the actual folder you want to create.
+- [dir] 에는 만들고자하는 실제 폴더 이름을 넣어주어야 합니다.
 
 ```
 language
@@ -39,16 +39,16 @@ type of project
 initialize repo
 ```
 
-- You have to make about 10 choices.
+- 10가지 정도의 선택을 해야합니다.
 
 <br/>
 <br/>
 
-When the project is created, go to the GitHub homepage and create a github public repo with the name `username.github.io`. Don't touch anything, just write the repo name and create it.
+프로젝트가 만들어졌으면, 깃허브 홈페이지로 들어가서 `username.github.io` 라는 이름으로 github public repo 를 만들어줍니다. 아무것도 건들지 말고, repo 이름만 적고 만들어줍니다.
 
-::: info Edit Permissions
+::: info 권한 수정하기
 
-Create a repo, go to Settings tab => Actions => General, change the Workflow permissions option to `Read and write permissions` and click Save.
+repo 를 만들고 Settings 탭 => Actions => General 로 들어가서 Workflow permissions의 옵션 중 Read and write permissions 로 바꿔주고 Save를 해줍니다.
 
 :::
 
@@ -56,7 +56,7 @@ Create a repo, go to Settings tab => Actions => General, change the Workflow per
 
 ::: warning deploy-docs.yml
 
-vuepress hope provides a github actions template by default.
+vuepress hope 에서는 기본적으로 github actions 템플릿을 제공해줍니다.
 
 ```yml
 # deploy-docs.yml
@@ -66,7 +66,7 @@ vuepress hope provides a github actions template by default.
     run_install: true
 ```
 
-There is something called `Install pnpm` in the middle, and you need to put the version as follows.
+중간쯤에 `Install pnpm` 이란것이 있는데 다음과 같이 version을 넣어주어야 합니다.
 
 ```yml
 # deploy-docs.yml
@@ -81,7 +81,7 @@ There is something called `Install pnpm` in the middle, and you need to put the 
 
 <br/> <br/>
 
-::: note Before uploading the source to Git, let's test the build.
+::: note 깃에 소스를 올리기 전 빌드 테스트를 해보겠습니다.
 
 ::: code-tabs#shell
 
@@ -105,10 +105,10 @@ npm run docs:build
 
 :::
 
-::: tip When 'useXXX() is called without provider' error occurs
+::: tip 'useXXX() is called without provider' 에러 발생시
 
-An error occurs when there is a version of the library that is not compatible with vuepress.
-vp-update will automatically set the version to a version compatible with vuepress.
+vuepress와 호환되지 않는 버전의 라이브러리가 있을시 해당 에러가 발생합니다.
+vp-update를 하면 자동으로 버전이 vuepress와 호환되는 버전으로 맞춰집니다.
 
 ::: code-tabs#shell
 
@@ -134,11 +134,11 @@ $ npx vp-update
 
 <br/>
 
-If the build was successful, let's upload the source to the Git repository.
+정상적으로 빌드가 되었다면 이제 깃 저장소에 소스를 올려보도록 하겠습니다.
 
 <br/>
 
-I will open a terminal in the project created with vuepress and upload the source by connecting to the git repository.
+vuepress로 만든 프로젝트에서 터미널을 열어주고 깃 저장소에 연결하여 소스를 올려주겠습니다.
 
 ```sh
 $ git init
@@ -151,9 +151,9 @@ $ git push
 
 <br/>
 
-::: tip Branch error
+::: tip 브랜치 에러
 
-If you get a branch error in git push, please enter the following command.
+git push에서 브랜치 에러가 난다면 다음 명령어를 입력해주세요.
 
 ```sh
 $ git push --set-upstream origin main
@@ -163,8 +163,8 @@ $ git push --set-upstream origin main
 
 <br/>
 
-If you have uploaded everything up to this point in the git repo, a new branch called gh-pages should have been created if you did not modify the .yml file separately during the build.
+여기까지 모두 git repo에 올렸으면, 이제 빌드가 되면서 따로 .yml 파일을 수정하지 않았다면 gh-pages 라는 브랜치가 새로 생겼을겁니다.
 
-This time, I will go to Settings tab => Pages and change Branch to gh-pages in Build and deployment and Save.
+이번에는 Settings tab => Pages 로 들어가 Build and deployment 에서 Branch를 gh-pages로 바꾸고 Save 해주겠습니다.
 
-After waiting for a while, go to username.github.io and you will see a pretty home page. If it is not uploaded to the home page, please push it to the Git repository once more.
+잠시 기다린 뒤, username.github.io 로 들어가면 예쁜 홈페이지가 보일겁니다. 만약 홈페이지에 올라가지 않았다면 한번더 깃 저장소에 푸쉬를 해주세요.

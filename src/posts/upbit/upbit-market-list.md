@@ -2,13 +2,13 @@
 order: 3
 ---
 
-# Creating an exchange page with Upbit Open API - Market List
+# 업비트 오픈API로 거래소 페이지 만들어보기 - 마켓 리스트
 
-This time, let's create a list of KRW markets.
+이번에는 원화 마켓 리스트를 만들어 보겠습니다.
 
-We will first load the KRW market information using the Upbit API.
+업비트 API로 원화 마켓 정보를 먼저 불러오겠습니다.
 
-::: info API Response Example
+::: info API Response 예시
 
 ```js
 // MarketList.vue
@@ -46,15 +46,15 @@ const getMarketAPI = async () => {
 
 <br /> <br/>
 
-Let's organize the imported market data by market type.
+불러온 마켓 데이터들을 market 종류별로 정리를 해보겠습니다.
 
 ::: tip
 
-There are three types of markets: KRW (KRW), BTC, and USDT.
+Market의 종류에는 KRW(원화), BTC, USDT 세 종류가 있습니다.
 
 :::
 
-::: info Sort by Market
+::: info Market 별로 정리하기
 
 ```ts
 //global.d.ts
@@ -109,11 +109,11 @@ const getMarketAPI = async () => {
 
 :::
 
-You can see that data is organized by each market.
+각 마켓별로 데이터들이 정리되는 것을 확인할 수 있습니다.
 
 <br/> <br/>
 
-Now, let's expose the organized data to the screen and implement some functions.
+이제 정리한 데이터들을 화면에 노출하고, 몇 가지 기능들을 구현해보겠습니다.
 
 <MarketList />
 
@@ -470,14 +470,14 @@ html[data-theme="dark"] {
 
 :::
 
-1. We have bound data organized by KRW, BTC, and USDT markets.
-2. Implemented a sorting function by Korean name, current price, compared to the previous day, and transaction amount.
-3. When each list is selected, the coin is changed globally by changing selectCoin in upbit-store.ts.
-4. Implemented dark mode. (The UI may be different depending on the project settings.)
+1. 원화, BTC, USDT 마켓 별로 정리한 데이터들을 바인딩하였습니다.
+2. 한글명, 현재가, 전일대비, 거래대금 별로 정렬 기능을 구현하였습니다.
+3. 각 리스트를 선택하면 upbit-store.ts 의 selectCoin을 변경하여 전역적으로 코인을 변경 하였습니다.
+4. 다크모드를 구현하였습니다. (프로젝트 설정상 UI가 다를 수 있습니다.)
 
 <br/>
 
-Since there is no data on the current price, the previous day, and the transaction amount yet, let's finish by bringing the real-time market transaction status with the Ticker Socket.
+아직 현재가, 전일대비, 거래대금에 대한 데이터가 없으므로 Ticker Socket 으로 실시간 마켓 거래현황을 가져와 마무리 지어보겠습니다.
 
 <SocketMarket />
 
@@ -975,9 +975,9 @@ nav {
 
 :::
 
-1. As socket data, the data is bound to the current price, the previous day, and the transaction amount.
-2. When the market is changed, the existing socket is disconnected and a new socket is connected to the changed market.
-3. When buying/selling occurs, the Buy/Sell Box is displayed at the current price.
+1. 소켓 데이터로 현재가, 전일대비, 거래대금에 데이터를 바인딩하였습니다.
+2. 마켓 변경시 기존 소켓 연결 해지 및 변경한 마켓으로 새롭게 소켓 연결 하였습니다.
+3. 매수/매도 가 일어날 때 현재가에 매수/매도 Box를 나타내주었습니다.
 
 <script setup>
 import { ref, onBeforeMount } from 'vue';

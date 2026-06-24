@@ -2,21 +2,21 @@
 order: 2
 ---
 
-# Naver easy login
+# 네이버 간편 로그인
 
-Following Kakao Easy Login, let's look at Naver Easy Login.
+카카오 간편 로그인에 이어 네이버 간편 로그인에 대해 알아보겠습니다.
 
-<a href="https://developers.naver.com/apps/#/register" target="_blank">Go to the Naver Developer Center</a> and register the application.
+<a href="https://developers.naver.com/apps/#/register" target="_blank">네이버 개발자 센터</a>로 가서 애플리케이션 등록을 해줍니다.
 
-Save the Client ID of the registered application to env or other places.
+등록을 한 애플리케이션의 Client ID 를 env 혹은 다른곳에 저장해줍니다.
 
-Next, let's write the service URL and callback URL.
+그 다음 서비스 URL 과 Callback URL 도 작성해줍시다.
 
 <!-- <img src="../../../images/naver-login-01.png" /> -->
 
 <br/> <br/>
 
-Now let's write some code.
+이제 코드를 작성해봅시다.
 
 ```js
 // index.html
@@ -60,7 +60,7 @@ onMounted(() => {
 
 ::: tip
 
-If you get a typescript error in window.naver, write it as follows.
+window.naver 에서 타입스크립트 에러가 난다면 다음과 같이 작성해주세요.
 
 ```ts
 // global.d.ts
@@ -77,13 +77,13 @@ declare global {
 
 :::
 
-Create `id="naverIdLogin"` where you want to create a Naver login button.
+네이버 로그인 버튼을 만들 곳에 `id="naverIdLogin"` 으로 만들어줍니다.
 
-You can remove `style="display:none"` if you don't want to customize it.
+커스텀을 따로 하지 않을것이면 `style="display:none"` 은 없애셔도 됩니다.
 
 ::: info
 
-If you created a NAVER login button for customization, write the code as in the example below.
+커스텀을 위해 네이버 로그인 버튼을 만들었다면 다음과 예시와 같이 코드를 작성해주세요.
 
 ```vue
 <template>
@@ -101,15 +101,15 @@ const naverLogin = () => {
 
 :::
 
-When you click the login button, a response is sent to the callback URL as follows.
+로그인 버튼을 누르면 다음과 같이 callback URL로 response가 옵니다.
 
 ```
 http://localhost:9000/#access_token=accessToken&state=state&token_type=bearer&expires_in=3600
 ```
 
-You can continue the login function by coordinating with the backend server with the access_token of this callback URL.
+이 callback URL의 access_token 으로 백엔드 서버와 조율을 하여 로그인 기능을 이어나가면 됩니다.
 
 ```js
-// Extract only access_token
+// access_token 만 추출하기
 new URLSearchParams(location.href.split("#")[1]).get("access_token");
 ```

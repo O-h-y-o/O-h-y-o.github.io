@@ -2,10 +2,10 @@
 order: 2
 ---
 
-# Creating an exchange page with Upbit Open API - Chart
+# 업비트 오픈API로 거래소 페이지 만들어보기 - 차트
 
-The chart needs to get the sequencing data to draw the chart on first load. <br/>
-I'll only bring 50 at first.
+차트에서는 처음 로드시에 차트를 그려줄 분봉 데이터를 가져와야합니다. <br/>
+처음에는 50개만 가져 오겠습니다.
 
 ::: info Codes
 
@@ -13,8 +13,8 @@ I'll only bring 50 at first.
 // upbit-store.ts
 export const useUpbitSocketStore = defineStore("upbitSocket", {
   state: (): ISocketState => ({
-    chartTime: "1", // chart segmentation
-    selectCoin: "KRW-BTC", // Coin name to get from Upbit API
+    chartTime: "1", // 차트 분봉
+    selectCoin: "KRW-BTC", // 업비트 API에서 가져올 코인 이름
     coinFullName: { ko: "비트코인", en: "Bitcoin" },
   }),
 });
@@ -37,7 +37,7 @@ declare global {
 
 ::: info Codes
 
-Create `UpbitChart.vue` as components, and first import the data to draw the chart.
+components 로 `UpbitChart.vue` 를 만들어주고, 차트를 그릴 데이터를 먼저 가져옵니다.
 
 ```vue
 // UpbitChart.vue
@@ -65,7 +65,7 @@ const upbit = useUpbitStore();
 const candleStickData = ref();
 
 onBeforeMount(() => {
-  // upbit candlestick data call api
+  // upbit candlestick 데이터 호출 api
   candleStickData.value = await axios.get<ICandleStickResponse>(
     `https://api.upbit.com/v1/candles/minutes/${upbit.chartTime}?market=${upbit.coinCode}&count=50`
   );
@@ -75,19 +75,22 @@ onBeforeMount(() => {
 
 :::
 
-You'll get something like this:
-
 ::: tip
 
-<div style="font-size: 12px; padding-bottom: 20px">[{{ candleOneData[0] }} ... ]</div>
+다음과 같은 결과물을 얻을 수 있습니다.
+
+<div style="font-size: 12px">[{{ candleOneData[0] }} ... ]</div>
 
 :::
 
-- The data needed to draw the chart is `opening_price, high_price, low_price, trade_price, candle_acc_trade_volume, (candle_date_time_kst | candle_date_time_utc)`.
+차트를 그리기 위해 필요한 데이터는 `opening_price, high_price, low_price, trade_price, candle_acc_trade_volume, (candle_date_time_kst | candle_date_time_utc)` 입니다.
+
+<!--
+### 데이터를 많이 불러오고, 소켓으로도 계속 데이터를 받아와야 하기 때문에 축약형으로 이용해야합니다. 순서대로 `op, hp, lp, tp, tv, T` 라고 하겠습니다. -->
 
 <br />
 
-After that, install `echarts` and `vue-echarts`, and create `EchartsDefault.vue`.
+이후 `echarts` 와 `vue-echarts`를 설치해주고, `EchartsDefault.vue` 를 만들어줍니다.
 
 ```sh
 $ pnpm i echarts vue-echarts
@@ -136,14 +139,12 @@ provide(THEME_KEY, props.themeKey);
 </script>
 ```
 
-Contents related to `THEME_KEY` can be included if dark mode is to be used, or omitted altogether. <br/>
-`autoresize` is an option that automatically resizes the chart according to the window size.
-<br/>
+`THEME_KEY` 와 연관된 내용은 다크모드를 이용할 것이면 넣어주고 아니라면 모두 빼도 됩니다. <br/>
+`autoresize`는 window 크기에 맞춰 차트 크기를 자동조정 해주는 옵션입니다. <br/>
 <br/>
 
-Let's go back to `UpbitChart.vue` and pass the data to `EchartsDefault.vue`.
-<br/>
-Dayjs is optional.
+다시 `UpbitChart.vue` 로 넘어와서, `EchartsDefault.vue` 에 데이터를 넘겨주도록 하겠습니다.
+dayjs 는 선택사항입니다.
 
 ```ts
 // rule.ts
@@ -154,7 +155,7 @@ export const colors = {
 };
 ```
 
-- Up is when it is a bullish candlestick, down is when it is a negative candlestick, and same is when the values ​​of open and close(tradePrice) are the same.
+- up은 양봉일때, down은 음봉일때, same은 open과 close(tradePrice)의 값이 같을때 입니다.
 
 ```vue
 // UpbitChart.vue
@@ -171,7 +172,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import EchartsDefault from "src/components/EchartsDefault.vue";
 import { colors } from "src/utils/rule";
-import { useUpbitSocketStore } from "src/stores/socket-upbit";
+import { useUpbitSocketStore } from 'src/stores/socket-upbit';
 
 const upbit = useUpbitSocketStore();
 
@@ -179,8 +180,8 @@ const bindingOptions = ref({
   animationDuration: 100,
   animationDurationUpdate: 100,
   title: {
-    text: ${ upbit.coinFullName.en },
-    subtext: ${ upbit.selectCoin },
+    text: ${upbit.coinFullName.ko},
+    subtext: ${upbit.selectCoin},
     left: "center",
     top: 40,
     textStyle: {
@@ -388,9 +389,9 @@ onBeforeMount(() => {
   <UpbitChart />
 </ClientOnly>
 
-If you see a chart like the one above, you've succeeded.
+위와 같은 차트가 나오면 성공입니다.
 
-Since we are only loading 50 data and are not changing the chart data by receiving real-time data, let's change the chart data in real time by connecting a socket.
+지금은 50개의 데이터만 불러오고, 실시간 데이터를 받아와 차트 데이터를 변경하고 있지 않기에 소켓을 연결하여 실시간으로 차트 데이터를 변경해보겠습니다.
 
 ```ts
 // global.d.ts
@@ -419,8 +420,6 @@ declare global {
   }
 }
 ```
-
-::: normal-demo Code
 
 ```ts
 // socket-upbit.ts
@@ -466,10 +465,6 @@ export const useUpbitSocketStore = defineStore("upbitSocket", {
 });
 ```
 
-:::
-
-::: normal-demo Code
-
 ```vue
 // SocketChart.vue
 <template>
@@ -493,7 +488,7 @@ const bindingOptions = ref({
   animationDuration: 100,
   animationDurationUpdate: 100,
   title: {
-    text: ${upbit.coinFullName.en},
+    text: ${upbit.coinFullName.ko},
     subtext: ${upbit.selectCoin},
     left: "center",
     top: 40,
@@ -738,21 +733,21 @@ onBeforeMount(() => {
 </script>
 ```
 
-:::
+`스토어에 처리하지 않아도 되지만 여러군데에서 사용할 수 있어 확장성 측면에서 trade socket의 경우에는 스토어에서 작업하였습니다.` <br />
+업비트 소켓서버 주소는 `wss://api.upbit.com/websocket/v1` 입니다.
+실시간 trade 내역을 받아와야하니 소켓서버에 KRW-BTC 가 거래되고 있는 데이터를 달라고 요청합니다. <br />
+그럼 `onmessage` 를 통하여 응답을 받아올 수 있습니다. 아래 박스의 데이터는 실시간으로 받아오고 있는 데이터이며 차트는 받아온 데이터로 실시간으로 변경해주고 있는 차트입니다. <br /> 다음과 같이 나오면 성공입니다.
 
-`It does not need to be processed in the store, but it can be used in many places, so in the case of trade sockets, we worked on the store in terms of scalability.` <br />
-Upbit socket server address is `wss://api.upbit.com/websocket/v1`.
-Since we need to receive real-time trade details, we request the socket server to receive the transaction data of KRW-BTC. <br />
-Then you can get the response through `onmessage`. The data in the box below is the data being received in real time, and the chart is being changed in real time with the received data. <br /> If it looks like this, it's a success.
-
-<!-- <SocketChart /> -->
+<ClientOnly>
+  <SocketChart />
+</ClientOnly>
 
 <br/>
 <br/>
 
-As a result, I created a chart using the Upbit open API and socket server.
+이로서 업비트 open API와 socket 서버를 이용하여 차트를 만들었습니다.
 
-Only basic features have been created, and the ability to set charts will be discussed later.
+기본적인 기능만 만든 상태이고, 차트를 설정할 수 있는 기능은 추후에 다뤄보겠습니다.
 
 <script setup lang="ts">
 import axios from "axios";

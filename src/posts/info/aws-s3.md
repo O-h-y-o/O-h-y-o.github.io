@@ -1,41 +1,41 @@
-# Deploying to AWS S3 (Vue3 + Quasar + pnpm)
+# AWS S3 배포하기 (Vue3 + Quasar + pnpm)
 
-We will proceed with the deployment to AWS (Amazon Web Services) Simple Storage Service (S3), a highly scalable and economical cloud storage service.
+확장성이 뛰어나고 경제적인 클라우드 스토리지 서비스인 AWS(Amazon Web Services) Simple Storage Service(S3) 로 배포를 진행하겠습니다.
 
-By building your projects on AWS S3, you can take advantage of the scalability, reliability, and cost-effectiveness of the AWS Cloud.
+프로젝트를 AWS S3에 구축하면 AWS 클라우드의 확장성, 안정성 및 비용 효율성을 활용할 수 있습니다.
 
-AWS S3 also makes it easy to serve static websites, simplifying the deployment process and reducing infrastructure complexity.
+또한 AWS S3는 정적 웹 사이트를 쉽게 제공하여 배포 프로세스를 단순화하고 인프라의 복잡성을 줄일 수 있습니다.
 
-If you don't have an AWS account, please create one.
-We will be using github actions, so please upload your project to the github repository.
+AWS 계정이 없다면 만들어주세요.
+github actions를 이용할 것이니 github repository에 프로젝트를 올려주세요.
 
-1. Log in to your <a href="https://ap-northeast-2.console.aws.amazon.com/console/home">AWS</a> account.
+1. <a href="https://ap-northeast-2.console.aws.amazon.com/console/home">AWS</a> 계정에 로그인 해주세요.
 
-2. Go to the S3 Dashboard and click the Create Bucket button.
+2. S3 대시보드로 이동하고 버킷 만들기 버튼을 눌러주세요.
 
-3. Enter the bucket name and `AWS Region` as `Asia Pacific (Seoul) ap-northeast-2`.
+3. 버킷 이름을 작성해주시교 `AWS 리전` 은 `아시아 태평양(서울) ap-northeast-2` 로 해주세요.
 
 ::: tip
 
-In order to use the https domain using S3 and route53 in the future, the bucket name must be made into a domain.
+추후 S3와 route53을 이용한 https 도메인 사용을 위해서 버킷 이름은 도메인으로 만들어야합니다.
 ex) domain.com
 
 :::
 
-4. For object ownership, click `Enable ACL`.
+4. 객체소유권은 `ACL 활성화`를 눌러주세요.
 
-5. Release all public access blocks and click the Create Bucket button.
+5. 모든 퍼블릭 액세스 차단을 풀어준 뒤 버킷만들기 버튼을 눌러주세요.
 
-6. After clicking on the bucket you created, click on the properties tab.
+6. 만든 버킷을 눌러 들어간 뒤 속성 탭을 클릭해주세요.
 
-7. Press the Edit button of `Static Website Hosting` at the bottom of the Properties tab to `Enable` it.
+7. 속성 탭의 최하단 `정적 웹 사이트 호스팅` 의 편집 버튼을 눌러 `활성화` 해주세요.
 
-8. If you implemented `index.html` for the index document and an error page for the error document, you do not need to enter the corresponding page or index.html or anything else. Save your changes.
+8. 인덱스 문서는 `index.html`, 오류 문서는 에러페이지를 구현하였다면 해당하는 페이지를 넣어주거나, index.html 혹은 아무것도 입력하지 않아도 됩니다. 변경사항을 저장해줍니다.
 
-9. Go to the Permissions tab and click the 'Edit Bucket Policy' button to paste the text below.
+9. 권한 탭으로 들어가 `버킷 정책` 편집 버튼을 눌러 하단의 텍스트를 붙여넣어주세요.
 
 ```json
-// Bucket policy to allow public access
+// 공개 액세스를 허용하는 버킷 정책
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -50,39 +50,39 @@ ex) domain.com
 }
 ```
 
-You can manually upload the project build folder, but let's do an automatic deployment using github actions.
+프로젝트 빌드 폴더를 수동적으로 올릴 수 있지만 github actions을 이용해 자동 배포를 해보겠습니다.
 
-First, get `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` from <a href="http://us-east-1.console.aws.amazon.com/iamv2/home" target="_blank">IAM</a>. It is.
+먼저 `AWS_ACCESS_KEY_ID` 와 `AWS_SECRET_ACCESS_KEY` 를 <a href="http://us-east-1.console.aws.amazon.com/iamv2/home" target="_blank">IAM</a>에서 발급 받겠습니다.
 
-1. In IAM, click Manage Access => Users => Add User button.
+1. IAM 에서 액세스 관리 => 사용자 => 사용자 추가 버튼을 눌러줍니다.
 
-2. Enter the user name and click Next.
+2. 사용자 이름을 입력하고 다음을 눌러줍니다.
 
-3. Change the Permissions option to Direct Policy Attachment, search for `AmazonS3FullAccess`, check it, click Next, and click the Create User button.
+3. 권한 옵션을 직접 정책 연결로 바꾸고 `AmazonS3FullAccess` 를 검색한 뒤 체크해주고 다음을 눌러주고 사용자 생성 버튼을 눌러줍니다.
 
-4. Click on the created user to enter and click on `Create Access Key` on the `Security Credentials` tab.
+4. 만들어진 사용자를 클릭하여 들어가 `보안 자격 증명` 탭에서 `액세스 키 만들기` 를 눌러줍니다.
 
-5. Select `Local Code` as the use case and press `Create Access Key`.
+5. 사용 사례는 `로컬 코드` 로 선택하고 다음을 눌러 `액세스 키 만들기` 를 눌러줍니다.
 
-6. Download the `.csv file` and save the access key and `secret access key (secret key)` well.
+6. `.csv 파일 다운로드`를 하고 액세스 키, `비밀 액세스 키(시크릿 키)`를 잘 저장해둡니다.
 
-7. Click the `Settings` tab in the Github repository.
+7. Github repository 에서 `Settings` 탭을 눌러줍니다.
 
-8. Click Security => Secrets and variables => Actions and click New repository secret.
+8. Security => Secrets and variables => Actions 를 눌러 New repository secret 을 눌러줍니다.
 
-9. Name: `AWS_ACCESS_KEY_ID`, Secret: Enter the issued `Access Key` and create it.
+9. Name: `AWS_ACCESS_KEY_ID` , Secret: 발급한 `액세스 키` 를 입력하고 생성해줍니다.
 
-10. Name: `AWS_SECRET_ACCESS_KEY` , Secret: Enter the issued `Secret Access Key (Secret Key)` and create it.
+10. Name: `AWS_SECRET_ACCESS_KEY` , Secret: 발급한 `비밀 액세스 키(시크릿 키)`를 입력하고 생성해줍니다.
 
-11. Click the `Actions` tab in the github repository.
+11. github repository 에서 `Actions` 탭을 눌러줍니다.
 
-12. Press the `New workflow` button.
+12. `New workflow` 버튼을 눌러줍니다.
 
-13. Press `set up a workflow yourself`.
+13. `set up a workflow yourself` 를 눌러줍니다.
 
-14. Name the yml file freely.
+14. yml 파일명을 자유롭게 지어줍니다.
 
-15. Enter the code below.
+15. 밑의 코드를 넣어줍니다.
 
 ```yml
 name: Vue Build and Deploy to S3
@@ -128,6 +128,6 @@ jobs:
           SOURCE_DIR: "dist/pwa"
 ```
 
-Enter the name of your S3 bucket in `<Bucket_Name>`.
+`<Bucket_Name>` 에는 S3버킷의 이름을 넣어줍니다.
 
-If you followed the process of the posting well, it will be automatically deployed to AWS S3.
+해당 포스팅의 과정을 잘 따라왔다면 AWS S3 에 자동적으로 잘 배포가 될 것입니다.

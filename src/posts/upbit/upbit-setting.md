@@ -2,11 +2,11 @@
 order: 1
 ---
 
-# Creating an exchange page with Upbit Open API - Settings
+# 업비트 오픈API로 거래소 페이지 만들어보기 - 세팅
 
-`The things to be implemented are charts using Echarts, order book (general quotation), coin list, and contract details.`
+`구현해볼 것은 Echarts를 이용한 차트와, 오더북(일반호가), 코인리스트, 체결내역 입니다.`
 
-Before that, let's start with a simple setup.
+그에 앞서 간단한 세팅부터 하겠습니다.
 
 ```sh
 $ pnpm create quasar
@@ -20,7 +20,7 @@ $ pnpm create quasar
 5. scss
 ```
 
-- Build with Quasar cli.
+- Quasar cli로 구축합니다.
 
 <br/>
 
@@ -31,7 +31,7 @@ export {};
 declare global {}
 ```
 
-- First, create a global.d.ts file to collect types in the project root folder.
+- 우선 타입을 모아놓을 global.d.ts 파일을 프로젝트 루트 폴더에 만들어줍니다.
 
 <br/>
 
@@ -44,9 +44,9 @@ export const useSocketUpbitStore = defineStore({
 });
 ```
 
-- Create a `socket-upbit.ts` file in the stores folder.
+- stores 폴더에 `socket-upbit.ts` 파일을 만들어줍니다.
 
-Some data will be managed by pinia. There is no need to manage the state with pinia.
+몇몇의 데이터들은 pinia로 상태관리를 해줄 예정입니다. 굳이 pinia로 상태 관리를 해줄 필요는 없습니다.
 
 <br/>
 
@@ -76,4 +76,4 @@ const routes: RouteRecordRaw[] = [
 export default routes;
 ```
 
-- Create `ExchangePage.vue` in pages folder and add it in routes.ts.
+- pages 폴더에 `ExchangePage.vue` 를 만들어주고 routes.ts 에서 추가해줍니다.

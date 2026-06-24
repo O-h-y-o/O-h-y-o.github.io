@@ -2,13 +2,13 @@
 order: 4
 ---
 
-# Creating an exchange page with Upbit Open API - Transaction Status
+# 업비트 오픈API로 거래소 페이지 만들어보기 - 거래 현황
 
-Create a new UpbitTrade.vue file.
+UpbitTrade.vue 파일을 새로 만들어줍니다.
 
-Like last time, let's call the Trade API first.
+지난번처럼 Trade API 를 먼저 호출해보겠습니다.
 
-Let's import 20 pieces of data.
+20개의 데이터를 가져오겠습니다.
 
 ::: info Codes
 
@@ -74,7 +74,7 @@ onMounted(() => {
 
 <br/> <br/>
 
-This time, we will change the key value of the received data to a simple one.
+이번에는 받아온 데이터들의 키 값을 simple하게 바꿔주겠습니다.
 
 ::: info Codes
 
@@ -138,7 +138,7 @@ export const convertTradeType = {
 
 ```ts
 // global.d.ts
-// As the type when creating the chart
+// 차트를 만들때의 타입 그대로
 interface ISocketTradeResponse {
   ab: string;
   c: string;
@@ -159,9 +159,9 @@ interface ISocketTradeResponse {
 
 :::
 
-Using a recursive function called convertTradeKeys, data key values ​​were changed to simple key values ​​that come to the socket.
+convertTradeKeys라는 재귀함수를 이용하여 데이터 키 값들을 소켓으로 오는 simple 키 값으로 변경하였습니다.
 
-Now that we have organized the data, let's create a UI and apply it right away.
+데이터들을 정리를 하였으니 UI를 만들어 바로 적용시켜보겠습니다.
 
 <UpbitTrade />
 
@@ -327,7 +327,7 @@ html[data-theme="dark"] {
 
 <br/> <br/>
 
-Now, let's get the Trade Socket data that was connected when creating the chart and put it in the TradeList.
+이제 차트를 만들때 연결했던 Trade Socket 데이터를 가져와서 TradeList 에 넣어주겠습니다.
 
 <SocketTrade />
 
@@ -558,9 +558,9 @@ html[data-theme="dark"] {
 
 :::
 
-The infinite scroll function has been added, but since the condition to call the API is when the scroll percentage is over 90%, you need to change the condition or set a limit on the number.
+무한스크롤 기능을 추가하였지만, API를 호출하는 조건이 스크롤 퍼센트 90% 이상일 때 이기에 해당 조건을 변경하거나 갯수 제한을 두어야합니다.
 
-Also, if you keep adding data, browser lag may occur, so when socket data is added, the last data in tradeList should be removed.
+또한 계속해서 데이터를 추가만 한다면 브라우저 렉이 발생할 수 있으므로 소켓 데이터가 추가될때 tradeList 의 마지막 데이터를 없애주어야합니다.
 
 <script setup>
 import axios from 'axios';
