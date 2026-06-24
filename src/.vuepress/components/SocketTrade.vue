@@ -38,16 +38,16 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import axios from "axios";
-import { convertTradeKeys, debounce } from "../../utils/rule";
+import { convertTradeKeys, debounce } from "../../utils/rule.js";
 import dayjs from "dayjs";
-import { ISocketTradeResponse, ITradeResponse } from "../../utils/types";
+import { ISocketTradeResponse, ITradeResponse } from "../../utils/types.js";
 
 const tradeList = ref<ISocketTradeResponse[]>([]);
 const selectCoin = "KRW-BTC";
 
 const getTradeAPI = async () => {
   const res = await axios.get(
-    `https://api.upbit.com/v1/trades/ticks?market=${selectCoin}&count=20`
+    `https://api.upbit.com/v1/trades/ticks?market=${selectCoin}&count=20`,
   );
 
   const data = res.data as ITradeResponse[];
@@ -59,7 +59,8 @@ const getTradeAPI = async () => {
 
 const scrolling = debounce((a: any) => {
   const percent = Math.floor(
-    (a.target.scrollTop / (a.target.scrollHeight - a.target.clientHeight)) * 100
+    (a.target.scrollTop / (a.target.scrollHeight - a.target.clientHeight)) *
+      100,
   );
 
   if (percent > 90) {
@@ -78,7 +79,7 @@ onMounted(() => {
         { ticket: "trade" },
         { type: "trade", codes: ["KRW-BTC"] },
         { format: "SIMPLE" },
-      ])}`
+      ])}`,
     );
   };
 

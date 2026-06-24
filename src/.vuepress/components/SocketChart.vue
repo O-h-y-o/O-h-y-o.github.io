@@ -14,7 +14,7 @@ import { ref, onBeforeMount, watch, computed } from "vue";
 import axios from "axios";
 import dayjs from "dayjs";
 import EchartsDefault from "./EchartsDefault.vue";
-import { colors } from "../../utils/rule";
+import { colors } from "../../utils/rule.js";
 
 interface ICandleStickResponse {
   market: string;
@@ -160,8 +160,8 @@ const bindingOptions = ref({
           value.data[2] === 0
             ? colors.same
             : value.data[2] === 1
-            ? colors.up
-            : colors.down,
+              ? colors.up
+              : colors.down,
       },
       barWidth: "70%",
       colorBy: "data",
@@ -206,10 +206,10 @@ const candleVolume = ref<{ [key: string]: number[] }>({});
 const tradeData = ref<ISocketTradeResponse>({} as ISocketTradeResponse);
 const stop = ref(false);
 
-const updateMarkLine = <T>(
+const updateMarkLine = <T,>(
   markLine: any,
   data: T,
-  color: (item: T) => string
+  color: (item: T) => string,
 ) => {
   markLine.data[0].yAxis = data[0];
   markLine.data[0].lineStyle.color = color(data);
@@ -218,7 +218,7 @@ const updateMarkLine = <T>(
 
 const getCandleAPI = async (count = 50) => {
   const response = await axios.get<ICandleStickResponse[]>(
-    `https://api.upbit.com/v1/candles/minutes/1?market=KRW-BTC&count=${count}`
+    `https://api.upbit.com/v1/candles/minutes/1?market=KRW-BTC&count=${count}`,
   );
 
   for (const i in response.data.reverse()) {
@@ -248,7 +248,7 @@ const getCandleAPI = async (count = 50) => {
   updateMarkLine(
     bindingOptions.value.series[1].markLine,
     Object.values(candleData.value)[Object.values(candleData.value).length - 1],
-    ([tp, op]) => (tp === op ? colors.same : tp > op ? colors.up : colors.down)
+    ([tp, op]) => (tp === op ? colors.same : tp > op ? colors.up : colors.down),
   );
 
   stop.value = false;
@@ -265,7 +265,7 @@ const connectTradeSocket = () => {
         { ticket: "trade" },
         { type: "trade", codes: ["KRW-BTC"] },
         { format: "SIMPLE" },
-      ])}`
+      ])}`,
     );
   };
 
@@ -298,8 +298,11 @@ const connectTradeSocket = () => {
     kline[2] = Math.min(kline[2], tp);
     kline[3] = Math.max(kline[3], tp);
 
-    updateMarkLine(bindingOptions.value.series[1].markLine, kline, ([tp, op]) =>
-      tp === op ? colors.same : tp > op ? colors.up : colors.down
+    updateMarkLine(
+      bindingOptions.value.series[1].markLine,
+      kline,
+      ([tp, op]) =>
+        tp === op ? colors.same : tp > op ? colors.up : colors.down,
     );
   };
 };

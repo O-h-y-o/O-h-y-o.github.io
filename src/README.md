@@ -1,6 +1,6 @@
 ---
 home: true
-layout: BlogHome
+layout: Blog
 icon: home
 title: Blog Home
 heroImage: /logo.png

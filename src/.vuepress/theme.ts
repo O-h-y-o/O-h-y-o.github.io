@@ -1,6 +1,6 @@
 import { hopeTheme } from "vuepress-theme-hope";
 
-import navbar from "./navbar.js";
+// import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
 
 export default hopeTheme({
@@ -15,7 +15,7 @@ export default hopeTheme({
 
   logo: "/logo.png",
 
-  repo: "https://github.com/O-h-y-o/O-h-y-o.github.io",
+  // repo: "https://github.com/O-h-y-o/O-h-y-o.github.io",
 
   docsDir: "src",
 
@@ -30,7 +30,7 @@ export default hopeTheme({
 
   sidebar,
 
-  navbar,
+  // navbar,
 
   // locales: {
   //   "/": {
@@ -129,6 +129,7 @@ export default hopeTheme({
   },
 
   markdown: {
+    echarts: true,
     align: true,
     attrs: true,
     codeTabs: true,

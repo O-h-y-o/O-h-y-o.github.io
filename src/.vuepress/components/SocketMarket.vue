@@ -71,7 +71,7 @@
 <script setup lang="ts">
 import axios from "axios";
 import { ref, onMounted } from "vue";
-import { objSort } from "../../utils/rule";
+import { objSort } from "../../utils/rule.js";
 
 interface IMarketResponse {
   market: string;
@@ -190,7 +190,7 @@ const controlLoadAll = () => {
 
 const getMarketAPI = async () => {
   const response = await axios.get<IMarketResponse[]>(
-    "https://api.upbit.com/v1/market/all?isDetails=true"
+    "https://api.upbit.com/v1/market/all?isDetails=true",
   );
 
   for (const i in response.data) {
@@ -213,7 +213,7 @@ const dataSort = (sortTarget: string) => {
   markets.value[selectMarket.value] = objSort(
     markets.value[selectMarket.value],
     sortTarget,
-    selectSort.value.sort
+    selectSort.value.sort,
   );
 };
 
@@ -254,7 +254,7 @@ const connectTickerSocket = (codes: string[]) => {
         { ticket: "ticker" },
         { type: "ticker", codes: codes },
         { format: "SIMPLE" },
-      ])}`
+      ])}`,
     );
   };
 
