@@ -129,7 +129,6 @@ export default hopeTheme({
   },
 
   markdown: {
-    echarts: true,
     align: true,
     attrs: true,
     codeTabs: true,
