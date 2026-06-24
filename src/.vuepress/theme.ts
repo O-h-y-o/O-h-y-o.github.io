@@ -35,8 +35,8 @@ export default hopeTheme({
       footer: "Delicious Jelly",
       displayFooter: true,
       blog: {
-        description: "프론트엔드 개발자",
-        intro: "/intro.html",
+        description: "배고파",
+        // intro: "/intro.html",
       },
       metaLocales: {
         editLink: "Edit this page on GitHub",
