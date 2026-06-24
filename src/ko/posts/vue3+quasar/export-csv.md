@@ -15,14 +15,14 @@ order: 1
 
 `exportData`로 엑셀 다운로드를 할 수 있습니다.
 
-타입이 지저분하고 any가 많은데 어쩔수가 없습니다.
+타입이 지저분하고 any가 많은데..
 
 ```ts
 // functions.ts
 const wrapCsvValue = (
   val: string,
   formatFn?: (arg0: string, arg1: RowData | undefined) => string | undefined,
-  row?: RowData
+  row?: RowData,
 ) => {
   let formatted = formatFn ? formatFn(val, row) : val;
 
@@ -51,14 +51,14 @@ export const exportData = (columns: any, rows: any) => {
               return wrapCsvValue(
                 dayjs(value).format("YYYY.MM.DD HH:mm"),
                 col.format,
-                row
+                row,
               );
             }
 
             return wrapCsvValue(value, col.format, row);
           })
-          .join(",")
-      )
+          .join(","),
+      ),
     )
     .join("\r\n");
 
@@ -71,7 +71,7 @@ export const exportData = (columns: any, rows: any) => {
       {
         message: "Browser denied file download...",
       },
-      "negative"
+      "negative",
     );
   }
 };
