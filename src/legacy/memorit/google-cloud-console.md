@@ -2,7 +2,7 @@
 date: 2024-10-20
 category:
   - Memorit
-order: 2
+order: 1
 ---
 
 # 구글 클라우드 콘솔 가입하기

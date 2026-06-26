@@ -2,7 +2,8 @@
 date: 2024-10-16
 category:
   - Memorit
-order: 1
+order: false
+article: false
 ---
 
 # 예제로 보는 웹, 앱 크로스 플랫폼 출시 a 부터 Z 까지
@@ -21,21 +22,20 @@ Memorit은 기록을 저장하여 언제 어디서든지 확인이 가능한 서
 
 ## 주의사항
 
-```앱(aos, ios)은 선택사항입니다.```
+`앱(aos, ios)은 선택사항입니다.`
 
 - 앱만 배포하고싶어도 웹뷰 기반이기 때문에 웹은 필수 입니다.
 - aos는 한번 결제하면 영구적이고 (ios보단 싸요) 윈도우나 맥북 어디에서든 빌드 및 배포가 가능합니다.
 - aos는 올해 개인 개발자 정책이 변경되어 20명의 테스터가 2주동안 테스트를 진행하여야 배포가 가능합니다.
 - ios는 1년 단위의 비싼(?) 개발자 등록과 맥북이 필수입니다.
 
-
 ## 주요 기술스택 & 배포환경
+
 - vue3 composition API, quasar framework, capacitor
 - pinia, vite, typescript
 - yarn (quasar 권장사항이라 yarn 사용)
 - 프론트: aws s3, route53, cloudfront, github ci/cd
 - 백엔드: firebase
-
 
 ## 개요
 
