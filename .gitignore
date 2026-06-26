@@ -3,3 +3,9 @@ node_modules/
 src/.vuepress/.cache/
 src/.vuepress/.temp/
 src/.vuepress/dist/
+*.c
+*.exe
+*.ilk
+*.obj
+*.pdb
+.vscode/
