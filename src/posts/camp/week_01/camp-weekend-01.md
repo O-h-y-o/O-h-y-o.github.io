@@ -553,6 +553,54 @@ Scalar(스칼라)
 
 :::
 
-![AnimGraph에 스테이트 머신 구성](../images/week_01/w01-46.png)
+![AnimGraph 스테이트 머신 구성](../images/week_01/w01-46.png)
+
+Idle/Run 상태일때는 Jump와 Fall로 이어질 수있다.
+Jump는 Fall로만 이어지고 Fall 상태일때는 Land 상태로만 상태전환이 가능하다.
+
+::: note
+
+![State Alias 설정](../images/week_01/w01-47.png)
+
+Add State Alias
+
+- 스테이트 머신 안에서 이미 존재하는 다른 상태(State)를 참조하여 재사용할 수 있게 해주는 기능이다.
+- AnimGraph 안에서 노드로 추가되지만, 어떤 애니메이션을 재생할지, 어떤 변수를 참조할지 같은 값들은 디테일 패널에서 설장한다.
+- 아까 만든 Idle과 Run을 참조한다.
+
+:::
+
+::: tip
 
 A_Bot_Fall 의 경우 클릭하여 `Animation Roof`를 선택해 떨어지는게 반복되면서 떨어지게 설정해주어야 한다.
+
+:::
+
+Jump 경우 무한정 점프하는게 아니라 점프한 순간 내려와야하기 때문에 Jump to Fall Transition Rule을 한번만 클릭해 디테일 패널에서 `Automatic Rule Based on Sequence Player in State` 를 체크해준다.
+애니메이션이 끝나면 자동으로 Fall로 넘어가게 해주는 것이다.
+Land 도 마찬가지로 똑같이 체크해준다. Land가 되면 더 이상 아무런 상태가 없기 때문에 Idle 기본 상태로 이어주면 된다.
+
+::: note Jump/Fall/Land State 설정
+
+Jump
+
+- A_Bot_IdleJump
+
+Fall
+
+- A_Bot_Fall
+
+Land
+
+- A_Bot_IdleLand
+
+각 State들은 상황에 맞는 애셋들과 연결해주면 된다.
+
+:::
+
+![Transition Rule 설정](../images/week_01/w01-48.png)
+
+- Idle/Run to Jump 와 Idle/Run to Fall 의 Transition Rule은 Is In Air로 연결
+- Fall to Land Transition Rule은 Is in Air를 NOT Boolean 노드와 연결시켜준다.
+
+![점프 착지 애니메이션 추가](../images/week_01/all-animation.gif)
