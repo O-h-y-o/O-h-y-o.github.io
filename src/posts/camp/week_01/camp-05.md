@@ -36,7 +36,7 @@ order: 8
 
 :::
 
-## Blueprint!
+## Blueprint 정리!
 
 ![전체 구조](../images/week_01/05/d05-02.png)
 
@@ -55,8 +55,18 @@ Sounds는 무료 사운드를 다운로드 받아서 import 했다.
 - 발사
 - 발소리
 - AI 적 (20초마다 랜덤 위치 스폰)
+- HUD
+- GameMode
 
-등
+등이 있다.
+
+### 시연 영상
+
+<iframe src="https://drive.google.com/file/d/18ya49FQRknt5idbrRg5RA0vT_YkDEzf3/preview" width="640" height="480" allow="autoplay"></iframe>
+
+### 플레이어
+
+#### BP_Character
 
 ![BP_FPS_Character](../images/week_01/05/d05-03.png)
 
@@ -121,6 +131,196 @@ CanFire 변수로 마우스 좌클릭을 여러번 눌렀을때 루프가 돌고
 Fire 함수는 너무 길어서 4개의 이미지로 나눴다.
 순서는 30발이 있는지 먼저 검증하고, 총알이 없으면 틱틱 거리는 사운드가 재생된다.
 총알이 충분하면, 총알 발사음 → MuzzlePoint 생성 → 총쏠때 흔들리는 애니메이션 넣어줌 → 조준상태에서는 반동이 더 커짐 → 라인트레이스로 Ant 를 맞출시 데미지 부여 → 목표물에 총알이 닿으면 히트이펙트가 발생하는 순서로 만들었다.
+
+![Reload](../images/week_01/05/d05-14.png)
+
+재장전할때 재장전 소리와 플레이어HUD에 재장전 프로그래스바를 통해 재장전 시간을 표시해주었다.
+
+![Update Health](../images/week_01/05/d05-15.png)
+
+Ant AI에게 닿으면 HP가 깎이며 피격음 소리가 발생한다. 3~5 사이의 랜덤한 데미지를 입는다. 이건 BP_Ant에 자세하게 나와있다.
+플레이어의 HP가 0이 되면 게임이 종료되며 게임모드HUD가 나타난다.
+
+#### ABP_Character
+
+![ABP_Character EventGraph](../images/week_01/05/d05-16.png)
+
+`Try Get Pawn Owner`로 캐릭터의 이동속도와 공중에 떠 있는 상태인지 체크하는 IsInAir 값을 `Event Blueprint Update Animation`을 통해 계속 갱신해준다.
+
+![ABP_Character AnimGraph State Machine](../images/week_01/05/d05-17.png)
+
+ABP_Character의 스테이트 머신이다. EventGraph에서 IsInAir와 Speed의 값을 받아오면 여기서 실제 애니메이션 동작을 제어해준다.
+
+![BS_IdleRun](../images/week_01/05/d05-18.png)
+
+![BeginPlay](../images/week_01/05/d05-19.png)
+
+![BeginPlay](../images/week_01/05/d05-20.png)
+
+1. BeginPlay 이벤트에는 기본 총알과 HP을 세팅한다.
+2. 유저의 인풋을 IMC와 연결한다.
+3. Create Widget + Add to Viewport을 통해 Player HUD 클래스를 유저 화면에 나타내준다.
+
+### 적 AI
+
+적 AI인 BP_Ant에 대한 내용이다.
+
+![BP_Ant](../images/week_01/05/d05-21.png)
+
+BP_Ant에는 다음 기능들이 있다.
+
+1. 자기 자신의 일정한 범위 내에 플레이어가 접근시 추적하는 Chase 기능
+2. 플레이어와 근접할 시 플레이어를 공격하는 기능
+3. 플레이어가 주변에 없을 시 랜덤한 좌표로 이동하는 기능
+4. 플레이어에게 공격받아 체력이 깎이거나 죽는 기능
+
+#### BP_Ant
+
+![Chase](../images/week_01/05/d05-22.png)
+
+Sphere - On Component Begin Overlap으로 플레이어가 범위 내에 들어왔을시 Start Chase 이벤트 실행
+
+![Start Chase](../images/week_01/05/d05-23.png)
+
+AI MoveTo를 이용해 플레이어의 Radius 150까지 도달하면 플레이어를 공격하기 위해 Acceptance Radius는 150을 설정하였다.
+AI MoveTo는 한번 목표에 도달하면 끝나버리기 때문에 플레이어에게 도달 후 공격 → 1초 뒤에 플레이어를 다시 따라가도록 하였다.
+플레이어 추격에 실패하면 다시 랜덤으로 움직이는 Move Random 이벤트 실행
+
+![Hit Player](../images/week_01/05/d05-24.png)
+
+BP_FPS_Character에 Cast하여 데미지를 전달한다.
+HitPlayer 변수는 플레이어가 Monster의 공격범위 부근에서 영역이 나갔다 들어갔다 가 빠르게 반복되어 공격이 여러번 반복되는 현상이 있었다.
+그걸 막기위해 한번 공격하면 0.5초 동안은 다시 공격을 못하게 하였다.
+Set Timer로는 1.5초마다 유저를 지속적으로 공격하게 하였다.
+이 타이머는 End Overlap 이벤트 발생시 종료된다.
+
+생각하는 흐름은 이렇다
+
+Move to Player → Stop Move(Attach to Player) → Attack Player(Player Damaged) → Move to Player ... 반복
+
+![Apply Damage](../images/week_01/05/d05-25.png)
+
+AI가 공격한 상태가 아니라면 2.0 ~ 5.0 사이의 랜덤한 데미지를 플레이어에게 준다.
+
+![Move Random](../images/week_01/05/d05-26.png)
+
+2초에서 5초 랜덤한 시간마다 현재 자신의 위치에서 Radius 1000 만큼의 거리를 랜덤하게 이동한다.
+
+![Update Health](../images/week_01/05/d05-27.png)
+
+Ant가 플레이어에 의해 공격을 받으면 HP가 하락한다.
+HP가 0이 되면 그 자리에서 폭발하는 데스 이펙트와 사운드를 넣어주고 Ant 액터는 월드에서 삭제처리된다.
+이어서 BP_FPS_Character에 죽인 수가 ++ 카운트되며 게임모드의 HUD에도 카운트되어 플레이어가 얼마나 처리했는지 볼 수 있다.
+
+#### ABP_Ant
+
+![ABP_Ant EventGraph](../images/week_01/05/d05-28.png)
+
+ABP_Ant의 이벤트그래프에서는 Ant의 이동속도와 플레이어를 공격했는지에 대한 값을 BP_Ant 에서 받아와 애니메이션에 반영한다.
+
+![ABP_Ant AnimGraph State Machine](../images/week_01/05/d05-29.png)
+
+ABP_Ant의 State Machine(Locomotion)에는 Idle&Walk&Run / Attack 의 상태가 있다.
+BS_Ant(블렌드스페이스)를 이용하여 기본상태/걷기/뛰기 애니메이션을 하나의 Locomotion 상태로 통합했다.
+HitPlayer의 값이 true 일때 Attack, false일때는 Idle&Walk&Run 상태로 돌아온다.
+
+Walk는 0이상, Run은 200이상 일때 적용된다. 개미의 최대 속도는 400으로 설정헀다.
+플레이어의 걷기 최대 속도는 300이라, 걸을때는 개미한테 쫓기면서 데미지를 입는다.
+
+### Items
+
+![BP_Item_Health](../images/week_01/05/d05-30.png)
+
+플레이어가 Item의 영역에 닿으면 체력이 회복되고 레벨에서 삭제된다. 간단하다.
+
+사실 이번 프로젝트에서 Item은 별로 사용하지 않았다.
+관련해서 구현한 것도 위 이미지에 있는게 전부다.
+레벨에 하나만 배치해놓았다.
+
+### UI
+
+User Interface는 `Widget Blueprint` 를 가장 많이 사용한다.
+Canvas는 4K(3840x2160)를 기준으로 한다.
+더 낮은 해상도(1080p, 1440p 등)에서도 자동으로 축소되어 표시되므로 다양한 모니터 환경에 대응하기 쉽다.
+반대로 낮은 해상도를 기준으로 만들면 고해상도로 갈수록 UI가 흐릿해진다.
+
+![WBP_PlayerHUD](../images/week_01/05/d05-31.png)
+
+플레이어에게 상시 보이는 인터페이스다. 보이는 바와 같이 별거 없다... 값을 받아서 세팅해주는 간단한 것들..
+
+![WBP_MainHUD](../images/week_01/05/d05-32.png)
+
+여기도 별거는 없다..
+
+다만 재시작, 종료를 눌렀을때 뭔가 이벤트를 발생해줘야한다.
+
+![WBP_MainHUD Graph](../images/week_01/05/d05-33.png)
+
+재시작 버튼을 누르면 WBP_MainHUD 인터페이스를 없애고, 다시 컨트롤의 권한을 InputMode - Game 으로 변경해준다. 그리고 새로운 레벨을 시작한다.
+OpenLevel만 했을때는 마우스도 안먹고 키보드도 먹지 않는다.
+뒤에 나오겠지만, BP_GameModeFPS 에서 플레이어의 체력이 0이 되면 `Set Input Mode UI Only`로 인해 플레이어의 인풋모드가 UI에 종속되어서 그렇다.
+
+종료 버튼을 누르면 게임이 종료된다.
+
+### GameMode
+
+게임모드는 규칙과 흐름을 관리하는 핵심 클래스이다.
+
+GameMode의 역할은 보통 다음과 같다.
+
+- 게임 규칙 정의: 승리 조건, 패배 조건, 점수 계산 방식 등
+- 플레이어 관리: 어떤 Pawn(캐릭터)을 스폰할지, 어떤 PlayerController를 사용할지 결정
+- 게임 흐름 제어: 게임 시작, 종료, 재시작 같은 이벤트를 관리
+- 기본 클래스 지정: Pawn, HUD, PlayerController, GameState 등 어떤 클래스를 사용할지 지정
+
+이 게임이 어떻게 진행될지를 정하는 규칙서이다.
+
+- 플레이어 체력이 0이 되면 Game Over 처리
+- 적을 모두 처치하면 승리 처리
+- 재시작 버튼을 누르면 레벨을 다시 로드
+
+이런 흐름을 게임모드에서 관리한다.
+
+#### BP_GameModeFPS
+
+![BP_GameModeFPS](../images/week_01/05/d05-34.png)
+
+게임이 시작되면, 3가지 작업이 진행된다.
+
+- 배경음악 재생
+- WBP_PlayerHUD를 Viewport에 추가
+- BP_Ant 몬스터를 스폰하고, 20초마다 계속 생성한다.
+
+EventTick에서는 플레이어의 생존 시간을 HUD에 표시한다.
+
+![SpawnMonster 함수](../images/week_01/05/d05-35.png)
+
+랜덤한 위치에서 몬스터가 스폰되게끔 하기로했다.
+지금의 내 지식으로는 해결하기 힘든 문제점이 있었다. 서칭해보니 만만치 않아보여 시간이 많이 들 것 같아 우선 하드코딩을 했다.
+다음 두 가지는 문제점은 언젠가는 해결해야한다.
+
+- 몬스터가 스폰될 위치에 대한 랜덤한 좌표값을 어떻게 지정할 것인가 (하드코딩 되어있음)
+- 해당 좌표값은 사물이 위치해있거나, 벽 안의 좌표값이라면 어떻게 할 것인가
+
+AI가 움직일 수 있는 범위를 제한하는 `NavMeshBoundsVolume`의 XY의 범위를 하드코딩하여 랜덤 좌표를 지정해주었다.
+맵이 높낮이때문에 땅 아래에서 스폰될떄가 있어 Z축은 500으로 설정해두었다. 위에서 스폰되어 땅으로 떨어지기에, 덕분에 무언가가 스폰되는 느낌도 확 살아났다.
+
+스폰 ForLoop가 완료되면 SetMonsterCountToHUD 함수를 실행시켜 HUD에 레벨에 있는 몬스터의 모든 몬스터의 수를 다시 집계하여 표시한다.
+
+![SetMonsterCountToHUD 함수](../images/week_01/05/d05-36.png)
+
+Get All Actors Of Class 함수로 생성된 BP_Ant 클래스의 수를 모두 집계해 MainHUD 화면에 표시한다.
+
+![UpdateElapsedTime 함수](../images/week_01/05/d05-37.png)
+
+게임이 종료되기 직전까지 EventTick의 Delta Seconds값을 받아 계속 실행되는 함수이다.
+지금까지 경과시간에 Delta Time을 계속 누적시켜 유저에게 플레이하고 얼마만큼의 시간이 지났는지를 표시한다.
+
+![GameEnd 함수](../images/week_01/05/d05-38.png)
+
+플레이어의 HP가 0이 되었을때에만 딱 한 번 실행되는 함수이다.
+
+별다른 기능은 없다. Visibillity가 Hidden이었던 것들을 Visible 상태로 바꿔주어 MainHUD를 나타내주는 것 밖에 없다.
 
 ## C언어 라이브세션 5회차
 
