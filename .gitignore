@@ -9,3 +9,4 @@ src/.vuepress/dist/
 *.obj
 *.pdb
 .vscode/
+test/
