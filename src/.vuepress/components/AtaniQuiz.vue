@@ -1,0 +1,81 @@
+<template>
+  <naive-provider>
+    <n-card size="large">
+      <div style="margin-bottom: 12px">
+        <span style="font-size: 16px">
+          {{ atani.question }}
+        </span>
+      </div>
+
+      <div>
+        <n-radio-group v-model:value="answer" :disabled="checkAnswer">
+          <n-space vertical>
+            <n-radio
+              :value="options.key"
+              v-for="options in atani.options"
+              :key="options.id"
+            >
+              {{ options.option }}
+            </n-radio>
+          </n-space>
+        </n-radio-group>
+      </div>
+
+      <div style="display: flex; justify-content: center; margin-top: 20px">
+        <n-button
+          type="primary"
+          :disabled="answer === '' || checkAnswer"
+          @click="checkAnswer = true"
+          ghost
+        >
+          정답 확인
+        </n-button>
+      </div>
+
+      <div style="margin-top: 12px" v-if="checkAnswer">
+        <div style="margin-bottom: 20px">
+          정답은
+          <n-gradient-text
+            :type="
+              answer === atani.options.find((e) => e.key === atani.answer)?.key
+                ? 'success'
+                : 'danger'
+            "
+          >
+            {{ atani.options.find((e) => e.key === atani.answer)?.option }}
+          </n-gradient-text>
+          입니다.
+        </div>
+
+        <n-collapse>
+          <n-collapse-item
+            :title="item.option"
+            :name="item.id"
+            v-for="item in atani.options.filter((e) => e.description)"
+            :key="item.id"
+          >
+            <div>{{ item.description }}</div>
+          </n-collapse-item>
+        </n-collapse>
+      </div>
+    </n-card>
+  </naive-provider>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import ataniData from "../../utils/atani.json";
+
+const props = defineProps({
+  questionId: {
+    type: Number,
+    required: true,
+  },
+});
+
+const atani = ataniData[props.questionId];
+
+const answer = ref("");
+
+const checkAnswer = ref(false);
+</script>
