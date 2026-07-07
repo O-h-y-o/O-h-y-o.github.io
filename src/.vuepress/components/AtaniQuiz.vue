@@ -13,7 +13,7 @@
             <n-radio
               :value="options.key"
               v-for="options in atani.options"
-              :key="options.id"
+              :key="options.key"
             >
               {{ options.option }}
             </n-radio>
@@ -50,9 +50,9 @@
         <n-collapse>
           <n-collapse-item
             :title="item.option"
-            :name="item.id"
+            :name="item.key"
             v-for="item in atani.options.filter((e) => e.description)"
-            :key="item.id"
+            :key="item.key"
           >
             <div>{{ item.description }}</div>
           </n-collapse-item>
