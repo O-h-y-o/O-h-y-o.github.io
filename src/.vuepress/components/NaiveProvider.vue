@@ -6,7 +6,7 @@ const isDark = useDarkMode();
 </script>
 
 <template>
-  <n-config-provider :theme="isDark ? darkTheme : null">
+  <n-config-provider :theme="isDark.isDarkMode.value ? darkTheme : null">
     <slot />
   </n-config-provider>
 </template>
