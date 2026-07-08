@@ -2,16 +2,8 @@
   {
     "id": 12928,
     "title": "약수의 합",
-    "source": "프로그래머스 코딩테스트 연습",
     "url": "https://school.programmers.co.kr/learn/courses/30/lessons/12928",
     "stem": "정수 n을 입력받아 n의 약수를 모두 더한 값을 리턴하는 함수, solution을 완성해주세요.",
-    "type": "coding",
-    "input": {
-      "parameters": [{ "name": "n", "type": "integer" }]
-    },
-    "output": {
-      "type": "integer"
-    },
     "examples": [
       {
         "input": 12,
@@ -25,5 +17,24 @@
       }
     ],
     "constraints": ["n은 0 이상 3000 이하의 정수"]
+  },
+  {
+    "id": 87389,
+    "title": "나머지가 1이 되는 수 찾기",
+    "url": "https://school.programmers.co.kr/learn/courses/30/lessons/87389",
+    "stem": "자연수 n이 매개변수로 주어집니다. n을 x로 나눈 나머지가 1이 되도록 하는 가장 작은 자연수 x를 return 하도록 solution 함수를 완성해주세요. 답이 항상 존재함은 증명될 수 있습니다.",
+    "examples": [
+      {
+        "input": 10,
+        "output": 3,
+        "explanation": "10을 3으로 나눈 나머지가 1이고, 3보다 작은 자연수 중에서 문제의 조건을 만족하는 수가 없으므로, 3을 return 해야 합니다."
+      },
+      {
+        "input": 12,
+        "output": 11,
+        "explanation": "12를 11로 나눈 나머지가 1이고, 11보다 작은 자연수 중에서 문제의 조건을 만족하는 수가 없으므로, 11을 return 해야 합니다."
+      }
+    ],
+    "constraints": ["n은 3 이상 1,000,000 이하의 자연수"]
   }
 ]
