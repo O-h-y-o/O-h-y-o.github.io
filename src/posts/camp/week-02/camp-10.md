@@ -520,7 +520,7 @@ int main() {
     cout << "책을 빌린다." << "\n";
     library.rentBook("톰과제리");
 
-    cout << "재고가 많은 순으로 정렬하고 출력" << "\n";
+    cout << "재고가 많은 순으로 정렬하고 출력." << "\n";
     StockSorter sorter;
     library.processBooks(sorter);
 
