@@ -40,6 +40,7 @@ const ataniArray = ataniData
                 :code="atani.codeBlock.code"
                 language="cpp"
                 show-line-numbers
+                word-wrap
               />
             </div>
 

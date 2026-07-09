@@ -3,6 +3,7 @@ import NaiveProvider from "./components/NaiveProvider.vue";
 import AtaniQuiz from "./components/AtaniQuiz.vue";
 import ProgrammersCoding from "./components/ProgrammersCoding.vue";
 import DefaultCard from "./components/DefaultCard.vue";
+import NaiveStep from "./components/NaiveStep.vue";
 import naive from "naive-ui";
 
 export default defineClientConfig({
@@ -12,5 +13,6 @@ export default defineClientConfig({
     app.component("AtaniQuiz", AtaniQuiz);
     app.component("ProgrammersCoding", ProgrammersCoding);
     app.component("DefaultCard", DefaultCard);
+    app.component("NaiveStep", NaiveStep);
   },
 });
