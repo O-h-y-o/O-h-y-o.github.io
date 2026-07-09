@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { NConfigProvider, darkTheme } from "naive-ui";
+import { darkTheme } from "naive-ui";
 import { onMounted, ref, watch } from "vue";
 import { useDarkMode } from "vuepress-theme-hope/client";
 import hljs from "highlight.js/lib/core";
 import cpp from "highlight.js/lib/languages/cpp";
+import { ClientOnly } from "vuepress/client";
 
 hljs.registerLanguage("cpp", cpp);
 
@@ -19,7 +20,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <n-config-provider :theme="isDark ? darkTheme : null" :hljs="hljs">
-    <slot />
-  </n-config-provider>
+  <client-only>
+    <n-config-provider :theme="isDark ? darkTheme : null" :hljs="hljs">
+      <slot />
+    </n-config-provider>
+  </client-only>
 </template>
