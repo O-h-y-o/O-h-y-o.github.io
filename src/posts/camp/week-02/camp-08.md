@@ -10,29 +10,7 @@ order: 4
 
 ## Atani 퀴즈
 
-::: tabs
-
-@tab 문제1
-
-<AtaniQuiz :questionId="0" />
-
-@tab 문제2
-
-<AtaniQuiz :questionId="1" />
-
-@tab 문제3
-
-<AtaniQuiz :questionId="2" />
-
-@tab 문제4
-
-<AtaniQuiz :questionId="3" />
-
-@tab 문제5
-
-<AtaniQuiz :questionId="4" />
-
-:::
+<AtaniQuiz :questionIds="[0, 1, 2, 3, 4]" />
 
 ## 프로그래머스 코딩테스트 연습
 

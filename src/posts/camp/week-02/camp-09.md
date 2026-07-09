@@ -10,29 +10,7 @@ order: 5
 
 ## Atani 퀴즈
 
-::: tabs
-
-@tab 문제6
-
-<AtaniQuiz :questionId="5" />
-
-@tab 문제7
-
-<AtaniQuiz :questionId="6" />
-
-@tab 문제8
-
-<AtaniQuiz :questionId="7" />
-
-@tab 문제9
-
-<AtaniQuiz :questionId="8" />
-
-@tab 문제10
-
-<AtaniQuiz :questionId="9" />
-
-:::
+<AtaniQuiz :questionIds="[5, 6, 7, 8, 9]" />
 
 ## 프로그래머스 코테 연습
 
