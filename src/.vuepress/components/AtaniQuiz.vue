@@ -1,3 +1,38 @@
+<script setup lang="ts">
+import { ref } from "vue";
+import ataniData from "../../utils/atani.json";
+
+const props = defineProps({
+  questionId: {
+    type: Number,
+    required: true,
+  },
+});
+
+const atani = ataniData[props.questionId];
+
+const answer = ref("");
+
+const checkAnswer = ref(false);
+
+const code = `#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+  cout <<"\\n" <<endl;
+  cout <<"\\n" <<endl;
+  cout <<"\\n" <<endl;
+  cout <<"\\n" <<endl;
+  cout <<"\\n" <<endl;
+  cout <<"\\n" <<endl;
+  cout <<"\\n" <<endl;
+  cout <<"\\n" <<endl;
+  cout <<"\\n" <<endl;
+  cout <<"\\n" <<endl;
+  return 0;
+}`;
+</script>
+
 <template>
   <naive-provider>
     <n-card size="large">
@@ -5,6 +40,10 @@
         <span style="font-size: 16px">
           {{ atani.question }}
         </span>
+      </div>
+
+      <div v-if="atani.codeBlock" style="margin: 12px 0">
+        <n-code :code="atani.codeBlock.code" language="cpp" show-line-numbers />
       </div>
 
       <div>
@@ -61,21 +100,3 @@
     </n-card>
   </naive-provider>
 </template>
-
-<script setup lang="ts">
-import { ref } from "vue";
-import ataniData from "../../utils/atani.json";
-
-const props = defineProps({
-  questionId: {
-    type: Number,
-    required: true,
-  },
-});
-
-const atani = ataniData[props.questionId];
-
-const answer = ref("");
-
-const checkAnswer = ref(false);
-</script>

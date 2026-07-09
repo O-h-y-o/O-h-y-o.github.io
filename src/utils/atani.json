@@ -256,5 +256,110 @@
       }
     ],
     "answer": "a"
+  },
+  {
+    "id": 10,
+    "question": "콜리전 응답(Collision Response) 중 'Overlap'과 'Block'의 차이를 가장 올바르게 설명한 것은 무엇인가요?",
+    "options": [
+      {
+        "key": "a",
+        "option": "Overlap은 두 오브젝트가 물리적으로 통과하며 이벤트를 발생시키고, Block은 물리적으로 가로막아 통과를 막는다."
+      },
+      {
+        "key": "b",
+        "option": "Overlap은 충돌 이벤트를 아예 무시하고, Block은 이벤트를 발생시키며 통과를 막는다.",
+        "description": "Overlap은 충돌 이벤트를 발생시키며, Block은 물리적으로 통과를 막는다."
+      },
+      {
+        "key": "c",
+        "option": "Overlap과 Block 모두 물리적으로 통과를 막지만, 이벤트 발생 여부만 다르다.",
+        "description": "Overlap은 물리적으로 통과를 허용하며 이벤트를 발생시키고, Block은 물리적으로 통과를 막는다."
+      },
+      {
+        "key": "d",
+        "option": "Overlap은 서로 다른 채널 간에만 작동하고, Block은 동일 채널 간에만 작동한다.",
+        "description": "Overlap과 Block은 채널에 관계없이 작동하며, 서로 다른 채널 간에만 작동하는 것은 아니다."
+      }
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 11,
+    "question": "플레이어 캐릭터(Pawn)가 벽(WorldStatic)에 막혀 통과하지 못하도록 하려면 Pawn 채널의 WorldStatic에 대한 콜리전 응답을 무엇으로 설정해야 하나요?",
+    "options": [
+      {
+        "key": "a",
+        "option": "Ignore"
+      },
+      {
+        "key": "b",
+        "option": "Overlap"
+      },
+      {
+        "key": "c",
+        "option": "Block"
+      },
+      {
+        "key": "d",
+        "option": "Simulate"
+      }
+    ],
+    "answer": "c"
+  },
+  {
+    "id": 12,
+    "question": "C++에서 '변수(Variable)'의 정의로 가장 옳은 것은?",
+    "options": [
+      {
+        "key": "a",
+        "option": "프로그램 실행 중 변경할 수 없는 고정된 값을 저장하는 공간",
+        "description": "변수는 프로그램 실행 중 값을 저장하고 변경할 수 있는 메모리 공간을 의미하며, 고정된 값을 저장하는 것은 상수(Constant)이다."
+      },
+      {
+        "key": "b",
+        "option": "프로그램 실행 중 값을 저장하고 변경할 수 있는 메모리 공간에 붙인 이름"
+      },
+      {
+        "key": "c",
+        "option": "함수 호출 시 전달되는 인자 목록을 의미하는 식별자",
+        "description": "함수 호출 시 전달되는 인자 목록은 매개변수(Parameter)이다."
+      },
+      {
+        "key": "d",
+        "option": "컴파일러가 내부적으로만 사용하는 임시 레지스터 공간",
+        "description": "컴파일러가 내부적으로 사용하는 임시 레지스터 공간은 변수와는 다른 개념이다."
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 13,
+    "question": "다음 코드에서 변수 x가 차지하는 메모리 크기로 옳은 것은?",
+    "codeBlock": {
+      "language": "cpp",
+      "code": "#include <iostream>\nint main() {\n    int x = 100;\n    std::cout << sizeof(x) << std::endl;\n    return 0;\n}"
+    },
+    "options": [
+      {
+        "key": "a",
+        "option": "1바이트",
+        "description": "char 형식의 변수는 일반적으로 1바이트를 차지한다."
+      },
+      {
+        "key": "b",
+        "option": "2바이트",
+        "description": "short 형식의 변수는 일반적으로 2바이트를 차지한다."
+      },
+      {
+        "key": "c",
+        "option": "4바이트"
+      },
+      {
+        "key": "d",
+        "option": "8바이트",
+        "description": "long 형식의 변수는 일반적으로 8바이트를 차지한다."
+      }
+    ],
+    "answer": "c"
   }
 ]
