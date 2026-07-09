@@ -341,6 +341,197 @@ codeBlock: [{ title: '적용 코드', language: 'cpp', code: 'class IUserStorage
 
 ::: tabs
 
+@tab 연습
+
+요구사항은 다음과 같다.
+
+1. `Book` 구조체: `title`(string), `author`(string), `stock`(int, 재고 수량)
+2. `BookProcessor` 추상 클래스: `virtual void process(vector<Book>&) = 0;`
+3. Library 클래스
+
+- `vector<Book> books`, `map<string, int> stockMap` (제목 → 재고) 보유
+- 생성자에서 책 3~4권 초기화
+- `void printBooks()` — 전체 목록 출력
+- `bool rentBook(const string& title)` — 재고가 있으면 재고 1 감소 후 true, 없으면(또는 없는 책이면) false 반환하고 안내 출력
+- `void processBooks(BookProcessor&)` — 전략 패턴으로 위임
+
+4. `BookProcessor`를 상속하는 두 클래스 구현
+
+- `StockSorter` — 재고 많은 순으로 정렬 후 출력
+- `LowStockFilter(int threshold)` — 재고가 `threshold` 이하인 책만 출력
+
+5. `rentBook`에서 존재하지 않는 책 제목이 들어오면 예외를 던지지 말고 `false + 메시지`로 처리 (방어적 코딩 연습)
+6. `stockMap`과 `books`의 재고가 항상 동기화되도록 유지 (대여 시 둘 다 갱신)
+7. 책의 재고가 부족할 경우 해당 책은 삭제 처리
+8. `main`()에서: 목록 출력 → 없는 책 대여 시도 → 있는 책 대여 성공 → 재고순 정렬 출력 → 재고 2개 이하 필터 출력
+
+책을 빌릴때 재고가 더 이상 없으면, 그 책은 배열에서 삭제시키려고 했다.
+삭제를 하고 난 뒤, books[0](괴짜가족) 가 지워지면서 books[1](톰과제리)가 books[0] 자리로, books[2]는 [1]로 옮겨졌는데, stockMap["톰과제리"]는 여전히 &books[1] 이라는 주소를 가리키고 있지만, &books[1]에는 이제 짱구는못말려 데이터가 대신해있다.
+마지막 원소를 가리키던 포인터는 &books[3] 에는 이제 데이터가 없기 때문에 소멸된 객체를 가리키는 **댕글링 포인터**가 되어버렸다.
+그래서 books 의 아이템을 삭제하고 난 뒤 포인터 맵(stockMap)을 다시 리빌딩 해주었다.
+
+당장은 이 방법이 괜찮지만, 나중에 books 를 또 건드리는 무언가가 나온다면 새로 추가할 때마다 rebuild 를 꼭 다시 써야하기 때문에 근본적으로 불안하다고 생각된다.
+vector + map 이원화를 없애고 map을 유일한 저장소로 사용한다던지, 스마트 포인터를 사용해서 문제를 해결할 수 있을 것 같다.
+내일 바꿔가면서 더 연습하자.
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
+struct Book {
+    string title;
+    string author;
+    int stock;
+};
+
+class BookProcessor {
+public:
+    virtual void process(vector<Book>&) = 0;
+    virtual ~BookProcessor() = default;
+};
+
+class Library {
+private:
+    vector<Book> books;
+    map<string, Book*> stockMap;
+
+    void removeBook(const string& title) {
+        books.erase(
+            remove_if(books.begin(), books.end(),
+                [&](const auto& book) { return book.title == title; }),
+            books.end()
+        );
+
+        rebuildStockMap();
+
+        cout << title << " 책은 재고가 없어 삭제했다.\n";
+    }
+
+    void rebuildStockMap() {
+        stockMap.clear();
+        for (auto& book : books) {
+            stockMap[book.title] = &book;
+        }
+    }
+
+public:
+    Library() {
+        books = {
+            {"괴짜가족", "저자1", 2},
+            {"톰과제리", "저자2", 24},
+            {"짱구는못말려", "저자3", 7},
+            {"아따맘마", "저자4", 19},
+        };
+
+        for(auto& book : books) {
+            stockMap[book.title] = &book;
+        }
+    }
+
+    void printBooks() {
+        for (const auto& book : books) {
+            cout << "제목: " << book.title << ",  저자: " << book.author << ", 재고: " << book.stock << "\n";
+        }
+    }
+
+    bool rentBook(const string& title) {
+        auto it = stockMap.find(title);
+        if(it != stockMap.end() && it->second->stock > 0) {
+            cout << it->second->title << " 책의 남은 재고는 " << it->second->stock << "\n";
+            it->second->stock--;
+            cout << it->second->title << " 책을 빌렸다. 남은 재고는 " << it->second->stock << "\n";
+
+            for(const auto& book : books) {
+                if(book.title == title) {
+                    cout << "books와 stockMap이 동기화가 잘 되었는지 확인 Books → " << book.title << " 남은 수량 → " << book.stock << "\n";
+                }
+            }
+
+            if (it->second->stock == 0) {
+                removeBook(title);
+            }
+
+            return true;
+        } else {
+            if (it == stockMap.end()) {
+                cout << "존재하지 않는 책" << "\n";
+            } else {
+                cout << "재고가 부족" << "\n";
+            }
+
+            return false;
+        }
+    }
+
+    void processBooks(BookProcessor& processor) {
+        processor.process(books);
+    }
+};
+
+bool compareBooks(Book& a, Book& b) {
+    return a.stock > b.stock;
+}
+
+class StockSorter : public BookProcessor {
+public:
+    void process(vector<Book>& books) override {
+        sort(books.begin(), books.end(), compareBooks);
+        for (const auto& book : books) {
+            cout << "제목: " << book.title << ", 저자: " << book.author << ", 재고: " << book.stock << "\n";
+        }
+    }
+};
+
+class LowStockFilter : public BookProcessor {
+private:
+    int threshold;
+
+public:
+    explicit LowStockFilter(int threshold) : threshold(threshold) {};
+
+    void process(vector<Book>& books) override {
+        for (const auto& book : books) {
+            if(book.stock <= threshold) {
+                cout << book.title << "\n";
+            }
+        }
+    }
+};
+
+int main() {
+    Library library;
+
+    cout << "모든 책을 출력" << "\n";
+    library.printBooks();
+
+    cout << "책을 빌린다." << "\n";
+    library.rentBook("없는책");
+
+    cout << "책을 빌린다." << "\n";
+    library.rentBook("괴짜가족");
+    cout << "책을 빌린다." << "\n";
+    library.rentBook("괴짜가족");
+    cout << "책을 빌린다." << "\n";
+    library.rentBook("괴짜가족");
+    cout << "책을 빌린다." << "\n";
+    library.rentBook("톰과제리");
+
+    cout << "재고가 많은 순으로 정렬하고 출력" << "\n";
+    StockSorter sorter;
+    library.processBooks(sorter);
+
+    cout << "재고가 2 이하인 책들을 출력" << "\n";
+    LowStockFilter filter(2);
+    library.processBooks(filter);
+
+    return 0;
+};
+```
+
 @tab VOD
 
 **요구사항**
