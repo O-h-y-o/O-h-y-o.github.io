@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import codingTestData from "../../utils/codingtest.json";
 
 const props = defineProps({
@@ -8,25 +9,40 @@ const props = defineProps({
   },
 });
 
-const columns = [
-  {
-    title: "입력",
-    key: "input",
-  },
-  {
-    title: "출력",
-    key: "output",
-  },
-  {
-    title: "설명",
-    key: "explanation",
-  },
-];
-
 const data =
   codingTestData.find((test) => test.id === props.testId)?.examples || [];
 
 const problem = codingTestData.find((test) => test.id === props.testId);
+
+const hasExplanation = data.some((row) => "explanation" in row);
+
+const formatCell = (value: unknown) =>
+  Array.isArray(value) ? `[${value.join(", ")}]` : String(value);
+
+const columns = computed(() => {
+  const cols = [
+    {
+      title: "입력",
+      key: "input",
+      render: (row: Record<string, unknown>) => formatCell(row.input),
+    },
+    {
+      title: "출력",
+      key: "output",
+      render: (row: Record<string, unknown>) => formatCell(row.output),
+    },
+  ];
+
+  if (hasExplanation) {
+    cols.push({
+      title: "설명",
+      key: "explanation",
+      render: (row: Record<string, unknown>) => formatCell(row.explanation),
+    });
+  }
+
+  return cols;
+});
 </script>
 
 <template>
