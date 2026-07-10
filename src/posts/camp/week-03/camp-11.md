@@ -785,8 +785,6 @@ cout << Counter::totalCount; // 3
 
 :::
 
-:::
-
 #### static const / static inline const
 
 `static`과 `const`를 함께 쓰면 "클래스 전체가 공유하는, 변경되지 않는 값"을 만들 수 있다.
