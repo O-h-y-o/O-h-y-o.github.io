@@ -9,6 +9,16 @@ export default defineUserConfig({
   title: "Delicious Jelly",
   description: "hihihi",
 
+  pagePatterns: [
+    "**/*.md",
+    "!.vuepress",
+    "!posts/app/**",
+    "!posts/info/**",
+    "!posts/java/**",
+    "!posts/nodejs/**",
+    "!posts/vue3+quasar/**",
+  ],
+
   theme,
 
   // Enable it with pwa
