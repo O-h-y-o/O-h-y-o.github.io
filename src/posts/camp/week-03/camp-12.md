@@ -58,8 +58,6 @@ int solution(string s) {
 
 #### 던전 탈출 텍스트 RPG
 
-콘솔에서 이름을 입력하고 능력치를 설정한 뒤, 직업을 선택해 슬라임과 전투를 벌이는 텍스트 RPG를 클래스 기반으로 설계
-
 **역할 정리**
 
 - `Types.h`: `StatusType`(HP/MP/AP/DP), `JobType`(전직 종류) 같은 공용 `enum class`와 `Status`/`Item`/`StatModifier` 구조체, 문자열 변환 함수들을 모아둔 공통 헤더
