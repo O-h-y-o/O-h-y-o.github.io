@@ -526,5 +526,139 @@
       }
     ],
     "answer": "c"
+  },
+  {
+    "id": 20,
+    "question": "객체지향 프로그래밍(OOP)의 4대 특성으로 올바르게 짝지어진 것은?",
+    "options": [
+      {
+        "key": "a",
+        "option": "캡슐화, 상속, 다형성, 추상화"
+      },
+      {
+        "key": "b",
+        "option": "캡슐화, 은닉화, 상속, 재사용성",
+        "description": "은닉화와 재사용성은 OOP의 4대 특성에 포함되지 않는다. OOP의 4대 특성은 캡슐화, 상속, 다형성, 추상화이다."
+      },
+      {
+        "key": "c",
+        "option": "추상화, 모듈화, 상속, 다형성",
+        "description": "모듈화는 OOP의 4대 특성에 포함되지 않는다."
+      },
+      {
+        "key": "d",
+        "option": "상속, 다형성, 인터페이스, 캡슐화",
+        "description": "인터페이스는 OOP의 4대 특성에 포함되지 않는다."
+      }
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 21,
+    "question": "다음 코드에서 OOP의 4대 특성 중 어떤 특성이 가장 잘 나타나 있습니까?",
+    "codeBlock": {
+      "language": "cpp",
+      "code": "class Animal {\npublic:\n    virtual void Speak() {\n        // 기본 동작\n    }\n};\n\nclass Dog : public Animal {\npublic:\n    void Speak() override {\n        // 멍멍\n    }\n};\n\nclass Cat : public Animal {\npublic:\n    void Speak() override {\n        // 야옹\n    }\n};\n\nvoid MakeSound(Animal* animal) {\n    animal->Speak();\n}"
+    },
+    "options": [
+      {
+        "key": "a",
+        "option": "캡슐화 (Encapsulation)",
+        "description": "캡슐화는 데이터와 메서드를 하나로 묶어 외부로부터 보호하는 것으로, 이 코드와는 관련이 없다."
+      },
+      {
+        "key": "b",
+        "option": "추상화 (Abstraction)",
+        "description": "추상화는 공통 인터페이스만 노출하고 세부 구현을 감추는 것으로, 이 코드에서 두드러지는 특성과는 다르다."
+      },
+      {
+        "key": "c",
+        "option": "다형성 (Polymorphism)"
+      },
+      {
+        "key": "d",
+        "option": "모듈화 (Modularity)",
+        "description": "모듈화는 OOP의 4대 특성이 아니며, 이 코드와도 관련이 없다."
+      }
+    ],
+    "answer": "c"
+  },
+  {
+    "id": 22,
+    "question": "상속(Inheritance)의 목적과 가장 거리가 먼 것은?",
+    "options": [
+      {
+        "key": "a",
+        "option": "부모 클래스의 공통 기능을 자식 클래스에서 재사용하여 코드 중복을 줄인다.",
+        "description": "코드 재사용은 상속의 대표적인 목적이다."
+      },
+      {
+        "key": "b",
+        "option": "클래스 계층 구조를 통해 IS-A 관계를 표현한다.",
+        "description": "IS-A 관계 표현은 상속의 대표적인 목적이다."
+      },
+      {
+        "key": "c",
+        "option": "객체 내부의 데이터를 외부로부터 보호하고 접근을 제어한다."
+      },
+      {
+        "key": "d",
+        "option": "자식 클래스가 부모 클래스의 기능을 확장하거나 재정의할 수 있다.",
+        "description": "기능의 확장과 재정의는 상속의 대표적인 목적이다."
+      }
+    ],
+    "answer": "c"
+  },
+  {
+    "id": 23,
+    "question": "C++에서 '클래스(Class)'와 '객체(Object)'의 관계를 가장 올바르게 설명한 것은 무엇인가요?",
+    "options": [
+      {
+        "key": "a",
+        "option": "객체는 클래스를 정의하기 위한 설계 도구이고, 클래스는 실제 메모리에 생성되는 실체이다.",
+        "description": "클래스와 객체의 역할이 반대로 설명되어 있다. 클래스가 설계도이고 객체가 그 실체이다."
+      },
+      {
+        "key": "b",
+        "option": "클래스는 객체를 만들기 위한 설계도(틀)이고, 객체는 그 클래스를 기반으로 메모리에 생성된 실체이다."
+      },
+      {
+        "key": "c",
+        "option": "클래스와 객체는 동일한 개념이며, 문맥에 따라 다르게 부를 뿐이다.",
+        "description": "클래스와 객체는 서로 다른 개념이다. 클래스는 설계도이며 객체는 그 실체이다."
+      },
+      {
+        "key": "d",
+        "option": "클래스는 함수만 포함할 수 있고, 객체는 변수만 포함할 수 있다.",
+        "description": "클래스는 함수와 변수를 모두 포함할 수 있으며, 객체는 그 클래스를 기반으로 생성된 실체이다."
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 24,
+    "question": "C++에서 멤버 변수(Member Variable)의 역할로 옳지 않은 것은 무엇인가요?",
+    "options": [
+      {
+        "key": "a",
+        "option": "객체의 상태(속성)를 저장한다.",
+        "description": "멤버 변수는 객체의 상태를 저장하는 역할을 한다."
+      },
+      {
+        "key": "b",
+        "option": "각 객체마다 독립적인 값을 가질 수 있다.",
+        "description": "멤버 변수는 각 객체마다 독립적인 값을 가질 수 있다."
+      },
+      {
+        "key": "c",
+        "option": "클래스 내부에 선언되어 해당 클래스의 객체와 생명주기를 함께한다.",
+        "description": "멤버 변수는 클래스 내부에 선언되며 해당 객체와 생명주기를 함께한다."
+      },
+      {
+        "key": "d",
+        "option": "멤버 변수는 반드시 public으로 선언해야 외부에서 접근할 수 있으며, private으로 선언하면 클래스 내부에서도 사용할 수 없다."
+      }
+    ],
+    "answer": "d"
   }
 ]
