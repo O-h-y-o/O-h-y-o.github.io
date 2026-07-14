@@ -660,5 +660,147 @@
       }
     ],
     "answer": "d"
+  },
+  {
+    "id": 25,
+    "question": "다음 코드의 실행 결과로 올바른 것은 무엇인가요?",
+    "codeBlock": {
+      "language": "cpp",
+      "code": "#include <iostream>\nusing namespace std;\n\nclass Player\n{\npublic:\n    int hp;\n    int level;\n\n    void PrintInfo()\n    {\n        cout << \"Level: \" << level << \", HP: \" << hp << endl;\n    }\n};\n\nint main()\n{\n    Player p1;\n    p1.hp = 100;\n    p1.level = 5;\n\n    Player p2;\n    p2.hp = 80;\n    p2.level = 3;\n\n    p1.PrintInfo();\n    p2.PrintInfo();\n\n    return 0;\n}"
+    },
+    "options": [
+      {
+        "key": "a",
+        "option": "Level: 5, HP: 100\nLevel: 3, HP: 80"
+      },
+      {
+        "key": "b",
+        "option": "Level: 100, HP: 5\nLevel: 80, HP: 3",
+        "description": "hp와 level의 값이 뒤바뀌어 출력되지 않으며, 각 멤버 변수에 저장된 값이 그대로 출력된다."
+      },
+      {
+        "key": "c",
+        "option": "Level: 5, HP: 100\nLevel: 5, HP: 100",
+        "description": "p1과 p2는 서로 독립적인 멤버 변수를 가지므로 p2의 출력 결과가 p1과 동일하지 않다."
+      },
+      {
+        "key": "d",
+        "option": "컴파일 오류가 발생한다.",
+        "description": "코드에 문법 오류가 없으므로 정상적으로 컴파일되고 실행된다."
+      }
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 26,
+    "question": "C++에서 private 접근 제어자의 목적으로 가장 적절한 것은?",
+    "options": [
+      {
+        "key": "a",
+        "option": "클래스의 멤버를 외부 어디서나 자유롭게 접근할 수 있도록 허용한다.",
+        "description": "외부에서 자유롭게 접근할 수 있도록 허용하는 것은 public에 대한 설명이다."
+      },
+      {
+        "key": "b",
+        "option": "클래스의 멤버를 상속받은 파생 클래스에서만 접근할 수 있도록 제한한다.",
+        "description": "파생 클래스에서의 접근을 허용하는 것은 protected에 대한 설명이다."
+      },
+      {
+        "key": "c",
+        "option": "클래스의 내부 구현 세부 사항을 외부로부터 숨겨 캡슐화를 실현한다."
+      },
+      {
+        "key": "d",
+        "option": "클래스의 멤버를 동일한 패키지 내 클래스에서만 접근할 수 있도록 제한한다.",
+        "description": "C++에는 패키지 개념이 없으며, 이는 private 접근 제어자와 관련이 없다."
+      }
+    ],
+    "answer": "c"
+  },
+  {
+    "id": 27,
+    "question": "다음 코드에서 빈칸 (가)에 들어갈 접근 제어자로, 외부 코드에서 name에 직접 접근하는 것을 막으면서 클래스 내부에서는 자유롭게 사용할 수 있도록 하려면 무엇을 써야 하는가?",
+    "codeBlock": {
+      "language": "cpp",
+      "code": "class Player {\n    (가):\n        string name;\n        int hp;\npublic:\n    void SetName(string n) { name = n; }\n    string GetName() { return name; }\n};"
+    },
+    "options": [
+      {
+        "key": "a",
+        "option": "public",
+        "description": "public으로 선언하면 외부에서도 자유롭게 접근할 수 있어 조건에 맞지 않는다."
+      },
+      {
+        "key": "b",
+        "option": "protected",
+        "description": "protected는 파생 클래스에서의 접근을 허용하므로, 외부 접근만 막고 싶은 조건에는 private이 더 적합하다."
+      },
+      {
+        "key": "c",
+        "option": "private"
+      },
+      {
+        "key": "d",
+        "option": "internal",
+        "description": "internal은 C++에 존재하지 않는 접근 제어자이다."
+      }
+    ],
+    "answer": "c"
+  },
+  {
+    "id": 28,
+    "question": "C++에서 포인터(Pointer)에 대한 설명으로 옳은 것은?",
+    "options": [
+      {
+        "key": "a",
+        "option": "포인터는 변수의 값을 직접 저장하는 특별한 자료형이다.",
+        "description": "포인터는 값을 직접 저장하는 것이 아니라 다른 변수의 메모리 주소를 저장한다."
+      },
+      {
+        "key": "b",
+        "option": "포인터는 다른 변수의 메모리 주소를 저장하는 변수이다."
+      },
+      {
+        "key": "c",
+        "option": "포인터 변수는 반드시 정수형 변수의 주소만 저장할 수 있다.",
+        "description": "포인터는 자료형에 관계없이 다양한 타입 변수의 주소를 저장할 수 있다."
+      },
+      {
+        "key": "d",
+        "option": "포인터를 선언하면 자동으로 힙(Heap) 메모리가 할당된다.",
+        "description": "포인터 선언 자체는 메모리를 할당하지 않으며, 힙 메모리 할당은 new 연산자 등을 통해 별도로 이루어진다."
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 29,
+    "question": "다음 코드의 실행 결과로 옳은 것은?",
+    "codeBlock": {
+      "language": "cpp",
+      "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 10;\n    int* ptr = &a;\n    *ptr = 30;\n    cout << a << endl;\n    return 0;\n}"
+    },
+    "options": [
+      {
+        "key": "a",
+        "option": "10",
+        "description": "ptr을 통해 a의 값이 30으로 변경되었으므로 10이 아닌 30이 출력된다."
+      },
+      {
+        "key": "b",
+        "option": "0",
+        "description": "a는 10으로 초기화된 후 포인터를 통해 30으로 변경되었으므로 0이 출력되지 않는다."
+      },
+      {
+        "key": "c",
+        "option": "30"
+      },
+      {
+        "key": "d",
+        "option": "컴파일 오류 발생",
+        "description": "코드에 문법 오류가 없으므로 정상적으로 컴파일되고 실행된다."
+      }
+    ],
+    "answer": "c"
   }
 ]
