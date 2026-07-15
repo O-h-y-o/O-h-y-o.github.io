@@ -802,5 +802,139 @@
       }
     ],
     "answer": "c"
+  },
+  {
+    "id": 30,
+    "question": "C++에서 동적 메모리 할당에 사용하는 연산자 쌍으로 올바른 것은?",
+    "options": [
+      {
+        "key": "a",
+        "option": "malloc() / free()",
+        "description": "malloc()과 free()는 C 언어의 라이브러리 함수이며, C++의 연산자가 아니다."
+      },
+      {
+        "key": "b",
+        "option": "new / delete"
+      },
+      {
+        "key": "c",
+        "option": "alloc() / dealloc()",
+        "description": "alloc()과 dealloc()은 C++ 표준에 존재하지 않는 함수이다."
+      },
+      {
+        "key": "d",
+        "option": "create() / destroy()",
+        "description": "create()와 destroy()는 C++ 표준 동적 메모리 할당과 관련된 연산자가 아니다."
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 31,
+    "question": "함수 오버로딩(Function Overloading)의 정의로 옳은 것은?",
+    "options": [
+      {
+        "key": "a",
+        "option": "같은 이름의 함수를 서로 다른 매개변수(타입, 개수)로 여러 개 정의하는 것"
+      },
+      {
+        "key": "b",
+        "option": "부모 클래스의 함수를 자식 클래스에서 재정의하는 것",
+        "description": "부모 클래스의 함수를 자식 클래스에서 재정의하는 것은 오버라이딩(Overriding)에 대한 설명이다."
+      },
+      {
+        "key": "c",
+        "option": "함수 포인터를 이용해 실행 시점에 호출할 함수를 결정하는 것",
+        "description": "실행 시점에 호출할 함수를 결정하는 것은 런타임 다형성에 대한 설명이며, 함수 오버로딩은 컴파일 타임에 결정된다."
+      },
+      {
+        "key": "d",
+        "option": "동일한 매개변수를 가진 함수를 여러 클래스에 중복 정의하는 것",
+        "description": "함수 오버로딩은 같은 이름의 함수를 서로 다른 매개변수로 정의하는 것이며, 여러 클래스에 걸친 중복 정의를 의미하지 않는다."
+      }
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 32,
+    "question": "연산자 오버로딩(Operator Overloading)에 대한 설명으로 옳지 않은 것은?",
+    "options": [
+      {
+        "key": "a",
+        "option": "사용자 정의 타입에 대해 기존 연산자의 동작을 재정의할 수 있다.",
+        "description": "이는 연산자 오버로딩의 올바른 설명이다."
+      },
+      {
+        "key": "b",
+        "option": "연산자 오버로딩을 통해 새로운 연산자 기호를 만들 수 있다."
+      },
+      {
+        "key": "c",
+        "option": "operator 키워드를 사용하여 정의한다.",
+        "description": "이는 연산자 오버로딩의 올바른 설명이다."
+      },
+      {
+        "key": "d",
+        "option": "클래스의 멤버 함수 또는 전역 함수로 정의할 수 있다.",
+        "description": "이는 연산자 오버로딩의 올바른 설명이다."
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 33,
+    "question": "함수 오버로딩과 연산자 오버로딩의 공통점으로 옳은 것은?",
+    "options": [
+      {
+        "key": "a",
+        "option": "둘 다 컴파일 타임에 어떤 함수/연산자가 호출될지 결정된다."
+      },
+      {
+        "key": "b",
+        "option": "둘 다 operator 키워드를 반드시 사용해야 한다.",
+        "description": "operator 키워드는 연산자 오버로딩에만 사용되며, 함수 오버로딩에는 사용되지 않는다."
+      },
+      {
+        "key": "c",
+        "option": "둘 다 런타임 다형성(Runtime Polymorphism)의 예시이다.",
+        "description": "함수 오버로딩과 연산자 오버로딩은 컴파일 타임 다형성의 예시이다."
+      },
+      {
+        "key": "d",
+        "option": "둘 다 상속 관계에서만 사용할 수 있다.",
+        "description": "함수 오버로딩과 연산자 오버로딩은 상속 관계와 무관하게 사용할 수 있다."
+      }
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 34,
+    "question": "아래 코드에서 빈칸 (A)에 들어갈 올바른 키워드 또는 기호는?",
+    "codeBlock": {
+      "language": "cpp",
+      "code": "#include <iostream>\nusing namespace std;\n\nclass Vector2D {\npublic:\n    float x, y;\n    Vector2D(float x, float y) : x(x), y(y) {}\n\n    Vector2D (A) +(const Vector2D& other) const {\n        return Vector2D(x + other.x, y + other.y);\n    }\n};\n\nint main() {\n    Vector2D a(1.0f, 2.0f);\n    Vector2D b(3.0f, 4.0f);\n    Vector2D c = a + b;\n    cout << c.x << \", \" << c.y << endl;\n    return 0;\n}"
+    },
+    "options": [
+      {
+        "key": "a",
+        "option": "operator"
+      },
+      {
+        "key": "b",
+        "option": "overload",
+        "description": "overload는 C++ 키워드가 아니며, 연산자 오버로딩 정의에는 operator 키워드가 필요하다."
+      },
+      {
+        "key": "c",
+        "option": "virtual",
+        "description": "virtual은 가상 함수를 선언할 때 사용하는 키워드이며, 연산자 오버로딩과는 관련이 없다."
+      },
+      {
+        "key": "d",
+        "option": "override",
+        "description": "override는 가상 함수 재정의를 명시할 때 사용하는 키워드이며, 연산자 오버로딩 정의에는 사용되지 않는다."
+      }
+    ],
+    "answer": "a"
   }
 ]
