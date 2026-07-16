@@ -98,7 +98,7 @@ long long solution(long long n) {
 
 ### 코드 연습
 
-#### 던전 탈출 텍스트 RPG (이어서)
+#### 던전 탈출 텍스트 RPG
 
 - 전역 `using namespace std;` 제거
   - 모든 헤더/소스에서 `using namespace std;`를 지우고 `std::string`, `std::cout`처럼 명시적으로 적도록 정리. 헤더에 `using namespace std;`가 있으면 그 헤더를 include하는 모든 파일에 전역으로 퍼지기 때문에, 파일 수가 늘어난 지금 시점에 미리 정리해두었다.

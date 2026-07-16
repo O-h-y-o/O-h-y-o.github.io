@@ -54,7 +54,7 @@ long long solution(long long n) {
 
 ### 코드 연습
 
-#### 던전 탈출 텍스트 RPG (이어서)
+#### 던전 탈출 텍스트 RPG
 
 **어제 대비 변경/추가된 것**
 
