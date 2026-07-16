@@ -20,7 +20,7 @@ order: 5
 
 @tab 문자열/stoll
 
-문자열로 변환 후 greater<char> 로 내림차순 정렬을 하고 stoll() 로 변환
+문자열로 변환 후 `greater<char>` 로 내림차순 정렬을 하고 stoll() 로 변환
 
 ```cpp
 #include <string>
