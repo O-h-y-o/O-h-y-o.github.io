@@ -14,7 +14,7 @@ const ataniArray = ataniData
   .map((atani) => {
     return {
       ...atani,
-      answer: ref(""),
+      userAnswer: ref(""),
       checkAnswer: ref(false),
     };
   });
@@ -46,7 +46,7 @@ const ataniArray = ataniData
 
             <div>
               <n-radio-group
-                v-model:value="atani.answer.value"
+                v-model:value="atani.userAnswer.value"
                 :disabled="atani.checkAnswer.value"
               >
                 <n-space vertical>
@@ -66,7 +66,9 @@ const ataniArray = ataniData
             >
               <n-button
                 type="primary"
-                :disabled="atani.answer.value === '' || atani.checkAnswer.value"
+                :disabled="
+                  atani.userAnswer.value === '' || atani.checkAnswer.value
+                "
                 @click="atani.checkAnswer.value = true"
                 ghost
               >
@@ -80,16 +82,15 @@ const ataniArray = ataniData
 
                 <n-gradient-text
                   :type="
-                    atani.answer.value ===
-                    atani.options.find((e) => e.key === atani.answer.value)?.key
+                    atani.userAnswer.value ===
+                    atani.options.find((e) => e.key === atani.answer)?.key
                       ? 'success'
                       : 'danger'
                   "
                   style="text-wrap: wrap"
                 >
                   {{
-                    atani.options.find((e) => e.key === atani.answer.value)
-                      ?.option
+                    atani.options.find((e) => e.key === atani.answer)?.option
                   }}
                 </n-gradient-text>
               </div>
