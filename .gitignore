@@ -11,3 +11,6 @@ src/.vuepress/dist/
 .vscode/
 test/
 .claude/
+
+# Cloudflare Worker - kept local only, not published to this public repo
+worker/

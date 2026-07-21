@@ -1196,5 +1196,143 @@
       }
     ],
     "answer": "b"
+  },
+  {
+    "id": 45,
+    "question": "UPROPERTY 매크로를 변수에 선언하는 가장 핵심적인 이유로 옳은 것은 무엇인가요?",
+    "options": [
+      {
+        "key": "a",
+        "option": "변수를 private으로 강제하여 외부 접근을 차단하기 위해",
+        "description": "UPROPERTY는 접근 제어자와는 관련이 없으며, 접근 제어는 C++의 public/protected/private 키워드로 별도 지정한다."
+      },
+      {
+        "key": "b",
+        "option": "변수를 언리얼 가비지 컬렉터(GC)와 리플렉션 시스템에 등록하여 자동 관리 및 에디터 노출을 가능하게 하기 위해"
+      },
+      {
+        "key": "c",
+        "option": "변수의 초기값을 0으로 자동 설정하기 위해",
+        "description": "UPROPERTY 자체가 변수의 초기값을 자동으로 설정해주지는 않는다."
+      },
+      {
+        "key": "d",
+        "option": "변수를 멀티스레드 환경에서 안전하게 보호하기 위해",
+        "description": "UPROPERTY는 멀티스레드 안전성과는 관련이 없다."
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 46,
+    "question": "다음 코드에서 빈칸 ___ 에 들어갈 가장 적절한 UPROPERTY 지정자(specifier)는 무엇인가요?",
+    "codeBlock": {
+      "language": "cpp",
+      "code": "UPROPERTY(___)\nfloat Health;\n// 에디터 디테일 패널에서 수정 가능하고, 블루프린트에서도 읽기/쓰기가 가능해야 한다."
+    },
+    "options": [
+      {
+        "key": "a",
+        "option": "BlueprintReadOnly, VisibleAnywhere",
+        "description": "이 조합은 에디터에서 보이기만 하고 블루프린트에서는 읽기만 가능하여, 블루프린트 쓰기가 필요한 조건에 맞지 않는다."
+      },
+      {
+        "key": "b",
+        "option": "EditAnywhere, BlueprintReadWrite"
+      },
+      {
+        "key": "c",
+        "option": "EditDefaultsOnly, BlueprintCallable",
+        "description": "EditDefaultsOnly는 인스턴스가 아닌 기본값(CDO)만 편집 가능하며, BlueprintCallable은 함수에 사용하는 지정자이다."
+      },
+      {
+        "key": "d",
+        "option": "VisibleDefaultsOnly, BlueprintPure",
+        "description": "VisibleDefaultsOnly는 읽기 전용 노출이며, BlueprintPure는 함수용 지정자로 변수 편집 조건에 맞지 않는다."
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 47,
+    "question": "언리얼 엔진에서 블루프린트(Blueprint)의 가장 큰 장점으로 옳은 것은 무엇인가요?",
+    "options": [
+      {
+        "key": "a",
+        "option": "런타임 실행 속도가 C++보다 빠르다.",
+        "description": "블루프린트는 가상 머신에서 실행되어 일반적으로 네이티브 C++보다 느리다."
+      },
+      {
+        "key": "b",
+        "option": "프로그래밍 지식 없이도 시각적으로 게임 로직을 구현할 수 있다."
+      },
+      {
+        "key": "c",
+        "option": "메모리 관리를 개발자가 직접 제어할 수 있다.",
+        "description": "블루프린트는 메모리를 직접 제어하는 저수준 기능을 제공하지 않는다."
+      },
+      {
+        "key": "d",
+        "option": "대규모 AI 연산 처리에 최적화되어 있다.",
+        "description": "블루프린트는 대규모 AI 연산 최적화를 위한 도구가 아니다."
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 48,
+    "question": "C++에서 블루프린트가 특정 변수를 편집할 수 있도록 노출하려면 어떤 매크로를 사용해야 하나요?",
+    "options": [
+      {
+        "key": "a",
+        "option": "UFUNCTION(BlueprintCallable)",
+        "description": "UFUNCTION(BlueprintCallable)은 함수를 블루프린트에서 호출 가능하게 하는 매크로이며, 변수 노출과는 무관하다."
+      },
+      {
+        "key": "b",
+        "option": "UPROPERTY(EditAnywhere, BlueprintReadWrite)"
+      },
+      {
+        "key": "c",
+        "option": "UCLASS(Blueprintable)",
+        "description": "UCLASS(Blueprintable)은 클래스를 블루프린트로 상속 가능하게 만드는 매크로이며, 개별 변수 노출과는 다르다."
+      },
+      {
+        "key": "d",
+        "option": "GENERATED_BODY()",
+        "description": "GENERATED_BODY()는 언리얼 리플렉션을 위한 필수 매크로일 뿐, 변수를 블루프린트에 노출하지는 않는다."
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 49,
+    "question": "다음 C++ 코드에서 블루프린트가 이 함수를 호출할 수 있도록 하기 위해 빈칸에 들어갈 지정자로 옳은 것은 무엇인가요?",
+    "codeBlock": {
+      "language": "cpp",
+      "code": "UCLASS()\nclass MYGAME_API AMyActor : public AActor\n{\n    GENERATED_BODY()\npublic:\n    UFUNCTION(/*빈칸*/)\n    void FireWeapon();\n};"
+    },
+    "options": [
+      {
+        "key": "a",
+        "option": "BlueprintImplementableEvent",
+        "description": "BlueprintImplementableEvent는 C++ 함수 본문 없이 블루프린트에서 구현하도록 하는 지정자이다."
+      },
+      {
+        "key": "b",
+        "option": "BlueprintNativeEvent",
+        "description": "BlueprintNativeEvent는 C++ 기본 구현과 블루프린트 오버라이드를 함께 지원하는 지정자로, 단순 호출 노출과는 다르다."
+      },
+      {
+        "key": "c",
+        "option": "BlueprintCallable"
+      },
+      {
+        "key": "d",
+        "option": "BlueprintPure",
+        "description": "BlueprintPure는 실행 핀 없이 값만 반환하는 순수 함수용 지정자이다."
+      }
+    ],
+    "answer": "c"
   }
 ]
