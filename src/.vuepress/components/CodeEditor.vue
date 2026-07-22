@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref, watch } from "vue";
-import { Compartment, EditorState } from "@codemirror/state";
+import { Compartment, EditorState, Prec } from "@codemirror/state";
 import { EditorView, basicSetup } from "codemirror";
 import { keymap } from "@codemirror/view";
 import { indentWithTab } from "@codemirror/commands";
 import { cpp } from "@codemirror/lang-cpp";
 import { oneDark } from "@codemirror/theme-one-dark";
+import { useThemeVars } from "naive-ui";
 import { isDarkMode, subscribeThemeChange } from "./codeEditorTheme";
 
 const props = defineProps({
@@ -24,8 +25,49 @@ const emit = defineEmits(["update:modelValue"]);
 const editorContainer = ref<HTMLDivElement | null>(null);
 const editableCompartment = new Compartment();
 const themeCompartment = new Compartment();
+const cursorCompartment = new Compartment();
+const darkOverrideCompartment = new Compartment();
 let view: EditorView | null = null;
 let unsubscribeThemeChange: (() => void) | null = null;
+
+const themeVars = useThemeVars();
+
+function buildCursorTheme() {
+  const color = themeVars.value.primaryColor;
+  return EditorView.theme({
+    ".cm-content": {
+      caretColor: color,
+    },
+    ".cm-cursor, .cm-dropCursor": {
+      borderLeftColor: color,
+      borderLeftWidth: "2px",
+    },
+  });
+}
+
+// oneDark's own background (#282c34) is lighter than naive-ui's actual dark
+// card/body tone, so darken it further when in dark mode.
+function buildDarkOverride() {
+  if (!isDarkMode()) return [];
+  return EditorView.theme(
+    {
+      "&": {
+        backgroundColor: "rgb(24, 24, 28)",
+      },
+      ".cm-gutters": {
+        backgroundColor: "rgb(16, 16, 20)",
+        borderRight: "1px solid rgba(255, 255, 255, 0.08)",
+      },
+      ".cm-activeLine": {
+        backgroundColor: "rgba(255, 255, 255, 0.05)",
+      },
+      ".cm-activeLineGutter": {
+        backgroundColor: "rgba(255, 255, 255, 0.07)",
+      },
+    },
+    { dark: true }
+  );
+}
 
 const lightTheme = EditorView.theme({
   "&": {
@@ -60,17 +102,12 @@ onMounted(() => {
         keymap.of([indentWithTab]),
         editableCompartment.of(EditorView.editable.of(!props.disabled)),
         themeCompartment.of(isDarkMode() ? oneDark : lightTheme),
+        Prec.highest(darkOverrideCompartment.of(buildDarkOverride())),
+        Prec.highest(cursorCompartment.of(buildCursorTheme())),
         EditorView.theme({
           "&": { fontSize: "14px" },
           ".cm-scroller": {
             fontFamily: "'Fira Code', Consolas, Menlo, monospace",
-          },
-          ".cm-content": {
-            caretColor: "#2080f0",
-          },
-          ".cm-cursor, .cm-dropCursor": {
-            borderLeftColor: "#2080f0",
-            borderLeftWidth: "2px",
           },
         }),
         EditorView.updateListener.of((update) => {
@@ -85,8 +122,17 @@ onMounted(() => {
 
   unsubscribeThemeChange = subscribeThemeChange(() => {
     view?.dispatch({
-      effects: themeCompartment.reconfigure(isDarkMode() ? oneDark : lightTheme),
+      effects: [
+        themeCompartment.reconfigure(isDarkMode() ? oneDark : lightTheme),
+        darkOverrideCompartment.reconfigure(buildDarkOverride()),
+      ],
     });
+  });
+});
+
+watch(themeVars, () => {
+  view?.dispatch({
+    effects: cursorCompartment.reconfigure(buildCursorTheme()),
   });
 });
 
