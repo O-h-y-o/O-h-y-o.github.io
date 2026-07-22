@@ -1334,5 +1334,133 @@
       }
     ],
     "answer": "c"
+  },
+  {
+    "id": 50,
+    "question": "Unreal Engine의 Enhanced Input System에서 실제 입력 동작을 정의하는 핵심 에셋은 무엇입니까?",
+    "options": [
+      {
+        "key": "a",
+        "option": "Input Mapping Context (IMC)",
+        "description": "IMC는 물리적 키/버튼을 Input Action에 매핑하는 역할을 하며, 입력 동작 자체를 정의하지는 않는다."
+      },
+      {
+        "key": "b",
+        "option": "Input Action (IA)"
+      },
+      {
+        "key": "c",
+        "option": "Player Controller",
+        "description": "Player Controller는 입력을 받아 폰을 제어하는 주체이며, 입력 동작을 정의하는 에셋이 아니다."
+      },
+      {
+        "key": "d",
+        "option": "Axis Mapping",
+        "description": "Axis Mapping은 레거시 입력 시스템의 개념이며, Enhanced Input System의 핵심 에셋이 아니다."
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 51,
+    "question": "Enhanced Input System에서 Input Mapping Context(IMC)의 역할로 가장 올바른 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "a",
+        "option": "캐릭터의 물리 이동 속도를 결정한다.",
+        "description": "캐릭터의 이동 속도는 IMC가 아니라 캐릭터 무브먼트 컴포넌트 등에서 결정한다."
+      },
+      {
+        "key": "b",
+        "option": "입력 이벤트를 블루프린트 노드로 변환하는 중간 계층이다.",
+        "description": "IMC는 블루프린트 노드 변환 계층이 아니라 물리적 입력을 Input Action에 매핑하는 에셋이다."
+      },
+      {
+        "key": "c",
+        "option": "물리적 키/버튼을 Input Action에 매핑하고, 런타임에 동적으로 추가·제거할 수 있다."
+      },
+      {
+        "key": "d",
+        "option": "게임 내 UI 위젯의 포커스 입력을 전담하여 처리한다.",
+        "description": "UI 위젯의 포커스 입력 처리는 IMC의 역할이 아니다."
+      }
+    ],
+    "answer": "c"
+  },
+  {
+    "id": 52,
+    "question": "기존 Legacy 입력 시스템(Project Settings → Input)과 Enhanced Input System의 차이점에 대한 설명으로 옳지 않은 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "a",
+        "option": "Legacy 시스템은 Project Settings에서 Axis/Action Mapping을 전역으로 설정하지만, Enhanced Input은 에셋 기반으로 관리한다."
+      },
+      {
+        "key": "b",
+        "option": "Enhanced Input은 Modifier와 Trigger를 통해 입력 값 가공 및 발동 조건을 세밀하게 제어할 수 있다."
+      },
+      {
+        "key": "c",
+        "option": "Enhanced Input은 런타임에 Mapping Context를 교체할 수 없으며, 반드시 레벨 재시작이 필요하다.",
+        "description": "Enhanced Input은 런타임에 Mapping Context를 동적으로 추가·제거·교체할 수 있으며, 레벨 재시작이 필요하지 않다."
+      },
+      {
+        "key": "d",
+        "option": "Legacy 시스템에서는 BindAxis, BindAction 함수를 사용해 입력을 연결하지만, Enhanced Input은 BindAction과 Input Action 에셋을 함께 사용한다."
+      }
+    ],
+    "answer": "c"
+  },
+  {
+    "id": 53,
+    "question": "Enhanced Input System에서 입력의 발동 조건을 결정하는 Trigger 종류와 설명이 올바르게 짝지어진 것은 무엇입니까?",
+    "options": [
+      {
+        "key": "a",
+        "option": "Pressed - 키를 누르고 있는 동안 매 프레임 발동",
+        "description": "이 설명은 Pressed가 아니라 Down 트리거에 대한 설명이다. Pressed는 입력이 임계값을 넘는 순간 한 번만 발동한다."
+      },
+      {
+        "key": "b",
+        "option": "Hold - 키를 일정 시간 이상 누르고 있을 때 발동"
+      },
+      {
+        "key": "c",
+        "option": "Released - 키를 처음 눌렀을 때 한 번만 발동",
+        "description": "이 설명은 Released가 아니라 Pressed 트리거에 대한 설명이다. Released는 입력이 임계값 아래로 떨어질 때 발동한다."
+      },
+      {
+        "key": "d",
+        "option": "Tap - 키를 누른 채로 일정 거리 이상 마우스를 움직일 때 발동",
+        "description": "이는 Tap에 대한 설명이 아니다. Tap은 짧은 시간 안에 눌렀다가 뗐을 때 발동하는 트리거이다."
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 54,
+    "question": "Unreal Engine에서 APlayerController의 주요 역할로 옳은 것은?",
+    "options": [
+      {
+        "key": "a",
+        "option": "게임 전체 세션에 걸쳐 영속적으로 데이터를 저장하고 레벨 전환 시에도 유지된다.",
+        "description": "이는 PlayerController가 아니라 GameInstance에 대한 설명이다."
+      },
+      {
+        "key": "b",
+        "option": "플레이어의 입력을 받아 폰(Pawn)을 제어하며, 하나의 플레이어 세션 동안 존재한다."
+      },
+      {
+        "key": "c",
+        "option": "AI 캐릭터의 행동 패턴을 결정하고 내비게이션 메시를 관리한다.",
+        "description": "이는 PlayerController가 아니라 AIController에 대한 설명이다."
+      },
+      {
+        "key": "d",
+        "option": "게임의 전반적인 규칙과 승패 조건을 정의하며 서버에서만 존재한다.",
+        "description": "이는 PlayerController가 아니라 GameMode에 대한 설명이다."
+      }
+    ],
+    "answer": "b"
   }
 ]

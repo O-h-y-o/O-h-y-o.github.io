@@ -834,5 +834,159 @@
       "language": "cpp",
       "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    vector<pair<int, int>> points;\n\n    points.push_back(make_pair(1, 2));\n    points.emplace_back(3, 4);\n\n    for (auto& p : points) {\n        cout << p.first << \", \" << p.second << endl;\n    }\n    return 0;\n}\n"
     }
+  },
+  {
+    "id": 77,
+    "concept": "레퍼런스 매개변수로 값 교환하기",
+    "question": "두 값을 교환하는 함수를 포인터가 아니라 레퍼런스로 구현하면 어떤 장점이 있는지 설명하세요.",
+    "modelAnswer": "레퍼런스 매개변수는 포인터처럼 원본을 직접 수정할 수 있으면서도, 호출부에서 & 연산자로 주소를 넘길 필요 없이 일반 변수처럼 자연스럽게 호출할 수 있다. 또한 레퍼런스는 항상 유효한 대상을 참조해야 하므로 nullptr 검사가 필요 없어 더 안전하다.",
+    "codePrompt": "정수 두 개를 레퍼런스로 받아 값을 교환하는 Swap 함수를 작성하고, main에서 &없이 호출하는 코드를 작성하세요.",
+    "codeAnswer": {
+      "language": "cpp",
+      "code": "#include <iostream>\nusing namespace std;\n\nvoid Swap(int& a, int& b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\n\nint main() {\n    int x = 1, y = 2;\n    Swap(x, y);\n    cout << x << \", \" << y << endl;\n    return 0;\n}\n"
+    }
+  },
+  {
+    "id": 78,
+    "concept": "포인터 매개변수로 여러 값 반환하기",
+    "question": "함수가 하나의 return 값 외에 여러 결과를 함께 돌려줘야 할 때, 포인터 매개변수를 어떻게 활용하는지 설명하세요.",
+    "modelAnswer": "C++ 함수는 return으로 값을 하나만 반환할 수 있으므로, 추가로 결과를 돌려줘야 하면 포인터(또는 레퍼런스) 매개변수를 '출력 전용' 용도로 전달해 함수 내부에서 그 주소에 값을 써넣는 방식을 쓴다. 호출하는 쪽은 미리 변수를 선언해 그 주소를 넘기고, 함수가 반환된 뒤 그 변수를 읽어 결과를 확인한다.",
+    "codePrompt": "배열과 크기를 받아 최솟값과 최댓값을 각각 포인터 매개변수 minOut, maxOut에 저장하는 FindMinMax 함수를 작성하세요.",
+    "codeAnswer": {
+      "language": "cpp",
+      "code": "#include <iostream>\nusing namespace std;\n\nvoid FindMinMax(int arr[], int size, int* minOut, int* maxOut) {\n    *minOut = arr[0];\n    *maxOut = arr[0];\n    for (int i = 1; i < size; i++) {\n        if (arr[i] < *minOut) *minOut = arr[i];\n        if (arr[i] > *maxOut) *maxOut = arr[i];\n    }\n}\n\nint main() {\n    int arr[] = { 5, 2, 8, 1, 9 };\n    int minVal, maxVal;\n    FindMinMax(arr, 5, &minVal, &maxVal);\n    cout << minVal << \", \" << maxVal << endl;\n    return 0;\n}\n"
+    }
+  },
+  {
+    "id": 79,
+    "concept": "배열 매개변수의 포인터 감쇠",
+    "question": "배열을 함수의 매개변수로 넘기면 실제로 무슨 일이 일어나는지, 그리고 그로 인해 발생하는 흔한 실수를 설명하세요.",
+    "modelAnswer": "배열을 함수 매개변수로 넘기면 배열 전체가 복사되는 것이 아니라, 배열이 첫 원소를 가리키는 포인터로 '감쇠(decay)'되어 전달된다. 그 결과 함수 안에서 sizeof(arr)을 하면 배열 전체 크기가 아니라 포인터 하나의 크기(보통 8바이트)가 나오는 흔한 실수가 발생하며, 배열의 원소 개수는 별도의 매개변수로 함께 넘겨줘야 한다.",
+    "codePrompt": "정수 배열을 매개변수로 받는 함수 안에서 sizeof(arr)을 출력해, 배열 전체 크기가 아니라 포인터 크기가 나오는 것을 확인하는 코드를 작성하세요.",
+    "codeAnswer": {
+      "language": "cpp",
+      "code": "#include <iostream>\nusing namespace std;\n\nvoid PrintSize(int arr[]) {\n    cout << sizeof(arr) << endl;\n}\n\nint main() {\n    int nums[10];\n    cout << sizeof(nums) << endl;\n    PrintSize(nums);\n    return 0;\n}\n"
+    }
+  },
+  {
+    "id": 80,
+    "concept": "const 레퍼런스와 값 전달의 성능 트레이드오프",
+    "question": "큰 객체를 함수에 전달할 때 값으로 받는 것과 const 레퍼런스로 받는 것의 차이를 설명하세요.",
+    "modelAnswer": "값으로 전달하면 객체 전체를 복사하므로 객체가 클수록 복사 비용이 커진다. const 레퍼런스로 받으면 복사 없이 원본을 그대로 참조하면서도 const로 인해 함수 내부에서 실수로 원본을 수정하는 것을 막아준다. 그래서 크기가 큰 객체(문자열, 벡터 등)는 보통 const 레퍼런스로 받고, int처럼 작은 내장 타입은 그냥 값으로 받는 것이 일반적이다.",
+    "codePrompt": "큰 vector<int>를 const 레퍼런스로 받아 합계를 계산해 반환하는 Sum 함수를 작성하세요.",
+    "codeAnswer": {
+      "language": "cpp",
+      "code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint Sum(const vector<int>& nums) {\n    int total = 0;\n    for (int n : nums) total += n;\n    return total;\n}\n\nint main() {\n    vector<int> nums = { 1, 2, 3, 4, 5 };\n    cout << Sum(nums) << endl;\n    return 0;\n}\n"
+    }
+  },
+  {
+    "id": 81,
+    "concept": "이중 포인터로 포인터 자체를 함수에서 바꾸기",
+    "question": "함수 안에서 호출자가 가진 포인터 변수 자체를 다른 곳을 가리키도록 바꾸려면 왜 이중 포인터가 필요한지 설명하세요.",
+    "modelAnswer": "단일 포인터를 값으로 전달하면 함수는 그 포인터의 복사본만 받기 때문에, 함수 안에서 그 복사본이 다른 곳을 가리키게 바꿔도 호출자의 원본 포인터는 그대로다. 호출자의 포인터 변수 자체를 바꾸려면 그 포인터의 주소, 즉 이중 포인터(int**)를 넘겨받아 *ptr = 새주소로 역참조 대입해야 한다.",
+    "codePrompt": "연결 리스트의 head 포인터에 새 노드를 맨 앞에 추가하는 PushFront 함수를 이중 포인터로 작성하세요.",
+    "codeAnswer": {
+      "language": "cpp",
+      "code": "#include <iostream>\nusing namespace std;\n\nstruct Node {\n    int value;\n    Node* next;\n};\n\nvoid PushFront(Node** head, int value) {\n    Node* newNode = new Node{ value, *head };\n    *head = newNode;\n}\n\nint main() {\n    Node* head = nullptr;\n    PushFront(&head, 3);\n    PushFront(&head, 2);\n    PushFront(&head, 1);\n\n    for (Node* cur = head; cur != nullptr; cur = cur->next) {\n        cout << cur->value << \" \";\n    }\n    cout << endl;\n    return 0;\n}\n"
+    }
+  },
+  {
+    "id": 82,
+    "concept": "팩토리 패턴과 스마트 포인터 반환",
+    "question": "다형성 기반 팩토리 함수가 unique_ptr<Base>를 반환하도록 설계하면 어떤 장점이 있는지 설명하세요.",
+    "modelAnswer": "팩토리 함수가 raw 포인터 대신 unique_ptr<Base>를 반환하면, 호출한 쪽이 delete를 신경 쓰지 않아도 스코프를 벗어날 때 자동으로 해제되어 메모리 누수 위험이 사라진다. 또한 반환 타입을 부모 클래스로 통일해두면 실제로 어떤 자식 클래스가 생성됐는지 호출부가 몰라도 되고, virtual 함수를 통해 다형적으로 동작한다.",
+    "codePrompt": "Animal을 상속하는 Dog/Cat 중 하나를 매개변수에 따라 생성해 unique_ptr<Animal>로 반환하는 CreateAnimal 팩토리 함수를 작성하세요.",
+    "codeAnswer": {
+      "language": "cpp",
+      "code": "#include <iostream>\n#include <memory>\n#include <string>\nusing namespace std;\n\nclass Animal {\npublic:\n    virtual void Speak() { cout << \"...\" << endl; }\n    virtual ~Animal() {}\n};\n\nclass Dog : public Animal {\npublic:\n    void Speak() override { cout << \"멍멍\" << endl; }\n};\n\nclass Cat : public Animal {\npublic:\n    void Speak() override { cout << \"야옹\" << endl; }\n};\n\nunique_ptr<Animal> CreateAnimal(const string& type) {\n    if (type == \"dog\") return make_unique<Dog>();\n    return make_unique<Cat>();\n}\n\nint main() {\n    auto animal = CreateAnimal(\"dog\");\n    animal->Speak();\n    return 0;\n}\n"
+    }
+  },
+  {
+    "id": 83,
+    "concept": "제네릭 Pair 클래스와 연산자 오버로딩 결합",
+    "question": "템플릿 클래스에 비교 연산자를 오버로딩하면 어떤 자료형에도 재사용 가능한 비교 로직을 만들 수 있는 이유를 설명하세요.",
+    "modelAnswer": "템플릿 클래스 안에서 operator<를 정의하면, 그 비교 로직은 실제 타입이 무엇으로 인스턴스화되든(예: Pair<int>, Pair<string>) 동일한 코드로 재사용된다. 컴파일러가 사용된 타입에 맞춰 템플릿을 구체화하면서, 그 타입이 지원하는 연산자(<)를 그대로 활용해 비교를 수행하기 때문이다.",
+    "codePrompt": "first 값을 기준으로 비교하는 operator<를 가진 템플릿 클래스 Pair<T>를 작성하고, sort로 여러 Pair<int>를 정렬해보세요.",
+    "codeAnswer": {
+      "language": "cpp",
+      "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\ntemplate <typename T>\nclass Pair {\npublic:\n    T first;\n    T second;\n    Pair(T f, T s) : first(f), second(s) {}\n\n    bool operator<(const Pair& other) const {\n        return first < other.first;\n    }\n};\n\nint main() {\n    vector<Pair<int>> pairs = { { 3, 1 }, { 1, 2 }, { 2, 3 } };\n    sort(pairs.begin(), pairs.end());\n\n    for (auto& p : pairs) {\n        cout << p.first << \", \" << p.second << endl;\n    }\n    return 0;\n}\n"
+    }
+  },
+  {
+    "id": 84,
+    "concept": "RAII로 예외 발생 시에도 안전한 자원 해제 보장",
+    "question": "함수 실행 중 예외가 발생해도 RAII를 활용하면 왜 자원이 안전하게 해제되는지 설명하세요.",
+    "modelAnswer": "예외가 발생하면 그 지점부터 스택을 거슬러 올라가며(스택 언와인딩) 지역 변수들의 소멸자가 순서대로 호출된다. 자원 관리를 RAII 객체(스마트 포인터, lock_guard 등)에 맡겨두면, 함수 중간에 예외로 빠져나가도 그 객체의 소멸자가 반드시 호출되어 자원이 해제된다. 반면 raw 포인터로 직접 delete를 호출하는 코드는 예외가 발생하면 delete 코드에 도달하지 못해 누수가 생길 수 있다.",
+    "codePrompt": "함수 안에서 예외가 발생하더라도 unique_ptr로 관리되는 자원이 자동으로 해제되는 것을 보여주는 코드를 작성하세요.",
+    "codeAnswer": {
+      "language": "cpp",
+      "code": "#include <iostream>\n#include <memory>\n#include <stdexcept>\nusing namespace std;\n\nclass Resource {\npublic:\n    Resource() { cout << \"자원 획득\" << endl; }\n    ~Resource() { cout << \"자원 해제\" << endl; }\n};\n\nvoid DoWork(bool fail) {\n    unique_ptr<Resource> res = make_unique<Resource>();\n    if (fail) {\n        throw runtime_error(\"문제 발생\");\n    }\n}\n\nint main() {\n    try {\n        DoWork(true);\n    } catch (const exception& e) {\n        cout << \"예외 처리됨: \" << e.what() << endl;\n    }\n    return 0;\n}\n"
+    }
+  },
+  {
+    "id": 85,
+    "concept": "값으로 받은 매개변수를 std::move로 넘겨 복사 없애기",
+    "question": "함수가 객체를 값으로 받아 그대로 멤버에 저장할 때, std::move를 활용하면 왜 복사 비용을 줄일 수 있는지 설명하세요.",
+    "modelAnswer": "함수가 객체를 값으로 받으면 호출부에서 이미 한 번 복사(또는 이동)가 일어나는데, 그 값을 함수 내부에서 다시 멤버 변수에 대입할 때 일반 대입을 쓰면 또 한 번 복사가 발생한다. 매개변수로 받은 지역 변수는 함수가 끝나면 어차피 사라지므로, std::move로 그 값을 이동시켜 대입하면 불필요한 두 번째 복사를 피하고 자원의 소유권만 옮길 수 있다.",
+    "codePrompt": "string을 값으로 받아 멤버 변수에 std::move로 저장하는 생성자를 가진 Person 클래스를 작성하세요.",
+    "codeAnswer": {
+      "language": "cpp",
+      "code": "#include <iostream>\n#include <string>\n#include <utility>\nusing namespace std;\n\nclass Person {\n    string name;\npublic:\n    Person(string n) : name(std::move(n)) {}\n    void PrintName() { cout << name << endl; }\n};\n\nint main() {\n    Person p(\"Hero\");\n    p.PrintName();\n    return 0;\n}\n"
+    }
+  },
+  {
+    "id": 86,
+    "concept": "람다 캡처를 std::function으로 저장해 상태 유지하기",
+    "question": "캡처를 사용하는 람다를 std::function에 저장해두면 어떤 방식으로 상태를 유지할 수 있는지 설명하세요.",
+    "modelAnswer": "람다가 바깥 변수를 캡처하면, 그 람다 객체 내부에 캡처한 값(또는 참조)이 함께 저장된다. 이 람다를 std::function에 담아두면, 그 std::function 객체가 살아있는 동안 캡처된 상태도 함께 유지되어, 호출될 때마다 이전 호출의 영향을 받는 카운터나 누적기 같은 동작을 구현할 수 있다.",
+    "codePrompt": "호출될 때마다 내부 카운트를 1씩 증가시켜 반환하는 std::function<int()> 카운터를 람다 캡처로 만들어보세요.",
+    "codeAnswer": {
+      "language": "cpp",
+      "code": "#include <iostream>\n#include <functional>\nusing namespace std;\n\nfunction<int()> MakeCounter() {\n    int count = 0;\n    return [count]() mutable {\n        count++;\n        return count;\n    };\n}\n\nint main() {\n    auto counter = MakeCounter();\n    cout << counter() << endl;\n    cout << counter() << endl;\n    cout << counter() << endl;\n    return 0;\n}\n"
+    }
+  },
+  {
+    "id": 87,
+    "concept": "반복자를 매개변수로 받는 제네릭 알고리즘 작성하기",
+    "question": "특정 컨테이너 타입이 아니라 반복자 범위(begin, end)를 매개변수로 받는 함수를 작성하면 어떤 장점이 있는지 설명하세요.",
+    "modelAnswer": "반복자 범위를 매개변수로 받으면 그 함수는 vector든 list든 배열이든, begin/end 반복자를 제공하는 어떤 컨테이너에도 동일하게 동작할 수 있어 재사용성이 높아진다. STL 알고리즘들이 컨테이너 타입 자체가 아니라 반복자 쌍을 받는 것도 같은 이유다.",
+    "codePrompt": "반복자 범위(first, last)와 찾을 값을 받아, 그 값을 가진 원소의 개수를 세는 CountValue 템플릿 함수를 작성하세요.",
+    "codeAnswer": {
+      "language": "cpp",
+      "code": "#include <iostream>\n#include <vector>\n#include <list>\nusing namespace std;\n\ntemplate <typename Iter, typename T>\nint CountValue(Iter first, Iter last, const T& value) {\n    int count = 0;\n    for (Iter it = first; it != last; ++it) {\n        if (*it == value) count++;\n    }\n    return count;\n}\n\nint main() {\n    vector<int> v = { 1, 2, 2, 3 };\n    list<int> l = { 2, 2, 2 };\n\n    cout << CountValue(v.begin(), v.end(), 2) << endl;\n    cout << CountValue(l.begin(), l.end(), 2) << endl;\n    return 0;\n}\n"
+    }
+  },
+  {
+    "id": 88,
+    "concept": "함수 포인터 배열로 구현하는 디스패치 테이블",
+    "question": "함수 포인터 배열을 이용한 디스패치 테이블 패턴이 무엇이고, 여러 개의 if-else를 대체하는 데 어떻게 쓰이는지 설명하세요.",
+    "modelAnswer": "디스패치 테이블은 처리할 종류(예: 명령어 번호)를 인덱스로, 그에 대응하는 함수 포인터를 배열에 저장해두고, 실행할 때 인덱스로 배열에서 바로 함수를 찾아 호출하는 패턴이다. 이렇게 하면 종류가 늘어날 때마다 if-else나 switch 분기를 추가하는 대신 배열에 함수만 추가하면 되어 코드가 더 간결해진다.",
+    "codePrompt": "덧셈, 뺄셈 함수를 함수 포인터 배열에 담아두고, 인덱스로 골라 호출하는 코드를 작성하세요.",
+    "codeAnswer": {
+      "language": "cpp",
+      "code": "#include <iostream>\nusing namespace std;\n\nint Add(int a, int b) { return a + b; }\nint Subtract(int a, int b) { return a - b; }\n\nint main() {\n    int (*operations[2])(int, int) = { Add, Subtract };\n\n    cout << operations[0](3, 2) << endl;\n    cout << operations[1](3, 2) << endl;\n    return 0;\n}\n"
+    }
+  },
+  {
+    "id": 89,
+    "concept": "std::variant와 std::visit으로 다형성 없이 여러 타입 처리하기",
+    "question": "상속 기반 다형성을 쓰지 않고, std::variant와 std::visit만으로 여러 도형의 넓이를 계산하는 방식의 장단점을 설명하세요.",
+    "modelAnswer": "std::variant는 정해진 몇 가지 타입 중 하나만 담을 수 있는 값 타입으로, 클래스 계층 구조나 가상 함수, 힙 할당 없이도 std::visit을 통해 실제 담긴 타입에 맞는 처리를 실행할 수 있다. 상속/가상 함수 방식보다 가볍고 값 타입으로 다루기 쉽지만, 새로운 도형 타입을 추가할 때마다 variant 목록과 모든 visit 로직을 수정해야 한다는 단점이 있다(반대로 상속 방식은 새 도형 추가는 쉽지만 새 연산 추가가 번거롭다).",
+    "codePrompt": "Circle과 Square를 담을 수 있는 variant를 만들고, std::visit으로 각 도형의 넓이를 계산해 출력하는 코드를 작성하세요.",
+    "codeAnswer": {
+      "language": "cpp",
+      "code": "#include <iostream>\n#include <variant>\nusing namespace std;\n\nstruct Circle { double radius; };\nstruct Square { double side; };\n\nint main() {\n    variant<Circle, Square> shape = Circle{ 2.0 };\n\n    double area = visit([](auto& s) -> double {\n        if constexpr (is_same_v<decay_t<decltype(s)>, Circle>) {\n            return 3.14 * s.radius * s.radius;\n        } else {\n            return s.side * s.side;\n        }\n    }, shape);\n\n    cout << area << endl;\n    return 0;\n}\n"
+    }
+  },
+  {
+    "id": 90,
+    "concept": "constexpr 함수로 컴파일 타임 계산하기",
+    "question": "constexpr 함수가 무엇이고, 일반 함수와 어떻게 다른지 설명하세요.",
+    "modelAnswer": "constexpr 함수는 컴파일 타임에 값이 확정될 수 있는 인자로 호출되면 컴파일 시점에 결과가 미리 계산되는 함수다. 일반 함수는 항상 런타임에 실행되지만, constexpr 함수는 조건이 맞으면 실행 코드 자체가 필요 없이 결과 값이 바로 상수로 치환되어 런타임 비용이 전혀 들지 않는다. 다만 런타임에만 알 수 있는 값으로 호출하면 constexpr 함수도 일반 함수처럼 런타임에 실행된다.",
+    "codePrompt": "정수의 팩토리얼을 계산하는 constexpr 함수 Factorial을 작성하고, 컴파일 타임 상수로 호출해 배열 크기로 사용해보세요.",
+    "codeAnswer": {
+      "language": "cpp",
+      "code": "#include <iostream>\nusing namespace std;\n\nconstexpr int Factorial(int n) {\n    return n <= 1 ? 1 : n * Factorial(n - 1);\n}\n\nint main() {\n    constexpr int result = Factorial(5);\n    int arr[result];\n    cout << result << endl;\n    return 0;\n}\n"
+    }
   }
 ]

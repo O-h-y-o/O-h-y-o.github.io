@@ -15,6 +15,13 @@ interface ExecuteResult {
   exitCode: number | null;
 }
 
+const DEFAULT_CODE_TEMPLATE = `#include <iostream>
+
+int main() {
+
+    return 0;
+}`;
+
 const props = defineProps({
   conceptIds: {
     type: Array,
@@ -25,11 +32,19 @@ const props = defineProps({
 const conceptArray = cppConceptsData
   .filter((concept) => props.conceptIds.includes(concept.id))
   .map((concept) => {
+    // Header/declaration-only snippets (no runnable main()) don't fit the
+    // #include+main() scaffold, so only prefill it for problems that expect
+    // an actual runnable program.
+    const defaultCode = concept.codeAnswer.code.includes("int main(")
+      ? DEFAULT_CODE_TEMPLATE
+      : "";
+
     return {
       ...concept,
+      defaultCode,
       userExplanation: ref(""),
       showAnswer: ref(false),
-      userCode: ref(""),
+      userCode: ref(defaultCode),
       showCodeAnswer: ref(false),
       aiGradingExplanation: ref(false),
       aiResultExplanation: ref<GradeResult | null>(null),
@@ -216,7 +231,7 @@ async function runCode(concept: (typeof conceptArray)[number]) {
           </n-card>
 
           <n-card title="코드로 확인해보기">
-            <div style="margin-bottom: 12px">
+            <div style="margin-bottom: 4px">
               {{ concept.codePrompt }}
             </div>
 
@@ -243,7 +258,8 @@ async function runCode(concept: (typeof conceptArray)[number]) {
                 type="info"
                 :loading="concept.aiGradingCode.value"
                 :disabled="
-                  concept.userCode.value === '' || concept.aiGradingCode.value
+                  concept.userCode.value === concept.defaultCode ||
+                  concept.aiGradingCode.value
                 "
                 @click="gradeCode(concept)"
                 ghost
@@ -255,7 +271,8 @@ async function runCode(concept: (typeof conceptArray)[number]) {
                 type="warning"
                 :loading="concept.runningCode.value"
                 :disabled="
-                  concept.userCode.value === '' || concept.runningCode.value
+                  concept.userCode.value === concept.defaultCode ||
+                  concept.runningCode.value
                 "
                 @click="runCode(concept)"
                 ghost
@@ -265,10 +282,11 @@ async function runCode(concept: (typeof conceptArray)[number]) {
 
               <n-button
                 :disabled="
-                  concept.userCode.value === '' && !concept.showCodeAnswer.value
+                  concept.userCode.value === concept.defaultCode &&
+                  !concept.showCodeAnswer.value
                 "
                 @click="
-                  concept.userCode.value = '';
+                  concept.userCode.value = concept.defaultCode;
                   concept.showCodeAnswer.value = false;
                   concept.aiResultCode.value = null;
                   concept.runResult.value = null;

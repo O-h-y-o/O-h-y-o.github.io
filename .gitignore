@@ -14,3 +14,6 @@ test/
 
 # Cloudflare Worker - kept local only, not published to this public repo
 worker/
+
+# C++ 심화 문제 - 아직 다듬는 중이라 공개 저장소에는 보류
+src/posts/cpp/advanced/

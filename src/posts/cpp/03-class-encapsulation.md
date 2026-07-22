@@ -8,4 +8,4 @@ order: 3
 
 # C++ 개념 복습 - 클래스와 캡슐화
 
-<CppConceptQuiz :conceptIds="[6, 7, 24, 44, 55, 56, 65, 67, 68]" />
+<CppConceptQuiz :conceptIds="[6, 7, 24, 56, 55, 65, 67, 68]" />
