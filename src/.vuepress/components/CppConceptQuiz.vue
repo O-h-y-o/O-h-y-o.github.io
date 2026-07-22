@@ -147,7 +147,6 @@ async function runCode(concept: (typeof conceptArray)[number]) {
               type="textarea"
               placeholder="자신의 말로 설명을 적으세요"
               :autosize="{ minRows: 3, maxRows: 8 }"
-              :disabled="concept.showAnswer.value"
             />
 
             <div
@@ -221,10 +220,7 @@ async function runCode(concept: (typeof conceptArray)[number]) {
               {{ concept.codePrompt }}
             </div>
 
-            <CodeEditor
-              v-model="concept.userCode.value"
-              :disabled="concept.showCodeAnswer.value"
-            />
+            <CodeEditor v-model="concept.userCode.value" />
 
             <div
               style="
