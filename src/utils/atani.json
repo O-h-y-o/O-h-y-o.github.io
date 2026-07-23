@@ -1462,5 +1462,133 @@
       }
     ],
     "answer": "b"
+  },
+  {
+    "id": 55,
+    "question": "플레이어가 메인 메뉴에서 캐릭터를 선택하고, 그 선택 결과를 인게임 레벨에서도 사용해야 할 때 데이터를 저장하기에 가장 적합한 클래스는?",
+    "options": [
+      {
+        "key": "a",
+        "option": "AGameModeBase",
+        "description": "GameMode는 레벨이 바뀌면 새로 생성되므로 레벨 간 데이터 유지에는 적합하지 않다."
+      },
+      {
+        "key": "b",
+        "option": "APlayerController",
+        "description": "PlayerController는 레벨 전환 시에도 유지되지만, 세션 전체(레벨 이동)의 데이터 저장 용도로는 GameInstance가 표준이다."
+      },
+      {
+        "key": "c",
+        "option": "UGameInstance"
+      },
+      {
+        "key": "d",
+        "option": "APawn",
+        "description": "Pawn은 레벨이 바뀌면 파괴되고 다시 생성되므로 데이터가 유지되지 않는다."
+      }
+    ],
+    "answer": "c"
+  },
+  {
+    "id": 56,
+    "question": "다음 코드에서 컴포넌트에 Overlap 이벤트가 발생하도록 활성화하기 위해 빈칸에 들어갈 올바른 함수명은?\n\nUBoxComponent* BoxComp;\n\nBoxComp->__________(true);\nBoxComp->OnComponentBeginOverlap.AddDynamic(this, &AMyActor::OnOverlapBegin);",
+    "options": [
+      {
+        "key": "a",
+        "option": "SetCollisionEnabled",
+        "description": "콜리전 자체를 켜고 끄는 함수로, Overlap 이벤트 생성 여부를 직접 결정하지는 않는다."
+      },
+      {
+        "key": "b",
+        "option": "SetGenerateOverlapEvents"
+      },
+      {
+        "key": "c",
+        "option": "SetNotifyRigidBodyCollision",
+        "description": "이는 Hit(충돌) 이벤트를 활성화하는 함수로 Overlap과는 무관하다."
+      },
+      {
+        "key": "d",
+        "option": "SetCollisionResponseToAllChannels",
+        "description": "채널별 응답(Block/Overlap/Ignore)을 설정하는 함수로, Overlap 이벤트 생성 자체를 켜는 함수는 아니다."
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 57,
+    "question": "충돌 이벤트 처리 흐름에서 OnComponentHit 이벤트가 발생하기 위해 필요한 조건으로 옳지 않은 것은?",
+    "options": [
+      {
+        "key": "a",
+        "option": "두 오브젝트의 콜리전 응답이 Block으로 설정되어 있어야 한다."
+      },
+      {
+        "key": "b",
+        "option": "Simulation Generates Hit Events 옵션이 활성화되어 있어야 한다."
+      },
+      {
+        "key": "c",
+        "option": "두 오브젝트의 콜리전 응답이 Overlap으로 설정되어 있어야 한다.",
+        "description": "Hit 이벤트는 두 오브젝트의 응답이 Block일 때 발생한다. Overlap으로 설정되어 있으면 Hit이 아니라 Overlap 이벤트가 발생한다."
+      },
+      {
+        "key": "d",
+        "option": "콜리전이 활성화(Collision Enabled)되어 있어야 한다."
+      }
+    ],
+    "answer": "c"
+  },
+  {
+    "id": 58,
+    "question": "언리얼 엔진에서 OnComponentBeginOverlap 델리게이트에 바인딩되는 함수의 시그니처로 올바른 것은?",
+    "options": [
+      {
+        "key": "a",
+        "option": "void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);"
+      },
+      {
+        "key": "b",
+        "option": "void OnOverlapBegin(AActor* OtherActor, UPrimitiveComponent* OtherComp);",
+        "description": "실제 FComponentBeginOverlapSignature 시그니처보다 매개변수가 누락되어 있다."
+      },
+      {
+        "key": "c",
+        "option": "void OnOverlapBegin(FHitResult HitResult, AActor* OtherActor);",
+        "description": "이는 Hit 이벤트 시그니처와 혼동한 잘못된 형태이다."
+      },
+      {
+        "key": "d",
+        "option": "void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor);",
+        "description": "매개변수가 누락되어 실제 델리게이트 시그니처와 일치하지 않는다."
+      }
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 59,
+    "question": "다음 코드의 실행 결과로 올바른 설명은?\n\nvoid AMyActor::BeginPlay()\n{\n    Super::BeginPlay();\n\n    if (SphereComp)\n    {\n        SphereComp->SetCollisionProfileName(TEXT(\"OverlapAllDynamic\"));\n        SphereComp->OnComponentBeginOverlap.AddDynamic(\n            this, &AMyActor::OnOverlap);\n    }\n}\n\nvoid AMyActor::OnOverlap(\n    UPrimitiveComponent* OverlappedComp,\n    AActor* OtherActor,\n    UPrimitiveComponent* OtherComp,\n    int32 OtherBodyIndex,\n    bool bFromSweep,\n    const FHitResult& SweepResult)\n{\n    if (OtherActor && OtherActor != this)\n    {\n        UE_LOG(LogTemp, Warning, TEXT(\"Overlap with: %s\"), *OtherActor->GetName());\n    }\n}",
+    "options": [
+      {
+        "key": "a",
+        "option": "SphereComp가 다른 액터와 Block 충돌할 때마다 상대 액터 이름을 출력한다.",
+        "description": "OverlapAllDynamic 프로파일과 BeginOverlap 바인딩은 Block이 아니라 Overlap 이벤트를 발생시킨다."
+      },
+      {
+        "key": "b",
+        "option": "SphereComp가 다른 동적 오브젝트와 겹치기 시작할 때 상대 액터 이름을 로그로 출력한다."
+      },
+      {
+        "key": "c",
+        "option": "SphereComp가 다른 액터와 분리될 때 상대 액터 이름을 출력한다.",
+        "description": "이는 EndOverlap에 대한 설명이며, 코드는 BeginOverlap에 바인딩되어 있다."
+      },
+      {
+        "key": "d",
+        "option": "SphereComp가 모든 오브젝트와 충돌할 때마다 물리 반응을 발생시키고 로그를 출력한다.",
+        "description": "이 코드는 물리 시뮬레이션 반응을 발생시키지 않으며, 로그만 출력한다."
+      }
+    ],
+    "answer": "b"
   }
 ]
