@@ -227,7 +227,7 @@
   },
   {
     "id": 12910,
-    "title": "나누어떨어지는 숫자 배열",
+    "title": "나누어 떨어지는 숫자",
     "url": "https://school.programmers.co.kr/learn/courses/30/lessons/12910",
     "stem": "array의 각 element 중 divisor로 나누어 떨어지는 값을 오름차순으로 정렬한 배열을 반환하는 함수, solution을 작성해주세요. divisor로 나누어 떨어지는 element가 하나도 없다면 배열에 -1을 담아 반환하세요.",
     "examples": [
@@ -255,9 +255,9 @@
     ]
   },
   {
-    "id": 86051,
-    "title": "절댓값 배열과 부호 배열로 정수 배열 만들기",
-    "url": "https://school.programmers.co.kr/learn/courses/30/lessons/86051",
+    "id": 76501,
+    "title": "음양 더하기",
+    "url": "https://school.programmers.co.kr/learn/courses/30/lessons/76501",
     "stem": "어떤 정수들이 있습니다. 이 정수들의 절댓값을 차례대로 담은 정수 배열 absolutes와 이 정수들의 부호를 차례대로 담은 불리언 배열 signs가 매개변수로 주어집니다. 실제 정수들의 합을 구하여 return 하도록 solution 함수를 완성해주세요.",
     "examples": [
       {
@@ -294,5 +294,28 @@
       }
     ],
     "constraints": ["phone_number는 길이 4 이상, 20이하인 문자열입니다."]
+  },
+  {
+    "id": 86051,
+    "title": "없는 숫자 더하기",
+    "url": "https://school.programmers.co.kr/learn/courses/30/lessons/86051",
+    "stem": "0부터 9까지의 숫자 중 일부가 들어있는 정수 배열 numbers가 매개변수로 주어집니다. numbers에서 찾을 수 없는 0부터 9까지의 숫자를 모두 찾아 더한 수를 return 하도록 solution 함수를 완성해주세요.",
+    "examples": [
+      {
+        "input": [1, 2, 3, 4, 6, 7, 8, 0],
+        "output": 14,
+        "explanation": "5, 9가 numbers에 없으므로, 5 + 9 = 14를 return 해야 합니다."
+      },
+      {
+        "input": [5, 8, 4, 0, 6, 7, 9],
+        "output": 6,
+        "explanation": "1, 2, 3이 numbers에 없으므로, 1 + 2 + 3 = 6을 return 해야 합니다."
+      }
+    ],
+    "constraints": [
+      "1 ≤ numbers의 길이 ≤ 9",
+      "0 ≤ numbers의 모든 원소 ≤ 9",
+      "numbers의 모든 원소는 서로 다릅니다."
+    ]
   }
 ]
