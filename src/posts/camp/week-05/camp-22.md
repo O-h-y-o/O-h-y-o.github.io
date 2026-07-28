@@ -52,3 +52,6 @@ int solution(vector<int> numbers) {
 :::
 
 </programmers-coding>
+
+오늘은 개인 과제 제출 이후, 깃 특강과 cpp 보충?을 들었다.
+짧게나마 팀 회의를 진행 → 5가지 기능 중 사다리타기로 기능 구현 담당자 정함 → 내일 다시 이어서 회의 진행 예정
