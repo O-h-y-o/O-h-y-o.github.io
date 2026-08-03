@@ -3,7 +3,7 @@ date: 2026-07-30
 category:
   - Camp
   - Unreal
-order: 5
+order: 1
 ---
 
 # 캠프 25일차
