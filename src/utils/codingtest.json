@@ -393,5 +393,24 @@
       "a, b의 길이는 1 이상 1,000 이하입니다.",
       "a, b의 모든 수는 -1,000 이상 1,000 이하입니다."
     ]
+  },
+  {
+    "id": 77884,
+    "title": "약수의 개수와 덧셈",
+    "url": "https://school.programmers.co.kr/learn/courses/30/lessons/77884",
+    "stem": "두 정수 left와 right가 매개변수로 주어집니다. left부터 right까지의 모든 수들 중에서, 약수의 개수가 짝수인 수는 더하고, 약수의 개수가 홀수인 수는 뺀 수를 return 하도록 solution 함수를 완성해주세요.",
+    "examples": [
+      {
+        "input": "left:13, right:17",
+        "output": 43,
+        "explanation": "13부터 17까지의 수 중 16만 약수의 개수가 5개(홀수)이고 나머지는 짝수 개이므로, 13 + 14 + 15 - 16 + 17 = 43을 return 해야 합니다."
+      },
+      {
+        "input": "left:24, right:27",
+        "output": 52,
+        "explanation": "24부터 27까지의 수 중 25만 약수의 개수가 3개(홀수)이고 나머지는 짝수 개이므로, 24 - 25 + 26 + 27 = 52를 return 해야 합니다."
+      }
+    ],
+    "constraints": ["1 ≤ left ≤ right ≤ 1,000"]
   }
 ]
