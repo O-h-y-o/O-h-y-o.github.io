@@ -1,5 +1,5 @@
 ---
-title: 3주차
+title: Camp
 sidebar: false
 index: false
 dir:
