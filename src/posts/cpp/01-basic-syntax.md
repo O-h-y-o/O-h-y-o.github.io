@@ -834,7 +834,3 @@ int solution(int left, int right)
     return answer;
 }
 ```
-
-## 참고
-
-camp-01.md, camp-02.md, camp-03.md, camp-04.md, camp-05.md, camp-07.md, camp-25.md, camp-26.md, camp-27.md

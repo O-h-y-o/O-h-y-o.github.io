@@ -321,7 +321,3 @@ const MonsterInfo SLIME_INFO = {"슬라임", 100, 20, 10, 30, DropItemType::DROP
 - `.h`는 "무엇이 있는지"(선언), `.cpp`는 "어떻게 동작하는지"(정의)를 담당한다. 하나의 이름은 선언은 여러 번 가능하지만 정의는 프로그램 전체에서 단 한 번(ODR)이어야 한다.
 
 :::
-
-## 참고
-
-camp-04.md, camp-08.md, camp-11.md, camp-15.md, camp-16.md, camp-w-03.md

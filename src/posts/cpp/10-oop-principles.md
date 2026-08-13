@@ -174,7 +174,3 @@ class Dog : public Animal
 
 또 하나 주의할 점: **소멸자를 순수 가상으로 만들 필요는 없다.** `virtual ~Animal() = 0;`처럼 쓰면 컴파일은 되지만, 소멸자는 자식→부모로 항상 체인 호출되기 때문에 본문이 없으면 **링크 에러**가 난다(`undefined reference`). 추상 클래스를 만드는 목적은 이미 `Move()`, `Attack()`을 순수 가상으로 만들면서 달성됐으므로, 소멸자는 그냥 `virtual ~Animal() {}`로 충분하다.
 :::
-
-## 참고
-
-camp-08.md, camp-09.md, camp-21.md

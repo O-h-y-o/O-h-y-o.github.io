@@ -323,7 +323,3 @@ int main() {
     delete a;
 }
 ```
-
-## 참고
-
-camp-08.md, camp-09.md, camp-12.md, camp-w-03.md
