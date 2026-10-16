@@ -1,11 +1,11 @@
 ---
 home: true
-layout: BlogHome
+layout: Blog
 icon: home
 title: Blog Home
 heroImage: /logo.png
 heroText: O-h-y-o Development blog
-tagline: Do whatever what I want
+tagline: 어서오세요
 heroFullScreen: true
 
 footer: Delicious Jelly

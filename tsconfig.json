@@ -1,6 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "esModuleInterop": true
-  }
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2022"
+  },
+  "include": [
+    "src/.vuepress/**/*.ts",
+    "src/.vuepress/**/*.vue",
+    "src/utils/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
 }
